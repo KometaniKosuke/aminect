@@ -1,0 +1,10 @@
+<table>
+  <tr>
+    <th>名前</th>
+  </tr>
+  <tr>
+    <% @users.each do |user| %>
+      <th><%= user.name %></th>
+    <% end %>
+  </tr>
+</table>
