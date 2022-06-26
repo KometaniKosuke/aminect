@@ -1,0 +1,13 @@
+<table border=5 width="200px">
+  <% @rooms.each do |room| %>
+    <tr align="center">
+      <td><%= link_to room.name, room %></td>
+      <% as = UserRoom.where(room_id: room.id) %>
+      <% as.each do |a| %>
+        <td><%= User.find(a.user_id).name %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "<<戻る", root_path %>
