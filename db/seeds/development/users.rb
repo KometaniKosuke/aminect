@@ -2,6 +2,8 @@ names = ["太郎","次郎","花子","佐藤","田中","鈴木"]
 
 names.each do |name|
   User.create(
-    name: name
+    name: name,
+    password: "chat",
+    password_confirmation: "chat"
   )
 end
