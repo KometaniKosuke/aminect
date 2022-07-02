@@ -4,11 +4,32 @@
     <th>名前</th>
   </tr>
   <% @users.each do |user| %>
+    <% a=0 %>
     <tr align="center">
       <td><%= user.id %></td>
-      <td><%= link_to user.name, user %></td>
+      <td>
+        <% if user!=current_user %>
+          <%= link_to user.name, user %>
+        <% else %>
+          <font color="red"><%= user.name %></font>
+        <% end %>
+      </td>
+      <td>
+        <% if user != current_user %>
+          <% urs=UserRoom.where(user_id: current_user.id) %>
+          <% urs.each do |ur| %>
+            <% if UserRoom.find_by(user_id: user.id, room_id: ur.room_id).present? %>
+              <% a=1 %>
+            <% end %>
+          <% end %>
+          <% if a==0 %>
+            <%= link_to "チャット開始", new_user_room_path(user) %>
+
+          <% end %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>
 
-<%= link_to "<<戻る", root_path %>
+<%= link_to "<<戻る", :root %>

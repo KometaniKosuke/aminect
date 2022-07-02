@@ -9,4 +9,10 @@
   </tr>
 </table>
 
+<% room_ids=UserRoom.where(user_id: @user.id) %>
+<% room_ids.each do |rid| %>
+  <% room=Room.find(rid.room_id) %>
+  <%= link_to room.name, room %>
+<% end %>
+<br><br>
 <%= link_to "<<戻る", :users %>
