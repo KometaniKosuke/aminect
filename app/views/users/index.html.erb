@@ -5,31 +5,25 @@
   </tr>
   <% @users.each do |user| %>
     <% a=0 %>
-    <tr align="center">
-      <td><%= user.id %></td>
-      <td>
-        <% if user!=current_user %>
+    <% if user!=current_user %>
+      <tr align="center">
+        <td><%= user.id %></td>
+        <td>
           <%= link_to user.name, user %>
+        </td>
+        <% urs=UserRoom.where(user_id: current_user.id) %>
+        <% urs.each do |ur| %>
+          <% i = UserRoom.find_by(user_id: user.id, room_id: ur.room_id) %>
+          <% if i.present? %><% a=1 %><% end %>
+        <% end %>
+        <% if a!=0 %>
+          <td><%= link_to "チャット", urs.find_by(user_id: user.id) %></td>
         <% else %>
-          <font color="red"><%= user.name %></font>
+          <td><%= link_to "ルーム作成", new_user_room_path(user) %></td>
         <% end %>
-      </td>
-      <td>
-        <% if user != current_user %>
-          <% urs=UserRoom.where(user_id: current_user.id) %>
-          <% urs.each do |ur| %>
-            <% if UserRoom.find_by(user_id: user.id, room_id: ur.room_id).present? %>
-              <% a=1 %>
-            <% end %>
-          <% end %>
-          <% if a==0 %>
-            <%= link_to "チャット開始", new_user_room_path(user) %>
-
-          <% end %>
-        <% end %>
-      </td>
-    </tr>
+      </tr>
+    <% end %>
   <% end %>
 </table>
-
+<br>
 <%= link_to "<<戻る", :root %>

@@ -1,5 +1,33 @@
 <h1><%= @room.name %></h1>
 
+<div class="test">
+  <table>
+    <thead>
+      <tr>
+        <td>from..</td>
+        <td>　</td>
+        <td>text</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @messages.each do |message| %>
+        <tr>
+          <td><%= message.user.name %></td>
+          <td> </td>
+          <td><%= message.text %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+</div>
+<br>
 
-<%= link_to "<<戻る", :rooms %>
+<%= form_for @message do |f| %>
+  <%= f.text_field :text %>
+  <%= f.hidden_field :room_id %>
+  <%= f.submit "送信" %>
+<% end %>
+
+<br><br><br><br>
+<%= link_to "<<一覧へ戻る", :rooms %><br>
 <a href="#" onclick="history.back(-1);return false;">前のページ</a>

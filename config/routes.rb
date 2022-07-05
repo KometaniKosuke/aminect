@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   resources :users do
     resources :rooms
   end
+  resources :rooms do
+    resources :messages
+  end
+  resources :messages
   resource :session, only: [:create, :destroy]
-  resources :rooms
-  # resources :user_rooms
-  # end
 end

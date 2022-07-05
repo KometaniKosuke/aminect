@@ -8,11 +8,16 @@
     <td><%= @user.name %></td>
   </tr>
 </table>
-
+<br><br>
 <% room_ids=UserRoom.where(user_id: @user.id) %>
-<% room_ids.each do |rid| %>
-  <% room=Room.find(rid.room_id) %>
-  <%= link_to room.name, room %>
-<% end %>
+<table border="1">
+  <caption>ルーム一覧</caption>
+  <td width=150px, align="center">
+    <% room_ids.each do |rid| %>
+      <% room=Room.find(rid.room_id) %>
+      <%= link_to room.name, room %>
+    <% end %>
+  </td>
+</table>
 <br><br>
 <%= link_to "<<戻る", :users %>
