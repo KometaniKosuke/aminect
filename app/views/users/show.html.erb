@@ -6,18 +6,35 @@
   <tr align="center">
     <th>名前</th>
     <td><%= @user.name %></td>
+    <% urs=UserRoom.where(user_id: current_user.id) %>
+    <% a=0 %>
+    <% room_url=Room.new() %>
+    <% urs.each do |ur| %>
+      <% i = UserRoom.find_by(user_id: @user.id, room_id: ur.room_id) %>
+      <% if i.present? %>
+        <% a=1 %>
+        <% room_url=Room.find(ur.room_id) %>
+      <% end %>
+    <% end %>
+    <% if a!=0 %>
+      <td><%= link_to "チャット", room_url %></td>
+    <% else %>
+      <td><%= link_to "ルーム作成", new_user_room_path(@user) %></td>
+    <% end %>
   </tr>
 </table>
 <br><br>
 <% room_ids=UserRoom.where(user_id: @user.id) %>
-<table border="1">
-  <caption>ルーム一覧</caption>
-  <td width=150px, align="center">
+<% if room_ids.present? %>
+  <table border="1">
+    <caption>ルーム一覧</caption>
     <% room_ids.each do |rid| %>
-      <% room=Room.find(rid.room_id) %>
-      <%= link_to room.name, room %>
+      <td width=150px, align="center">
+        <% room=Room.find(rid.room_id) %>
+        <%= link_to room.name, room %>
+      </td>
     <% end %>
-  </td>
-</table>
+  </table>
+<% end %>
 <br><br>
-<%= link_to "<<戻る", :users %>
+<%= link_to "<<ユーザ一覧に戻る", :users %>

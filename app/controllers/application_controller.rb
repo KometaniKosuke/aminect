@@ -4,3 +4,8 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 end
+module Chat
+  class Application < Rails::Application
+    config.time_zone = 'Asia/Tokyo'
+  end
+end

@@ -4,17 +4,21 @@
   <table>
     <thead>
       <tr>
-        <td>from..</td>
+        <td>from...</td>
         <td>　</td>
         <td>text</td>
+        <td>　</td>
+        <td>送信時間</td>
       </tr>
     </thead>
     <tbody>
       <% @messages.each do |message| %>
         <tr>
           <td><%= message.user.name %></td>
-          <td> </td>
+          <td>　</td>
           <td><%= message.text %></td>
+          <td>　</td>
+          <td><%= message.date %></td>
         </tr>
       <% end %>
     </tbody>
@@ -29,5 +33,7 @@
 <% end %>
 
 <br><br><br><br>
-<%= link_to "<<一覧へ戻る", :rooms %><br>
-<a href="#" onclick="history.back(-1);return false;">前のページ</a>
+<%= link_to "<<ルーム一覧へ戻る", :rooms %>
+｜
+<%= link_to "<<ユーザ一覧へ戻る", :users %><br>
+<!-- <a href="#" onclick="history.back(-1);return false;">前のページ</a> -->
