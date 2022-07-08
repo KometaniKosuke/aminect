@@ -26,16 +26,32 @@
 .chat input[type="text"] {
   border-color: black;
   margin-left: 2.5%;
+  border-radius: 5px;
   width: 87%;
-  height: 20px;
+  height: 30px;
 }
-.chat input[type="submit"] {
-  width: 40px;
+.btn {
+  display: inline-block;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  background: #eb6155;
+  color: #ffffff;
+  line-height: 1em;
+  opacity: 0.9;
+  transition: .15s;
+  height: 30px;
+}
+.btn:hover {
+  opacity: 1;           /* カーソル時透明度 */
+  color: #660000;     /* 文字色     */
 }
 /* ---------------------------------------------------- */
 .scroll {
   margin-left: auto;
   margin-right: auto;
+  border-radius: 5px;
   width: 95%;
   height: 500px;
   overflow-y: scroll;

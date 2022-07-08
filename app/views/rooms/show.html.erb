@@ -37,12 +37,12 @@
   </div>
 </div>
 <br>
-<div class="chat">
+<div class="chat btn--radius">
   <%= form_for @message do |f| %>
-    <div id="btn">
+    <div>
       <%= f.text_field :text, size: 80 %>
       <%= f.hidden_field :room_id %>
-      <%= f.submit "送信" %>
+      <%= f.submit "送信", class:"btn"%>
     </div>
   <% end %>
 </div>
