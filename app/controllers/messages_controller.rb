@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(room_id: params[:message][:room_id])
     @message.text=params[:message][:text]
-    @message.date=Time.now()
+    @message.date=Time.now
     @message.user_id=current_user.id
     @message.save
     redirect_to Room.find(params[:message][:room_id])

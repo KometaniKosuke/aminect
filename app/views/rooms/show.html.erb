@@ -1,39 +1,51 @@
-<h1><%= @room.name %></h1>
+<h2 style="padding-left: 2.5%;">
+  <div class="back">
+    <%= link_to "＜#{@talker.name}", :rooms %>
+  </div>
+</h2>
 
-<div class="test">
-  <table>
-    <thead>
-      <tr>
-        <td>from...</td>
-        <td>　</td>
-        <td>text</td>
-        <td>　</td>
-        <td>送信時間</td>
-      </tr>
-    </thead>
-    <tbody>
-      <% @messages.each do |message| %>
-        <tr>
-          <td><%= message.user.name %></td>
-          <td>　</td>
-          <td><%= message.text %></td>
-          <td>　</td>
-          <td><%= message.date %></td>
-        </tr>
+<% date=Time.local(2022, 1, 1, 0, 0, 0) %>
+<% wd=["日","月","火","水","木","金","土"] %>
+<div class="scroll">
+  <div id="scroll-inner">
+    <% @messages.each do |message| %>
+      <% month=date.month %>
+      <% day=date.day %>
+      <% if month!=message.date.month or day!=message.date.day %>
+        <div class="date"><p><%= message.date.strftime("%-m/%-d(#{wd[message.date.wday]})") %></p></div>
+        <% date=message.date %>
       <% end %>
-    </tbody>
-</table>
+      <% if message.user != current_user %>
+        <div class="partner">
+          <div class="faceicon">
+            <p><%= message.user.name %></p>
+          </div>
+          <div class="chatting">
+            <div class="says">
+              <p><%= message.text %></p>
+            </div>
+            <span style="font-size: 10px;"><%= message.date.strftime('%-H:%M') %></span>
+          </div>
+        </div>
+      <% else %>
+        <div class="self">
+          <span style="font-size: 10px;"><%= message.date.strftime('%-H:%M') %></span>
+          <p><%= message.text %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 <br>
-
-<%= form_for @message do |f| %>
-  <%= f.text_field :text %>
-  <%= f.hidden_field :room_id %>
-  <%= f.submit "送信" %>
-<% end %>
+<div class="chat">
+  <%= form_for @message do |f| %>
+    <div id="btn">
+      <%= f.text_field :text, size: 80 %>
+      <%= f.hidden_field :room_id %>
+      <%= f.submit "送信" %>
+    </div>
+  <% end %>
+</div>
 
 <br><br><br><br>
-<%= link_to "<<ルーム一覧へ戻る", :rooms %>
-｜
-<%= link_to "<<ユーザ一覧へ戻る", :users %><br>
-<!-- <a href="#" onclick="history.back(-1);return false;">前のページ</a> -->
+<%= link_to "<<ユーザ一覧", :users %><br>

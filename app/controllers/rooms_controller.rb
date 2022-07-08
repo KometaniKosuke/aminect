@@ -5,6 +5,9 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    talker_id=UserRoom.where(room_id: params[:id])
+    talker_id=talker_id.where.not(user_id: current_user.id)
+    @talker=User.find_by(id: talker_id)
     @messages = @room.messages
     @message = Message.new(room_id: @room.id, user_id: current_user.id)
   end
