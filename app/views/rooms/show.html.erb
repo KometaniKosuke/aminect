@@ -37,15 +37,18 @@
   </div>
 </div>
 <br>
-<div class="chat btn--radius">
+<table style="margin:0 auto;">
   <%= form_for @message do |f| %>
-    <div>
-      <%= f.text_field :text, size: 80 %>
-      <%= f.hidden_field :room_id %>
-      <%= f.submit "送信", class:"btn"%>
+    <div class="send">
+      <tr>
+        <td style="width=1000px;"><%= f.text_field :text, class: "input" %></td>
+        <td><%= f.hidden_field :room_id %></td>
+        <td><%= f.submit "送信", class: "btn"%></td>
+      </tr>
     </div>
   <% end %>
-</div>
+</table>
+
 
 <br><br><br><br>
 <%= link_to "<<ユーザ一覧", :users %><br>
