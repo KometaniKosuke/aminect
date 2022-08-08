@@ -47,5 +47,10 @@ group :development do
 end
 gem 'rename'
 
+gem 'net-smtp'
+# ついでに以下の2つも追加しておく方が良さそう
+gem 'net-imap'
+gem 'net-pop'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

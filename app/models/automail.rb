@@ -1,0 +1,2 @@
+class Automail < ApplicationRecord
+end

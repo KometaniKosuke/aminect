@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :automails
   root "top#index"
 
   resources :users do
