@@ -3,17 +3,23 @@ class AccountsController < ApplicationController
 
   def show
     @user=current_user
+    @timetable=Timetable.find(current_user.id)
   end
 
   def edit
     @user = current_user
+    @timetable=Timetable.find_by(user_id: current_user.id)
   end
 
   def update
     @user = current_user
-    @user.assign_attributes(params[:user])
+    @user.assign_attributes(account_params)
+    tt=Timetable.find_by(user_id: current_user.id)
+    tt.assign_attributes(params[:account][:timetable])
     if @user.save
-      redirect_to :user, notice: "アカウント情報を更新しました。"
+      if tt.save
+        redirect_to :account, notice: "アカウント情報を更新しました。"
+      end
     else
       render "edit"
     end
@@ -21,14 +27,22 @@ class AccountsController < ApplicationController
 
   def new
     @user = User.new
+    @timetable = @user.timetables.new
   end
 
   def create
-    @user = User.new(params[:user])
-    if @user.save
-      redirect_to :root, notice: "会員情報を登録しました。"
-    else
-      render "new"
+    @user = User.new(user_params)
+    tt = @user.timetables.new(params[:user][:timetable])
+    if @user.save && tt.save
+      cookies.signed[:user_id] = { value: @user.id }
+      redirect_to :account, notice: "会員情報を登録しました。"
     end
+  end
+
+  private def account_params
+    params.require(:account).permit(:name, :sex, :birthplace, :undergraduate, timetables_attributes: [:timetable, :destroy, :id])
+  end
+  private def user_params
+    params.require(:user).permit(:name, :sex, :birthplace, :undergraduate, :password_digest)
   end
 end

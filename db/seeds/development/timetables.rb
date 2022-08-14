@@ -1,0 +1,30 @@
+for i in 1..6 do
+  Timetable.create(
+    user_id: i,
+    mon1: rand(2),
+    mon2: rand(2),
+    mon3: rand(2),
+    mon4: rand(2),
+    mon5: rand(2),
+    tue1: rand(2),
+    tue2: rand(2),
+    tue3: rand(2),
+    tue4: rand(2),
+    tue5: rand(2),
+    wed1: rand(2),
+    wed2: rand(2),
+    wed3: rand(2),
+    wed4: rand(2),
+    wed5: rand(2),
+    thu1: rand(2),
+    thu2: rand(2),
+    thu3: rand(2),
+    thu4: rand(2),
+    thu5: rand(2),
+    fri1: rand(2),
+    fri2: rand(2),
+    fri3: rand(2),
+    fri4: rand(2),
+    fri5: rand(2)
+  )
+end

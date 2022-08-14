@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :rooms
+    resources :timetables
   end
   resources :rooms do
     resources :messages

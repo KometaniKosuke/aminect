@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_07_075348) do
+ActiveRecord::Schema.define(version: 2022_08_14_055742) do
 
   create_table "automails", force: :cascade do |t|
     t.string "name"
@@ -30,6 +30,36 @@ ActiveRecord::Schema.define(version: 2022_08_07_075348) do
 
   create_table "rooms", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "timetables", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "mon1", default: 0
+    t.integer "mon2", default: 0
+    t.integer "mon3", default: 0
+    t.integer "mon4", default: 0
+    t.integer "mon5", default: 0
+    t.integer "tue1", default: 0
+    t.integer "tue2", default: 0
+    t.integer "tue3", default: 0
+    t.integer "tue4", default: 0
+    t.integer "tue5", default: 0
+    t.integer "wed1", default: 0
+    t.integer "wed2", default: 0
+    t.integer "wed3", default: 0
+    t.integer "wed4", default: 0
+    t.integer "wed5", default: 0
+    t.integer "thu1", default: 0
+    t.integer "thu2", default: 0
+    t.integer "thu3", default: 0
+    t.integer "thu4", default: 0
+    t.integer "thu5", default: 0
+    t.integer "fri1", default: 0
+    t.integer "fri2", default: 0
+    t.integer "fri3", default: 0
+    t.integer "fri4", default: 0
+    t.integer "fri5", default: 0
+    t.index ["user_id"], name: "index_timetables_on_user_id"
   end
 
   create_table "user_rooms", force: :cascade do |t|

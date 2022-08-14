@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @timetable=Timetable.find(params[:id])
   end
 
   def destory
