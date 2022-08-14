@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   end
   resources :messages
   resource :session, only: [:create, :destroy]
+  resource :account, except: [:index, :destroy]
 end

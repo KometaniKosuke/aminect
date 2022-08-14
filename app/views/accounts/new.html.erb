@@ -1,0 +1,4 @@
+<%= form_for @user, as: "account", url: :account do |form| %>
+  <%= render "shared/user_form", form: form %>
+  <%= form.submit "登録する" %>
+<% end %>
