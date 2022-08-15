@@ -35,7 +35,7 @@ class AccountsController < ApplicationController
     tt = @user.timetables.new(params[:user][:timetable])
     if @user.save && tt.save
       cookies.signed[:user_id] = { value: @user.id }
-      redirect_to :account, notice: "会員情報を登録しました。"
+      redirect_to :root, notice: "会員情報を登録しました。"
     end
   end
 
