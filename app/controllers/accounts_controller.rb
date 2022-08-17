@@ -43,6 +43,6 @@ class AccountsController < ApplicationController
     params.require(:account).permit(:name, :sex, :birthplace, :undergraduate, timetables_attributes: [:timetable, :destroy, :id])
   end
   private def user_params
-    params.require(:user).permit(:name, :sex, :birthplace, :undergraduate, :password_digest)
+    params.require(:user).permit(:name, :sex, :birthplace, :undergraduate, :password)
   end
 end

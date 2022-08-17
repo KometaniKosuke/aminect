@@ -28,8 +28,8 @@
 
   <% if @user.new_record? %>
     <tr>
-      <th><%= form.label :password_digest, 'パスワード' %></th>
-      <td><%= form.text_field :password_digest %></td>
+      <th><%= form.label :password, 'パスワード' %></th>
+      <td><%= form.text_field :password %></td>
     </tr>
   <% end %>
 </table>
