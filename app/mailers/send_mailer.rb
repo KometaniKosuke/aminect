@@ -5,7 +5,7 @@ class SendMailer < ApplicationMailer
   #   mail to: automail.email  #新規登録されたメールアドレス
   # end
   def published_email
-    @automail = params[:automail]
+    @automail = params[:user]
     mail(
       subject: 'ご登録ありがとうございます',
       to: @automail.email
