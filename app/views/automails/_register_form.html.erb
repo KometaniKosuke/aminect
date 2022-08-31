@@ -12,16 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
+    <label> メールアドレス </label>
     <%= form.text_field :email %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "入力完了" %>
   </div>
 <% end %>
