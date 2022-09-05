@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_14_055742) do
+ActiveRecord::Schema.define(version: 2022_09_05_164520) do
 
   create_table "automails", force: :cascade do |t|
     t.string "email"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2022_08_14_055742) do
     t.string "birthplace"
     t.string "undergraduate"
     t.string "password_digest"
+    t.string "image"
   end
 
 end

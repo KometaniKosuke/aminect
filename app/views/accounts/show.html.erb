@@ -1,5 +1,8 @@
-<%= link_to "ログアウト", :session, method: :delete, data: { confirm: "ログアウトしますか?" } %>
 <table>
+  <tr>
+    <th>プロフィール写真</th>
+    <td><%= image_tag @user.image.url, class: 'rounded-circle', size: '50x50' %></td>
+  </tr>
   <tr>
     <th>ニックネーム</th>
     <td><%= @user.name %></td>

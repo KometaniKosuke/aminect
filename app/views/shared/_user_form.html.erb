@@ -3,6 +3,16 @@
 
 <table>
   <tr>
+    <th>プロフィール画像</th>
+    <td>
+      <% unless current_page?(new_account_path) %>
+        <%= image_tag @user.image.url, class: 'rounded-circle', size: '50x50' %>
+      <% end %>
+      <%= form.file_field :image, accept: 'image/*' %>
+      <%= form.hidden_field :image_cache %>
+    </td>
+  </tr>
+  <tr>
     <th>ニックネーム</th>
     <td><%= form.text_field :name %></td>
   </tr>

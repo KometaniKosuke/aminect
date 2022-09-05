@@ -40,7 +40,7 @@ class AccountsController < ApplicationController
   end
 
   private def account_params
-    params.require(:account).permit(:name, :sex, :birthplace, :undergraduate, timetables_attributes: [:timetable, :destroy, :id])
+    params.require(:account).permit(:name, :sex, :birthplace, :undergraduate, :image, timetables_attributes: [:timetable, :destroy, :id])
   end
   private def user_params
     params.require(:user).permit(:name, :sex, :birthplace, :undergraduate, :password)

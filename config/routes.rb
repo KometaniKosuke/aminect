@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   resources :messages
   resource :session, only: [:create, :destroy]
   resource :account, except: [:index, :destroy]
+
+  resource :profile,only: %i[show edit update]
 end

@@ -7,4 +7,6 @@ class User < ApplicationRecord
   has_many :rooms, through: :user_rooms
 
   has_many :timetables, dependent: :destroy
+
+  mount_uploader :image, ImageUploader
 end
