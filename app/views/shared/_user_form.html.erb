@@ -37,15 +37,15 @@
 <%= form.fields_for @timetable do |tt| %>
   <table border="3" align="center">
     <tr align="center">
-      <th></th>
-      <th>Mon</th>
-      <th>Tue</th>
-      <th>Wed</th>
-      <th>Thu</th>
-      <th>Fri</th>
+      <th width="30"></th>
+      <th width="50">月</th>
+      <th width="50">火</th>
+      <th width="50">水</th>
+      <th width="50">木</th>
+      <th width="50">金</th>
     </tr>
     <tr align="center">
-      <th>一限</th>
+      <th>１</th>
       <td><%= tt.check_box :mon1 %><%= label_tag :mon1, "授業" %></td>
       <td><%= tt.check_box :tue1 %><%= label_tag :tue1, "授業" %></td>
       <td><%= tt.check_box :wed1 %><%= label_tag :wed1, "授業" %></td>
@@ -53,7 +53,7 @@
       <td><%= tt.check_box :fri1 %><%= label_tag :fri1, "授業" %></td>
     </tr>
     <tr align="center">
-      <th>二限</th>
+      <th>２</th>
       <td><%= tt.check_box :mon2 %><%= label_tag :mon2, "授業" %></td>
       <td><%= tt.check_box :tue2 %><%= label_tag :tue2, "授業" %></td>
       <td><%= tt.check_box :wed2 %><%= label_tag :wed2, "授業" %></td>
@@ -61,7 +61,7 @@
       <td><%= tt.check_box :fri2 %><%= label_tag :fri2, "授業" %></td>
     </tr>
     <tr align="center">
-      <th>三限</th>
+      <th>３</th>
       <td><%= tt.check_box :mon3 %><%= label_tag :mon3, "授業" %></td>
       <td><%= tt.check_box :tue3 %><%= label_tag :tue3, "授業" %></td>
       <td><%= tt.check_box :wed3 %><%= label_tag :wed3, "授業" %></td>
@@ -69,7 +69,7 @@
       <td><%= tt.check_box :fri3 %><%= label_tag :fri3, "授業" %></td>
     </tr>
     <tr align="center">
-      <th>四限</th>
+      <th>４</th>
       <td><%= tt.check_box :mon4 %><%= label_tag :mon4, "授業" %></td>
       <td><%= tt.check_box :tue4 %><%= label_tag :tue4, "授業" %></td>
       <td><%= tt.check_box :wed4 %><%= label_tag :wed4, "授業" %></td>
@@ -77,7 +77,7 @@
       <td><%= tt.check_box :fri4 %><%= label_tag :fri4, "授業" %></td>
     </tr>
     <tr align="center">
-      <th>五限</th>
+      <th>５</th>
       <td><%= tt.check_box :mon5 %><%= label_tag :mon5, "授業" %></td>
       <td><%= tt.check_box :tue5 %><%= label_tag :tue5, "授業" %></td>
       <td><%= tt.check_box :wed5 %><%= label_tag :wed5, "授業" %></td>

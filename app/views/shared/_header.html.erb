@@ -1,8 +1,3 @@
-<%= image_tag('logo.png', size: "300x100")%>
-<% if current_user %>
-  <ul>
-    <%= link_to current_user.name + "さん", :account %>
-    <%= link_to "ログアウト", :session,
-          method: :delete, data: { confirm: "ログアウトしますか?" } %>
-  </ul>
-<% end %>
+<div class="header">
+  <%= image_tag 'logo.png', size: "170x50" %>
+</div>

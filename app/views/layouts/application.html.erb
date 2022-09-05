@@ -15,16 +15,24 @@
         <%= render "shared/header" %>
       </header>
       <main>
-        <% if flash.notice %>
-          <p class="notice"><%= flash.notice %></p>
+        <% if current_user.present? %>
+          <div class="content">
+            <% if flash.notice %>
+              <p class="notice"><%= flash.notice %></p>
+            <% end %>
+            <%= yield %>
+          </div>
         <% end %>
-
-        <%= yield %>
       </main>
       <aside id="sidebar">
-        <%= render "shared/sidebar" %>
+        <% unless current_page?(new_account_path) %>
+          <%= render "shared/sidebar" %>
+        <% end %>
       </aside>
       <footer>
+        <% if current_user.present? %>
+          <%= render "shared/under_menubar" %>
+        <% end %>
       </footer>
     </div>
   </body>

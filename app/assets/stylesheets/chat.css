@@ -1,0 +1,142 @@
+.back a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+.back a:active{
+  color : #26a69a;
+}
+/* ---------------------------------------------------- */
+.chat input[type="text"] {
+  border-color: black;
+  margin-left: 2.5%;
+  border-radius: 5px;
+  width: 80%;
+  height: 30px;
+}
+.input{
+  height: 25px;
+  width: 95%;
+}
+.btn {
+  display: inline-block;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  background: #eb6155;
+  color: #ffffff;
+  line-height: 1em;
+  opacity: 0.9;
+  transition: .15s;
+  height: 30px;
+}
+.btn:hover {
+  opacity: 1;           /* カーソル時透明度 */
+  color: #660000;     /* 文字色     */
+}
+/* ---------------------------------------------------- */
+.scroll {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  width: 95%;
+  height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border: black 1px solid;
+  text-align: right;
+  font-size: 14px;
+  font-family: sans-serif;
+  background: #eee;
+}
+#scroll-inner{
+  height: 300px;
+}
+/* ---------------------------------------------------- */
+.scroll .date {
+  text-align: center;
+  height: 35px;
+}
+.scroll .date p{
+  display: inline-block;
+  width: 70px;
+  border-radius: 12px;
+  background-color: #777;
+  color: white;
+}
+/* ---------------------------------------------------- */
+.partner {
+  width: 100%;
+  margin: 8px 0;
+  overflow: hidden;
+}
+
+.partner .faceicon {
+  float: left;
+  margin-right: -50px;
+  width: 40px;
+}
+
+/* .partner .faceicon img{
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+} */
+.partner .chatting {
+  width: 100%;
+  text-align: left;
+}
+.says {
+  display: inline-block;
+  position: relative;
+  margin: 0 0 0 50px;
+  padding: 10px;
+  max-width: 50%;
+  border-radius: 12px;
+  background: #36f;
+}
+
+.says:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 3px;
+  left: -19px;
+  border: 8px solid transparent;
+  border-right: 18px solid #36f;
+  -webkit-transform: rotate(35deg);
+  transform: rotate(20deg);
+}
+.says p {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+/*以下、③右側の緑コメント*/
+.self {
+  margin: 8px 0;
+}
+.self p {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  margin: 0 10px 0 0;
+  padding: 8px;
+  max-width: 50%;
+  border-radius: 12px;
+  background: #6f6;
+  font-size: 15px;
+}
+
+.self p:after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  right: -19px;
+  border: 8px solid transparent;
+  border-left: 18px solid #6f6;
+  -webkit-transform: rotate(-35deg);
+  transform: rotate(-20deg);
+}
