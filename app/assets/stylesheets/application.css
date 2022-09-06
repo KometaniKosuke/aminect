@@ -15,7 +15,11 @@
  */
  .header{
    padding-left: 5%;
+   display: flex;
    border-bottom: 3px solid #2E8B58;
+ }
+ .logout {
+   margin: auto 0 0 auto;
  }
 /* body--------------------------- */
  .content {
