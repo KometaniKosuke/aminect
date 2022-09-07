@@ -30,4 +30,46 @@
   <% end %>
 </table>
 <br>
+
+<table border=5 width="500px">
+  <tr align="center">
+    <th>ID</th>
+    <th>名前</th>
+    <th>フォロー</th>
+    <th>ルーム</th>
+  </tr>
+  <% @users.each do |user| %>
+    <% a=0 %>
+    <% if user!=current_user %>
+      <tr align="center">
+        <td><%= user.id %></td>
+        <td>
+          <%= link_to user.name, user %>
+        </td>
+        <td>
+          <% if current_user.following?(user) %>
+            <%= link_to "フォロー外す", user_follows_path(user.id), method: :delete %>
+          <% else %>
+              <%= link_to "フォローする", user_follows_path(user.id), method: :post %>
+          <% end %>
+        </td>
+        <% urs=UserRoom.where(user_id: current_user.id) %>
+        <% room_url=Room.new() %>
+        <% urs.each do |ur| %>
+          <% i = UserRoom.find_by(user_id: user.id, room_id: ur.room_id) %>
+          <% if i.present? %>
+            <% a=1 %>
+            <% room_url=Room.find(ur.room_id) %>
+          <% end %>
+        <% end %>
+        <% if a!=0 %>
+          <td><%= link_to "チャット", room_url %></td>
+        <% else %>
+          <td><%= link_to "ルーム作成", new_user_room_path(user) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+<br>
 <%= link_to "<<戻る", :root %>

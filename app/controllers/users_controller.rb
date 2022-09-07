@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def index
     @users = User.order("id")
+    @follow = Follow.where(from_id: current_user)
+    @follower = Follow.where(to_id: current_user)
   end
 
   def show

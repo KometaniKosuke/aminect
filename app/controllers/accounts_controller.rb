@@ -4,6 +4,8 @@ class AccountsController < ApplicationController
   def show
     @user=current_user
     @timetable=Timetable.find(current_user.id)
+    @follows = Follow.where(from_id: current_user)
+    @followers = Follow.where(to_id: current_user)
   end
 
   def edit
