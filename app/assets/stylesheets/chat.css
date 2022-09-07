@@ -1,5 +1,6 @@
 .back a {
   color: black;
+  font-family: "Arial";
   font-weight: bold;
   text-decoration: none;
 }
@@ -7,21 +8,21 @@
   color : #26a69a;
 }
 /* ---------------------------------------------------- */
-.chat input[type="text"] {
-  border-color: black;
-  margin-left: 2.5%;
-  border-radius: 5px;
-  width: 80%;
-  height: 30px;
+.send {
+  padding-top: 102%;
 }
 .input{
-  height: 25px;
-  width: 95%;
+  border-width: thin;
+  border-color: #000;
+  /* border: none; */
+  font-size: 16px;
+  height: auto;
+  width: 93%;
 }
 .btn {
   display: inline-block;
-  border-radius: 5px;
-  font-size: 14px;
+  border: none;
+  font-size: 16px;
   text-align: center;
   cursor: pointer;
   background: #eb6155;
@@ -29,7 +30,8 @@
   line-height: 1em;
   opacity: 0.9;
   transition: .15s;
-  height: 30px;
+  height: 5%;
+  width: 90%;
 }
 .btn:hover {
   opacity: 1;           /* カーソル時透明度 */
@@ -37,21 +39,19 @@
 }
 /* ---------------------------------------------------- */
 .scroll {
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 5px;
+  position: absolute;
   width: 95%;
-  height: 300px;
+  height: 57%;
   overflow-y: scroll;
   overflow-x: hidden;
-  border: black 1px solid;
-  text-align: right;
   font-size: 14px;
   font-family: sans-serif;
+  margin-left: 1%;
+  margin-right: 1%;
+  border-radius: 5px;
+  border: black 1px solid;
+  text-align: right;
   background: #eee;
-}
-#scroll-inner{
-  height: 300px;
 }
 /* ---------------------------------------------------- */
 .scroll .date {
@@ -67,22 +67,24 @@
 }
 /* ---------------------------------------------------- */
 .partner {
-  width: 100%;
-  margin: 8px 0;
+  width: 90%;
+  margin: 1% 1%;
   overflow: hidden;
+  border-color: #000;
 }
 
 .partner .faceicon {
   float: left;
   margin-right: -50px;
-  width: 40px;
+  width: 10%;
+  border-color: #000;
 }
 
-/* .partner .faceicon img{
+.partner .faceicon img{
   width: 100%;
-  height: auto;
+  height: 10%;
   border-radius: 50%;
-} */
+}
 .partner .chatting {
   width: 100%;
   text-align: left;
@@ -101,12 +103,12 @@
   content: "";
   display: inline-block;
   position: absolute;
-  top: 3px;
+  top: 40%;
   left: -19px;
   border: 8px solid transparent;
   border-right: 18px solid #36f;
   -webkit-transform: rotate(35deg);
-  transform: rotate(20deg);
+  transform: rotate(15deg);
 }
 .says p {
   margin: 0;
@@ -116,7 +118,7 @@
 
 /*以下、③右側の緑コメント*/
 .self {
-  margin: 8px 0;
+  margin: 3% 1%;
 }
 .self p {
   display: inline-block;
@@ -133,10 +135,27 @@
 .self p:after {
   content: "";
   position: absolute;
-  top: 3px;
+  top: 30%;
   right: -19px;
   border: 8px solid transparent;
   border-left: 18px solid #6f6;
   -webkit-transform: rotate(-35deg);
-  transform: rotate(-20deg);
+  transform: rotate(-15deg);
+}
+
+/* indexのデザイン */
+.rooms {
+  height: 15%;
+  background-color: white;
+  width: 100%;
+  border-bottom: px solid #000;
+}
+.rooms th {
+  font-size: 20px;
+  font-weight: 500;
+  color: #000;
+}
+.rooms td {
+  font-size: 15px;
+  color: #000;
 }

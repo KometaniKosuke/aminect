@@ -1,3 +1,30 @@
+<table>
+  <tr>
+    <th>プロフィール写真</th>
+    <td><%= image_tag @user.image.url, class: 'rounded-circle', size: '50x50' %></td>
+  </tr>
+  <tr>
+    <th>ニックネーム</th>
+    <td><%= @user.name %></td>
+  </tr>
+  <tr>
+    <th>性別</th>
+    <td>
+      <% if @user.sex==1 %>男性
+      <% elsif @user.sex==2 %>女性
+      <% else %>--
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th>出身地</th>
+    <td><%= @user.birthplace %></td>
+  </tr>
+  <tr>
+    <th>学部</th>
+    <td><%= @user.undergraduate %></td>
+  </tr>
+</table>
 <table border=5 width="200px">
   <tr align="center">
     <th>ID</th>

@@ -20,8 +20,14 @@ class MessagesController < ApplicationController
     @message.text=params[:message][:text]
     @message.date=Time.now
     @message.user_id=current_user.id
-    @message.save
-    redirect_to Room.find(params[:message][:room_id])
+    if @message.save
+      urs=UserRoom.where(room_id: params[:message][:room_id])
+      urs.each do |ur|
+        ur.updated_at=Time.now
+        ur.save
+      end
+      redirect_to Room.find(params[:message][:room_id])
+    end
   end
 
   private def message_params

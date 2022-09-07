@@ -22,10 +22,21 @@
    margin: auto 0 0 auto;
  }
 /* body--------------------------- */
+  body {
+    font-family: "Arial";
+  }
+ h2 {
+   padding-bottom: 10;
+   font-size: 200%;
+   padding-left: 5%;
+   padding-right: 5%;
+   width: 90%;
+   border-bottom: 1px solid #000;
+ }
  .content {
    position: absolute;
    width: 98%;
-   height: 79%;
+   height: 80.75%;
    overflow-y: scroll;
    overflow-x: hidden;
    font-size: 14px;

@@ -1,6 +1,9 @@
 class RoomsController < ApplicationController
+  layout 'chat', only: :show
+
   def index
-    @rooms = Room.all
+    urs = UserRoom.order(updated_at: :DESC).where(user_id: current_user.id)
+    @rooms = urs.pluck(:room_id)
   end
 
   def show

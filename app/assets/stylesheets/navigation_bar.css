@@ -19,7 +19,8 @@
     height: 130%;
     background-color: #fff;
     border-color: #52FF00;
-    margin-bottom: 4%;
+    border-width: 2px;
+    margin-bottom: 2%;
   }
 
   .menuitem-side{

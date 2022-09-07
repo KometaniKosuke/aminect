@@ -12,6 +12,11 @@
 
 ActiveRecord::Schema.define(version: 2022_09_05_164520) do
 
+  create_table "administrators", force: :cascade do |t|
+    t.string "name"
+    t.string "password_digest"
+  end
+
   create_table "automails", force: :cascade do |t|
     t.string "email"
     t.datetime "created_at", null: false
@@ -36,6 +41,8 @@ ActiveRecord::Schema.define(version: 2022_09_05_164520) do
 
   create_table "rooms", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "timetables", force: :cascade do |t|
@@ -71,6 +78,8 @@ ActiveRecord::Schema.define(version: 2022_09_05_164520) do
   create_table "user_rooms", force: :cascade do |t|
     t.integer "user_id"
     t.integer "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_user_rooms_on_room_id"
     t.index ["user_id"], name: "index_user_rooms_on_user_id"
   end

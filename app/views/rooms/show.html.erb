@@ -1,6 +1,8 @@
-<h2 style="padding-left: 2.5%;">
+<h2 style="font-size:150%;">
   <div class="back">
-    <%= link_to "＜#{@talker.name}", :rooms %>
+    <%= link_to :rooms do %>
+      < <%= @talker.name %>
+    <% end %>
   </div>
 </h2>
 
@@ -18,7 +20,7 @@
       <% if message.user != current_user %>
         <div class="partner">
           <div class="faceicon">
-            <p><%= message.user.name %></p>
+            <%= link_to (image_tag message.user.image.url), message.user %>
           </div>
           <div class="chatting">
             <div class="says">
@@ -36,19 +38,13 @@
     <% end %>
   </div>
 </div>
-<br>
-<table style="margin:0 auto;">
-  <%= form_for @message do |f| %>
-    <div class="send">
-      <tr>
-        <td style="width=1000px;"><%= f.text_field :text, class: "input" %></td>
-        <td><%= f.hidden_field :room_id %></td>
-        <td><%= f.submit "送信", class: "btn"%></td>
-      </tr>
-    </div>
-  <% end %>
-</table>
 
-
-<br><br><br><br>
-<%= link_to "<<ユーザ一覧", :users %><br>
+<%= form_for @message do |f| %>
+  <div class="send">
+    <table style="width:100%;">
+      <td style="width: 85%;""><%= f.text_field :text, class: "input" %></td>
+      <%= f.hidden_field :room_id %>
+      <td style="width: 5%; padding: 2% 0; background: #eb6155; border-radius: 15%;"><%= f.submit "送信", class: "btn"%></td>
+    </table>
+  </div>
+<% end %>
