@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   layout 'chat', only: :show
+  before_action :login_required
 
   def index
     urs = UserRoom.order(updated_at: :DESC).where(user_id: current_user.id)

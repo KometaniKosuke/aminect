@@ -1,4 +1,5 @@
 class Admin::TopController < Admin::Base
-    def index
-    end
+  before_action :admin_login_required
+  def index
+  end
 end

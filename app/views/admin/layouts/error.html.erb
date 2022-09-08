@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= page_title %></title>
+    <%= stylesheet_link_tag "application", media: "all" %>
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <%= render "admin/shared/header" %>
+      </header>
+      <main>
+        <% if flash.notice %>
+          <p class="notice"><%= flash.notice %></p>
+        <% end %>
+        <%= yield %>
+      </main>
+      <footer>
+        <%= render "admin/shared/footer" %>
+      </footer>
+    </div>
+  </body>
+</html>

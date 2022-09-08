@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "top#index"
+    resource :session, only: [:create, :destroy]
     resources :users do
       resource :follows, only: [:create, :destroy]
       get 'followings' => 'follows#followings', as: 'followings'

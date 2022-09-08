@@ -1,4 +1,5 @@
 class AutomailsController < ApplicationController
+  before_action :login_required, except: [:new, :index]
   def index
   end
 
