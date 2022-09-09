@@ -15,8 +15,8 @@
         <%= render "admin/shared/header" %>
       </header>
       <main>
-        <% if flash.notice %>
-          <p class="notice"><%= flash.notice %></p>
+        <% if current_admin.present? %>
+          <%= render "admin/shared/menubar" %>
         <% end %>
         <%= yield %>
       </main>

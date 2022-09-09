@@ -1,0 +1,8 @@
+<h2>内容変更</h2>
+　　<%= link_to "<<一覧",:admin_announces %>
+
+<%= form_for [:admin, @announce] do |form| %>
+  <%= form.text_area :text, style: "margin-left: 10%; width: 80%;", rows: "20%" %>
+
+  <%= form.submit "更新する", data: {confirm: "この内容で保存しますか?"}, class: "announce-btn" %>
+<% end %>

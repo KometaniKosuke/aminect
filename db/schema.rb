@@ -10,11 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_05_164520) do
+ActiveRecord::Schema.define(version: 2022_09_09_165605) do
 
   create_table "administrators", force: :cascade do |t|
     t.string "name"
     t.string "password_digest"
+  end
+
+  create_table "announces", force: :cascade do |t|
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "automails", force: :cascade do |t|

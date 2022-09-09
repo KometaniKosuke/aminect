@@ -1,0 +1,12 @@
+<h2 style="font-size:170%;">運営からの連絡</h2>
+
+<table>
+  <% @announces.each do |a| %>
+    <tr>
+      <th style="text-align: left; padding-left: 5%;"><%= a.updated_at.strftime("%-m月%-d日 %H:%M") %></th>
+    </tr>
+    <tr>
+      <td><%= a.text %></td>
+    </tr>
+  <% end %>
+</table>

@@ -42,9 +42,9 @@
 <%= form_for @message do |f| %>
   <div class="send">
     <table style="width:100%;">
-      <td style="width: 85%;""><%= f.text_field :text, class: "input" %></td>
+      <td><%= f.text_area :text, class: "input" %></td>
       <%= f.hidden_field :room_id %>
-      <td style="width: 5%; padding: 2% 0; background: #eb6155; border-radius: 15%;"><%= f.submit "送信", class: "btn"%></td>
+      <td style="width: 5%; padding: 2% 0; background: #eb6155; border-radius: 15%;"><%= f.submit "送信", class: "btn" %></td>
     </table>
   </div>
 <% end %>

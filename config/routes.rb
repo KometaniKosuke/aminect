@@ -21,10 +21,12 @@ Rails.application.routes.draw do
     get 'followings' => 'follows#followings', as: 'followings'
     get 'followers' => 'follows#followers', as: 'followers'
   end
+  resources :announces, only: [:index]
 
   namespace :admin do
     root "top#index"
     resource :session, only: [:create, :destroy]
+    resources :announces, except: [:show]
     resources :users do
       resource :follows, only: [:create, :destroy]
       get 'followings' => 'follows#followings', as: 'followings'

@@ -1,0 +1,13 @@
+<ul>
+  <% if current_page?(:admin_users) %>ユーザ
+  <% else %><%= link_to "ユーザ", :admin_users %>
+  <% end %>
+  |
+  <%= link_to "通報", "#" %>
+  |
+  <% if current_page?(:admin_announces) %>告知
+  <% else %><%= link_to "告知", :admin_announces %>
+  <% end %>
+  |
+  <%= link_to "質問", "#" %>
+</ul>

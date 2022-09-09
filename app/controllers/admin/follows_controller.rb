@@ -1,4 +1,4 @@
-class FollowsController < ApplicationController
+class FollowsController < Admin::Base
     # フォローするとき
     def create
       current_user.follow(params[:user_id])

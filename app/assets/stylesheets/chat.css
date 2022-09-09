@@ -9,14 +9,13 @@
 }
 /* ---------------------------------------------------- */
 .send {
-  padding-top: 102%;
+  padding-top: 100%;
 }
 .input{
   border-width: thin;
   border-color: #000;
   /* border: none; */
   font-size: 16px;
-  height: auto;
   width: 93%;
 }
 .btn {
@@ -41,7 +40,7 @@
 .scroll {
   position: absolute;
   width: 95%;
-  height: 57%;
+  height: 55%;
   overflow-y: scroll;
   overflow-x: hidden;
   font-size: 14px;
