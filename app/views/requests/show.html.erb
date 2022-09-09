@@ -1,0 +1,8 @@
+<table style="width: 95%">
+  <tr>
+    <th style="text-align: left; padding-top: 15px;">投稿日時<%= @request.created_at.strftime("%-m月%-d日 %H:%M") %></th>
+  </tr>
+  <tr style="padding: 10px 0;">
+    <td style="border: black 1px solid; border-color: black;"><%= @request.content %></td>
+  </tr>
+</table>

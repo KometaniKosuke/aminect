@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :users do
     resources :rooms
     resources :timetables
+    resources :requests, except: [:edit, :update]
   end
+  resources :requests
   resources :rooms do
     resources :messages
   end
@@ -32,5 +34,6 @@ Rails.application.routes.draw do
       get 'followings' => 'follows#followings', as: 'followings'
       get 'followers' => 'follows#followers', as: 'followers'
     end
+    resources :requests, except: [:new, :create, :edit, :update]
   end
 end
