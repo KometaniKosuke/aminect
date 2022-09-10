@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2022_09_09_194330) do
   create_table "requests", force: :cascade do |t|
     t.integer "user_id"
     t.string "content"
+    t.string "response"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_requests_on_user_id"

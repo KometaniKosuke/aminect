@@ -1,5 +1,7 @@
 <div class="header">
   <%= image_tag 'logo.png', size: "170x50" %>
+  管理者
+
   <% if current_admin.present? %>
     <div class="logout">
       <%= link_to "ログアウト", :admin_session, method: :delete, data: { confirm: "ログアウトしますか?" } %>

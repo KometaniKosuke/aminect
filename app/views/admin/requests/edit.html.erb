@@ -1,0 +1,36 @@
+<h2>
+  <div class="back">
+    <%= link_to :admin_requests do %>
+      < 投稿者：<%= User.find(@request.user_id).name %>
+    <% end %>
+  </div>
+</h2>
+
+<table style="padding: 0 3%; width: 100%;">
+  <tr>
+    <th style="text-align: left;">投稿日時：<%= @request.created_at.strftime("%-m月%-d日(%H:%M)") %></th>
+  </tr>
+  <tr style="padding: 10px 0;">
+    <td style="border: black 1px solid; border-color: black;"><%= @request.content %></td>
+  </tr>
+  <tr>
+    <th style="text-align: left; padding-top: 20px;">回答内容</th>
+  </tr>
+  <% if @request.response.nil? %>
+    <%= form_for [:admin, @request] do |form| %>
+      <tr>
+        <td><%= form.text_area :response, style: "width: 99%;", rows: "15%" %><td>
+      </tr>
+      <tr>
+        <td><%= form.submit "回答する", data: {confirm: "この内容で回答しますか?"} %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr style="padding: 10px 0;">
+      <td style="border: black 1px solid; border-color: black;"><%= @request.response %></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;"><%= @request.updated_at.strftime("%-m月%-d日%H:%M") %></td>
+    </tr>
+  <% end %>
+</table>

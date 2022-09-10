@@ -2,9 +2,11 @@
 <% if flash.notice %>
   <p class="notice"><%= flash.notice %></p>
 <% end %>
-<%= link_to "新しい投稿", :new_admin_announce %>
 
-<table style="width: 100%">
+<table style="padding-left: 3%; width: 100%">
+  <tr>
+    <td><%= link_to "新しい投稿", :new_admin_announce %></td>
+  </tr>
   <% @announces.each do |a| %>
     <tr>
       <th style="text-align: left; padding-top: 15px;">変更日時<%= a.updated_at.strftime("%-m月%-d日 %H:%M") %></th>

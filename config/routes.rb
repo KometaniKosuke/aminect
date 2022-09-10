@@ -34,6 +34,6 @@ Rails.application.routes.draw do
       get 'followings' => 'follows#followings', as: 'followings'
       get 'followers' => 'follows#followers', as: 'followers'
     end
-    resources :requests, except: [:new, :create, :edit, :update]
+    resources :requests, only: [:index, :edit, :update]
   end
 end
