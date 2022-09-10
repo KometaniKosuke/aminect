@@ -5,6 +5,11 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.integer :sex  # 1->男性、2->女性、3->指定なし
       t.string :birthplace
       t.string :undergraduate
+      t.string :comment
+
+      t.string :twitter
+      t.string :instagram
+      t.string :tiktok
     end
   end
 end

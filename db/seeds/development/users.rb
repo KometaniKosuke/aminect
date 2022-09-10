@@ -8,6 +8,10 @@ names.each_with_index do |name, idx|
     sex: sexes[idx],
     birthplace: "神奈川県",
     undergraduate: ugs[rand(5)],
+    comment: "よろしくお願いします！",
+    twitter: "@Twitter",
+    instagram: "@instagram",
+    tiktok: "@tiktok",
     password: "chat",
     password_confirmation: "chat"
   )

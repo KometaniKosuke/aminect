@@ -24,11 +24,29 @@
     <th>学部</th>
     <td><%= @user.undergraduate %></td>
   </tr>
+  <tr>
+    <th>コメント</th>
+    <td><%= @user.comment %></td>
+  </tr>
 </table>
 <%= link_to "質問箱", new_request_path %>
 <br>
-<h3>空きコマ</h3>
+<% if @user.twitter.present? %>
+  <% tw = 'https://twitter.com/'.concat(@user.twitter) %>
+  <ul><%= link_to 'Twitter', tw %></ul>
+<% end %>
+<% if @user.instagram.present? %>
+  <% i = 'https://www.instagram.com/'.concat(@user.instagram) %>
+  <ul><%= link_to 'Instagram', i %></ul>
+<% end %>
+<% if @user.tiktok.present? %>
+  <% ti = 'https://www.tiktok.com/'.concat(@user.tiktok) %>
+  <ul><%= link_to 'TikTok', ti %></ul>
+<% end %>
+
+
 <table border="3" align="center">
+  <caption>時間割</caption>
   <tr align="center">
     <th width="30"></th>
     <th width="50">月</th>
@@ -80,29 +98,6 @@
 </table>
 <%= button_to "アカウント情報の編集", :edit_account, {method: :get} %>
 <br>
-<table>
-  <tr>
-    <th>ニックネーム</th>
-    <td><%= @user.name %></td>
-  </tr>
-  <tr>
-    <th>性別</th>
-    <td>
-      <% if @user.sex==1 %>男性
-      <% elsif @user.sex==2 %>女性
-      <% else %>--
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <th>出身地</th>
-    <td><%= @user.birthplace %></td>
-  </tr>
-  <tr>
-    <th>学部</th>
-    <td><%= @user.undergraduate %></td>
-  </tr>
-</table>
 <!-- ------------------------------------------- -->
 <table border=5 width="500px">
   <caption>フォロー</caption>

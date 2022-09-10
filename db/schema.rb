@@ -104,6 +104,10 @@ ActiveRecord::Schema.define(version: 2022_09_09_194330) do
     t.integer "sex"
     t.string "birthplace"
     t.string "undergraduate"
+    t.string "comment"
+    t.string "twitter"
+    t.string "instagram"
+    t.string "tiktok"
     t.string "password_digest"
     t.string "image"
   end
