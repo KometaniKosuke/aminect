@@ -1,0 +1,13 @@
+<% if @user.nil? %>
+  <h4>登録時に送信したメールに記載したIDを入力してください。</h4>
+  <% if flash.notice %>
+    <p class="notice"><%= flash.notice %></p>
+  <% end %>
+  <%= form_tag :new_password_reset, method: :get do %>
+    <%= text_field_tag "uid" %>
+    <%= submit_tag "完了" %>
+  <% end %>
+<% else %>
+  <h4>パスワードを変更しました。</h4>
+  <%= link_to "ログインに進む", :root %>
+<% end %>
