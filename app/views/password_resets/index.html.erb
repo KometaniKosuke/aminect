@@ -1,10 +1,10 @@
 <% if @user.nil? %>
-  <h4>登録時に送信したメールに記載したIDを入力してください。</h4>
+  <h4>登録時に使用した専修大メールアドレスを入力してください。</h4>
   <% if flash.notice %>
     <p class="notice"><%= flash.notice %></p>
   <% end %>
   <%= form_tag :new_password_reset, method: :get do %>
-    <%= text_field_tag "uid" %>
+    <%= text_field_tag "email" %>
     <%= submit_tag "完了" %>
   <% end %>
 <% else %>

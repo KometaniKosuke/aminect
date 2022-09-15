@@ -1,0 +1,5 @@
+<%= form_with(model: user, local: true) do |form| %>
+  <label> メールアドレス </label>
+  <%= form.text_field :email %>
+  <%= form.submit "入力完了" %>
+<% end %>

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :automails, only: [:new, :create, :destroy, :index]
+  resources :mails, only: [:new, :index]
   root "top#index"
-  get "/register" => "automails#new"
+  get "/register" => "mails#new"
   resources :password_resets, only: [:new, :create, :index]
 
   resources :users do
