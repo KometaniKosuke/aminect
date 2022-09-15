@@ -24,9 +24,11 @@ ActiveRecord::Schema.define(version: 2022_09_09_194330) do
   end
 
   create_table "automails", force: :cascade do |t|
+    t.integer "user_id"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_automails_on_user_id"
   end
 
   create_table "follows", force: :cascade do |t|
@@ -101,7 +103,7 @@ ActiveRecord::Schema.define(version: 2022_09_09_194330) do
 
   create_table "users", force: :cascade do |t|
     t.integer "uid"
-    t.string "name", null: false
+    t.string "name"
     t.integer "sex"
     t.string "birthplace"
     t.string "undergraduate"
