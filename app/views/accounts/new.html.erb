@@ -1,4 +1,19 @@
-<%= form_for @user, url: {action: 'create'} do |form| %>
-  <%= render "shared/user_form", form: form %>
-  <%= form.submit "登録する" %>
+<% if @user.present? %>
+  <%= form_for @user, url: {controller: "accounts", action: "create"}, method: :post do |form| %>
+    <%= render "shared/user_form", form: form %>
+    <%= form.hidden_field :email  %>
+    <%= form.submit "登録する" %>
+  <% end %>
+<% else %>
+  <h4>登録時に使用した専修大メールアドレスと発行したパスワードを入力してください。</h4>
+  <% if flash.notice %>
+    <p class="notice"><%= flash.notice %></p>
+  <% end %>
+  <%= form_tag :new_account, method: :get do %>
+    <label>メールアドレス</label>
+    <%= text_field_tag "email" %><br>
+    <label>パスワード</label>
+    <%= password_field_tag "password" %>
+    <%= submit_tag "完了" %>
+  <% end %>
 <% end %>
