@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :timetables
     resources :requests, except: [:edit, :update]
   end
+  resources :timetables, only: [:index, :show, :edit, :update] do
+    get "search", on: :collection
+  end
   resources :requests
   resources :rooms do
     resources :messages

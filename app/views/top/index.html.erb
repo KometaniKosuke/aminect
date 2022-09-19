@@ -3,7 +3,8 @@
     <p>タグ検索</p>
   </div>
   <div class="box_css">
-    <p>空きコマ検索</p>
+    <% tt = Timetable.find_by(user_id: current_user.id) %>
+    <%= link_to "空きコマ検索", :timetables %>
   </div>
   <%= link_to "Aminect", :announces %>
 <% end %>

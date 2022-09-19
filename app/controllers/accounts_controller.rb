@@ -44,7 +44,7 @@ class AccountsController < ApplicationController
   def create
     @user = User.find_by(email: params[:user][:email])
     @user.assign_attributes(user_params)
-    tt = @user.timetables.new(params[:user][:timetable])
+    tt = @user.timetables.new
     if @user.save && tt.save
       cookies.signed[:user_id] = { value: @user.id }
       redirect_to :root, notice: "会員情報を登録しました。"

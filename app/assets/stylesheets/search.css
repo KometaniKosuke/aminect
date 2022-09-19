@@ -1,0 +1,13 @@
+ .blank {
+  background-color: #EEFFE6;
+ }
+ .search_btn {
+   display: inline-block;
+   border-radius: 5px;
+   font-size: 20px;
+   color: black;
+   background-color: white;
+   border: 1px solid;
+   width: auto;
+   height: auto;
+ }
