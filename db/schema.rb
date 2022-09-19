@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2022_09_09_194330) do
     t.integer "sex"
     t.string "birthplace"
     t.string "undergraduate"
+    t.integer "grade"
     t.string "comment"
     t.string "email"
     t.string "twitter"

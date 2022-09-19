@@ -16,12 +16,12 @@ class AccountsController < ApplicationController
   def update
     @user = current_user
     @user.assign_attributes(account_params)
-    tt=Timetable.find_by(user_id: current_user.id)
-    tt.assign_attributes(params[:account][:timetable])
+    # tt=Timetable.find_by(user_id: current_user.id)
+    # tt.assign_attributes(params[:account][:timetable])
     if @user.save
-      if tt.save
+      # if tt.save
         redirect_to :account, notice: "アカウント情報を更新しました。"
-      end
+      # end
     else
       render "edit"
     end

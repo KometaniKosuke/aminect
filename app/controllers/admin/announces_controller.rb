@@ -2,6 +2,7 @@ class Admin::AnnouncesController < Admin::Base
   before_action :admin_login_required
   def index
     @announces = Announce.all
+    @announces = @announces.order(id: "DESC")
   end
   def new
     @announce = Announce.new

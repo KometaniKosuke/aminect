@@ -1,34 +1,38 @@
-<table>
+<table style="width: 90%; font-size: 16px; margin: 3% auto auto auto; text-align: center;">
   <tr>
-    <th>プロフィール写真</th>
-    <td><%= image_tag @user.image.url, class: 'rounded-circle', size: '50x50' %></td>
-  </tr>
-  <tr>
-    <th>ニックネーム</th>
-    <td><%= @user.name %></td>
-  </tr>
-  <tr>
-    <th>性別</th>
-    <td>
-      <% if @user.sex==1 %>男性
-      <% elsif @user.sex==2 %>女性
-      <% else %>--
-      <% end %>
+    <td style="width: 10%;">
+      <%= image_tag @user.image.url, class: 'rounded-circle', size: '98x98' %>
     </td>
-  </tr>
-  <tr>
-    <th>出身地</th>
-    <td><%= @user.birthplace %></td>
-  </tr>
-  <tr>
-    <th>学部</th>
-    <td><%= @user.undergraduate %></td>
-  </tr>
-  <tr>
-    <th>コメント</th>
-    <td><%= @user.comment %></td>
+    <td class="name" colspan="2" style="padding-right:10%;"><%= @user.name %></td>
   </tr>
 </table>
+<table style="width: 90%; font-size: 16px; margin: auto; text-align: center;" align="center">
+  <tr>
+    <td>
+      <p style="padding: 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
+        <%= @user.undergraduate %> <%= @user.grade %>年
+      </p>
+    </td>
+    <td>
+      <p style="padding: 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
+        <%= @user.birthplace %>
+      </p>
+    </td>
+    <td>
+      <p style="padding: 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
+        <% if @user.sex==1 %>男性
+        <% elsif @user.sex==2 %>女性
+        <% else %>--
+        <% end %>
+      </p>
+    </td>
+  </tr>
+</table>
+
+
+<p align="center"><%= safe_join(@user.comment.split("\n"),tag(:br)) %></p>
+
+
 <% if @user.twitter.present? %>
   <% tw = 'https://twitter.com/'.concat(@user.twitter) %>
   <ul><%= link_to 'Twitter', tw %></ul>

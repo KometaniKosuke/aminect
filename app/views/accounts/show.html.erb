@@ -1,41 +1,45 @@
-<table>
+<table style="width: 90%; font-size: 16px; margin: 3% auto auto auto; text-align: center;" align="center">
   <tr>
-    <th>プロフィール写真</th>
-    <td><%= image_tag @user.image.url, class: 'rounded-circle', size: '50x50' %></td>
-  </tr>
-  <tr>
-    <th>ニックネーム</th>
-    <td><%= @user.name %></td>
-  </tr>
-  <tr>
-    <th>性別</th>
-    <td>
-      <% if @user.sex==1 %>男性
-      <% elsif @user.sex==2 %>女性
-      <% else %>--
-      <% end %>
+    <td width="40%" rowspan="2">
+      <%= image_tag @user.image.url, class: 'rounded-circle', size: '128x128' %>
     </td>
+    <td class="name" colspan="2"><%= @user.name %></td>
   </tr>
-  <tr>
-    <th>出身地</th>
-    <td><%= @user.birthplace %></td>
-  </tr>
-  <tr>
-    <th>学部</th>
-    <td><%= @user.undergraduate %></td>
-  </tr>
-  <tr>
-    <th>コメント</th>
-    <td><%= @user.comment %></td>
+  <tr height="0">
+    <td width="30%">
+      数字<br>フォロワー
+    </td>
+    <td width="30%">
+      数字<br>フォロー
+    </td>
   </tr>
 </table>
 
-<ul>
-  <%= button_to "プロフィールを編集する", :edit_account, {method: :get} %>
-  <%= button_to "質問箱", new_request_path, {method: :get} %>
-</ul>
+<table style="width: 90%; font-size: 20px; text-align: center;" align="center">
+  <tr>
+    <td>
+      <p style="padding: 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
+        <%= @user.undergraduate %> <%= @user.grade %>年
+      </p>
+    </td>
+    <td>
+      <p style="padding: 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
+        <%= @user.birthplace %>
+      </p>
+    </td>
+    <td>
+      <p style="padding: 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
+        <% if @user.sex==1 %>男性
+        <% elsif @user.sex==2 %>女性
+        <% else %>--
+        <% end %>
+      </p>
+    </td>
+  </tr>
+</table>
 
-<br>
+<p align="center"><%= safe_join(@user.comment.split("\n"),tag(:br)) %></p>
+
 <% if @user.twitter.present? %>
   <% tw = 'https://twitter.com/'.concat(@user.twitter) %>
   <ul><%= link_to 'Twitter', tw %></ul>
@@ -48,6 +52,11 @@
   <% ti = 'https://www.tiktok.com/'.concat(@user.tiktok) %>
   <ul><%= link_to 'TikTok', ti %></ul>
 <% end %>
+
+<p>
+  <%= button_to "プロフィールを編集する", :edit_account, {method: :get, class: "pro-btn"} %>
+  <%= button_to "質問箱", :new_request, {method: :get, class: "req-btn"} %>
+</p>
 
 
 <table border="3" align="center">
