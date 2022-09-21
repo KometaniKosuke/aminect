@@ -1,5 +1,5 @@
  .blank {
-  background-color: #EEFFE6;
+  background-color: pink;
  }
  .search_btn {
    display: inline-block;
@@ -10,4 +10,7 @@
    border: 1px solid;
    width: auto;
    height: auto;
+ }
+ .this {
+   background-color: #EEFFE6;
  }

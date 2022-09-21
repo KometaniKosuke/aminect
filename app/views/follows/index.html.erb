@@ -1,0 +1,55 @@
+<%= current_user.name %>
+
+<% if current_page?(:followings_account) %>
+  <table>
+    <% @followings.each do |follow| %>
+      <% a=0 %>
+      <tr align="center">
+        <td><%= image_tag follow.image.url, class: 'rounded-circle', size: '56x56' %></td>
+        <td><%= link_to follow.name, follow %></td>
+        <% urs = UserRoom.where(user_id: current_user.id) %>
+        <% room_url = Room.new() %>
+        <% urs.each do |ur| %>
+          <% i = UserRoom.find_by(user_id: follow.id, room_id: ur.room_id) %>
+          <% if i.present? %>
+            <% a=1 %>
+            <% room_url=Room.find(ur.room_id) %>
+          <% end %>
+        <% end %>
+        <td>
+          <% if a!=0 %>
+            <%= link_to "メッセージ", room_url %>
+          <% else %>
+            <%= link_to "メッセージ", new_user_room_path(follow) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% elsif current_page?(:followers_account) %>
+  <table>
+    <% @followers.each do |follower| %>
+      <% a=0 %>
+      <tr align="center">
+        <td><%= image_tag follower.image.url, class: 'rounded-circle', size: '56x56' %></td>
+        <td><%= link_to follower.name, follower %></td>
+        <% urs = UserRoom.where(user_id: current_user.id) %>
+        <% room_url = Room.new() %>
+        <% urs.each do |ur| %>
+          <% i = UserRoom.find_by(user_id: follower.id, room_id: ur.room_id) %>
+          <% if i.present? %>
+            <% a=1 %>
+            <% room_url=Room.find(ur.room_id) %>
+          <% end %>
+        <% end %>
+        <td>
+          <% if a!=0 %>
+            <%= link_to "メッセージ", room_url %>
+          <% else %>
+            <%= link_to "メッセージ", new_user_room_path(follower) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

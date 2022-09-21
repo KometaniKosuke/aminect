@@ -12,25 +12,26 @@
   padding-top: 100%;
 }
 .input{
-  border-width: thin;
   border-color: #000;
+  border-radius : 10px;
   /* border: none; */
   font-size: 16px;
-  width: 93%;
+  width: 95%;
+  height: 30px;
+  padding-top: 9px;
 }
 .btn {
   display: inline-block;
+  border-radius : 10px;
   border: none;
   font-size: 16px;
-  text-align: center;
+  margin-bottom: 7%;
   cursor: pointer;
   background: #eb6155;
   color: #ffffff;
   line-height: 1em;
-  opacity: 0.9;
   transition: .15s;
-  height: 5%;
-  width: 90%;
+  height: 40px;
 }
 .btn:hover {
   opacity: 1;           /* カーソル時透明度 */
