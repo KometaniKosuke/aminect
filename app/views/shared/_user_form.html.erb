@@ -7,10 +7,10 @@
       <%= image_tag @user.image.url, class: 'rounded-circle', size: '80x80' %>
     </td>
     <td>
-      数字<br>フォロワー
+      フォロワー<br><%= @user.followers.count %>
     </td>
     <td>
-      数字<br>フォロー
+      フォロー<br><%= @user.followings.count %>
     </td>
   </tr>
   <tr>

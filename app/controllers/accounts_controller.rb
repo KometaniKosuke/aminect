@@ -3,14 +3,16 @@ class AccountsController < ApplicationController
 
   def show
     @user=current_user
-    @timetable=Timetable.find(current_user.id)
+    @timetable=Timetable.find_by(user_id: current_user.id)
     @follows = Follow.where(from_id: current_user)
     @followers = Follow.where(to_id: current_user)
+    @tags = current_user.tags
   end
 
   def edit
     @user = current_user
     @timetable=Timetable.find_by(user_id: current_user.id)
+    @tags = current_user.tags
   end
 
   def update
@@ -60,5 +62,9 @@ class AccountsController < ApplicationController
 
   private def register_params
     params.require(:user).permit(:email, :password)
+  end
+
+  def get_category_children
+    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
   end
 end

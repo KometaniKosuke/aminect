@@ -14,9 +14,3 @@
 //= require activestorage
 
 //= require_tree .
-const btn = document.getElementById('btn');
-btn.addEventListener('click', ()=>{
-  const target = document.getElementById('scroll-inner');
-  target.insertAdjacentHTML('beforeend', '<li>ADD ITEM</li>');
-  target.scrollTo(0, list.scrollHeight);
-}, false);

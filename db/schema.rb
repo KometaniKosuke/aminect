@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_09_194330) do
+ActiveRecord::Schema.define(version: 2022_09_22_093037) do
 
   create_table "administrators", force: :cascade do |t|
     t.string "name"
@@ -54,6 +54,17 @@ ActiveRecord::Schema.define(version: 2022_09_09_194330) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tag_relations", force: :cascade do |t|
+    t.integer "tag1_id"
+    t.integer "tag2_id"
+    t.float "degree"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.string "ancestry"
+  end
+
   create_table "timetables", force: :cascade do |t|
     t.integer "user_id"
     t.integer "mon1", default: 0
@@ -91,6 +102,14 @@ ActiveRecord::Schema.define(version: 2022_09_09_194330) do
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_user_rooms_on_room_id"
     t.index ["user_id"], name: "index_user_rooms_on_user_id"
+  end
+
+  create_table "user_tags", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "tag_id"
+    t.string "tag_image"
+    t.index ["tag_id"], name: "index_user_tags_on_tag_id"
+    t.index ["user_id"], name: "index_user_tags_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

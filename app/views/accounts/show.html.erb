@@ -111,4 +111,8 @@
   </tr>
 </table>
 <br>
+<% @tags.each do |tag| %>
+  <%= tag.name %>
+<% end %>
+<br>
 <%= link_to "<<ユーザ一覧に戻る", :users %>

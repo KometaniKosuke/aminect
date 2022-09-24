@@ -9,6 +9,9 @@ class User < ApplicationRecord
   has_many :timetables, dependent: :destroy
   has_many :requests
 
+  has_many :user_tags
+  has_many :tags, through: :user_tags
+
   mount_uploader :image, ImageUploader
 
   # フォローをした、されたの関係

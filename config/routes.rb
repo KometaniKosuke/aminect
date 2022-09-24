@@ -9,6 +9,19 @@ Rails.application.routes.draw do
     resources :timetables
     resources :requests, except: [:edit, :update]
   end
+  resources :users, only: [:index, :show] do
+    resource :follows, only: [:index, :create, :destroy]
+    get 'followings' => 'follows#followings', as: 'followings'
+    get 'followers' => 'follows#followers', as: 'followers'
+    resources :tags
+  end
+  resource :account, except: [:index, :destroy] do
+    resource :follows, only: [:index, :create, :destroy]
+    get 'followings' => 'follows#followings', as: 'followings'
+    get 'followers' => 'follows#followers', as: 'followers'
+    resources :tags
+  end
+  resources :tags
   resources :timetables, only: [:index, :show, :edit, :update] do
     get "search", on: :collection
   end
@@ -18,19 +31,9 @@ Rails.application.routes.draw do
   end
   resources :messages
   resource :session, only: [:create, :destroy]
-  resource :account, except: [:index, :destroy] do
-    resource :follows, only: [:index, :create, :destroy]
-    get 'followings' => 'follows#followings', as: 'followings'
-    get 'followers' => 'follows#followers', as: 'followers'
-  end
 
   resource :profile,only: %i[show edit update]
 
-  resources :users, only: [:index, :show] do
-    resource :follows, only: [:index, :create, :destroy]
-    get 'followings' => 'follows#followings', as: 'followings'
-    get 'followers' => 'follows#followers', as: 'followers'
-  end
   resources :announces, only: [:index]
 
   namespace :admin do
