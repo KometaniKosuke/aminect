@@ -1,0 +1,82 @@
+@charset "utf-8";
+
+.accordion-container {
+  position: relative;
+  margin: 2% auto;
+  border-radius: 19px;
+  width: 80%;
+  border: 0.5px solid #A6A6A6;
+  outline: 0;
+  cursor: cell;
+}
+
+.accordion-container .accordion-title {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 4% 4% 4% 12%;
+  font-size: 17px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.accordion-container .accordion-title:hover,
+.accordion-container .accordion-title:active,
+.accordion-container .content-entry.open .accordion-title {
+  background-color: #00aaa7;
+  border-radius: 19px;
+}
+
+.accordion-container .accordion-title:hover i:before,
+.accordion-container .accordion-title:hover i:active,
+.accordion-container .content-entry.open i {
+  border-radius: 19px;
+}
+
+.accordion-title{
+  position: relative;
+}
+
+.accordion-title:after {
+  content: "＋";
+  font-size: 22px;
+  position: absolute;
+  right: 25px;
+  top: 35%;
+  transition: all 0.3s ease-in-out;
+  display: block;
+  width: 25px;
+  height: 25px;
+  border-top: solid 2px #D9D9D9;
+  border-right: solid 2px #D9D9D9;
+  background-color: #D9D9D9;
+}
+
+.accordion-title.open:after {
+  content: "ー";
+  font-size: 22px;
+  top: 35%;
+  align-items: center;
+  border-top: solid 2px #D9D9D9;
+  border-right: solid 2px #D9D9D9;
+  background-color: #D9D9D9;
+}
+
+.accordion-content {
+  display: none;
+  padding-left: 2.3125em;
+}
+
+.tag-btn {
+  margin-top: 2%;
+  margin-bottom:  7%;
+  margin-left: 30%;
+  width: 40%;
+  height: 20%;
+  background-color: #238CFF;
+  border: solid;
+  border-radius: 15px;
+  font-size: 24px;
+  color: white;
+
+}

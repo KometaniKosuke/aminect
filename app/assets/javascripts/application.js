@@ -12,5 +12,12 @@
 //
 //= require rails-ujs
 //= require activestorage
+// require turbolinks
+//= require jquery
+//= require jquery_ujs
 
 //= require_tree .
+// チャット部分ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+jQuery(function ($) {
+  $("#scroll-inner").scrollTop($("#scroll-inner")[0].scrollHeight);
+});

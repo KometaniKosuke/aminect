@@ -8,8 +8,8 @@
 
 <% date=Time.local(2022, 1, 1, 0, 0, 0) %>
 <% wd=["日","月","火","水","木","金","土"] %>
-<div class="scroll">
-  <div id="scroll-inner">
+
+<div class="scroll messageDetails" id="scroll-inner">
     <% @messages.each do |message| %>
       <% month=date.month %>
       <% day=date.day %>
@@ -37,14 +37,13 @@
       <% end %>
     <% end %>
   </div>
-</div>
 
 <%= form_for @message do |f| %>
   <div class="send">
     <table style="width:100%;">
       <td><%= f.text_area :text, class: "input" %></td>
       <%= f.hidden_field :room_id %>
-      <td style="width: 5%; margin-left: 2%;"><%= f.submit "送信", class: "btn" %></td>
+      <td style="width: 5%; margin-left: 2%;"><%= f.submit "送信", class: "btn", id: "btn" %></td>
     </table>
   </div>
 <% end %>
