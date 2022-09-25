@@ -19,7 +19,9 @@ Rails.application.routes.draw do
     resource :follows, only: [:index, :create, :destroy]
     get 'followings' => 'follows#followings', as: 'followings'
     get 'followers' => 'follows#followers', as: 'followers'
-    resources :tags
+    resources :tags do
+      get "image_set", on: :collection
+    end
   end
   resources :timetables, only: [:index, :show, :edit, :update] do
     get "search", on: :collection

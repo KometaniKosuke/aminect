@@ -111,9 +111,73 @@
   </tr>
 </table>
 <br>
-<% @tags.each do |tag| %>
-  <%= tag.name %>
+
+
+<% num = @tags.count/2 %>
+<% if @tags.count%2 == 0 %>
+  <div class="inline-block_test">
+  <table class="tag_table">
+    <% for i in 1..num %>
+      <% a = @tags.limit(i).last %><% ta = current_user.user_tags.find_by(tag_id: a.id) %>
+      <tr>
+        <td><%= image_tag ta.tag_image.url, width: '170px', height: '160px', style: "border: 1px solid black" %></td>
+      </tr>
+      <tr>
+        <td style="padding-bottom: 12px;"># <%= a.name %></td>
+      </tr>
+    <% end %>
+  </table>
+  </div>
+  <div class="inline-block_test">
+  <table class="tag_table">
+    <% for i in 1..num %>
+      <% b = @tags.limit(i*2).last %><% tb = current_user.user_tags.find_by(tag_id: b.id) %>
+      <tr>
+        <td><%= image_tag tb.tag_image.url, width: '170px', height: '100px', style: "border: 1px solid black" %></td>
+      </tr>
+      <tr>
+        <td style="padding-bottom: 12px;"># <%= b.name %></td>
+      </tr>
+    <% end %>
+  </table>
+  </div>
+<% else %>
+  <div class="inline-block_test">
+  <table class="tag_table">
+    <% for i in 1..num %>
+      <% a = @tags.limit(i).last %><% ta = current_user.user_tags.find_by(tag_id: a.id) %>
+      <tr>
+        <td><%= image_tag ta.tag_image.url, width: '170px', height: '160px', style: "border: 1px solid black" %></td>
+      </tr>
+      <tr>
+        <td style="padding-bottom: 12px;"># <%= a.name %></td>
+      </tr>
+    <% end %>
+    <% a = @tags.last %><% ta = current_user.user_tags.find_by(tag_id: a.id) %>
+    <tr>
+      <td><%= image_tag ta.tag_image.url, width: '170px', height: '100px', style: "border: 1px solid black" %></td>
+    </tr>
+    <tr>
+      <td style="padding-bottom: 12px;"># <%= a.name %></td>
+    </tr>
+  </table>
+  </div>
+  <div class="inline-block_test">
+  <table class="tag_table">
+    <% for i in 1..num %>
+      <% b = @tags.limit(i*2).last %><% tb = current_user.user_tags.find_by(tag_id: b.id) %>
+      <tr>
+        <td><%= image_tag tb.tag_image.url, width: '170px', height: '200px', style: "border: 1px solid black" %></td>
+      </tr>
+      <tr>
+        <td style="padding-bottom: 12px;">#<%= b.name %></td>
+      </tr>
+    <% end %>
+  </table>
+  </div>
 <% end %>
+
+<br>
 <%= link_to "タグ", :new_account_tag %>
 <br>
 <%= link_to "<<ユーザ一覧に戻る", :users %>

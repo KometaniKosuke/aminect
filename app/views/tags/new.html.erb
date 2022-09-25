@@ -9,19 +9,13 @@
       <div class="accordion-content">
         <% cs.each do |c| %>
           <% i += 1 %>
-          <p><%= check_box "tag", i.to_s, { checked: UserTag.find_by(user_id: current_user.id, tag_id: i).present? } %><%= c.name %></p>
+          <p>
+            <%= check_box "tag", i.to_s, { checked: UserTag.find_by(user_id: current_user.id, tag_id: i).present? } %>
+            <%= c.name %>
+          </p>
         <% end %>
       </div>
-
     </div>
   <% end %>
   <%= submit_tag "登録", class: "tag-btn" %>
 <% end %>
-
-<% if @tags.present? %>
-<%= @tags.reject{ @altags } %><br>
-選んだタグ<%= @tags %><br>
-既にあるタグ<%= @altags %><br>
-<% end %>
-
-<br><br>

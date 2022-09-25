@@ -42,3 +42,16 @@
    font-size: 200%;
    font-weight: bold;
  }
+
+ .tag_table {
+ }
+ .tag_table td {
+   text-align: center;
+ }
+ .inline-block_test {
+  margin-left: 5px;
+  /* width: 35%; */
+  /* border: 1px solid black; */
+  display: inline-block;
+  vertical-align: top;
+ }

@@ -1,4 +1,4 @@
-class ImageUploader < CarrierWave::Uploader::Base
+class TagUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
@@ -16,9 +16,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
   #デフォルト画像の設定
   def default_url
-    "profile.png"
+    "hobby.png"
   end
-  #-------------------------------------
+  #------------------------------------
   version :thumb do
     process resize_to_fit: [200, 200]
   end
