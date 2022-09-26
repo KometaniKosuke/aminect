@@ -20,7 +20,7 @@
       <% if message.user != current_user %>
         <div class="partner">
           <div class="faceicon">
-            <%= link_to (image_tag message.user.image.url), message.user %>
+            <%= link_to (image_tag message.user.image.url, width: "40px", height: "40px"), message.user %>
           </div>
           <div class="chatting">
             <div class="says">
@@ -37,13 +37,12 @@
       <% end %>
     <% end %>
   </div>
-
-<%= form_for @message do |f| %>
-  <div class="send">
+<div class="send">
+  <%= form_for @message do |f| %>
     <table style="width:100%;">
       <td><%= f.text_area :text, class: "input" %></td>
       <%= f.hidden_field :room_id %>
-      <td style="width: 5%; margin-left: 2%;"><%= f.submit "送信", class: "btn", id: "btn" %></td>
+      <td style="width: 3%;"><%= f.submit "送信", class: "btn", id: "btn" %></td>
     </table>
-  </div>
-<% end %>
+  <% end %>
+</div>

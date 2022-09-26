@@ -22,7 +22,7 @@
                   <% if massage.date.strftime("%y/%-m/%-d")==Time.current.strftime("%y/%-m/%-d") %>
                     <%= massage.date.strftime("%-H:%M") %>
                   <% else %>
-                    <%= massage.date.strftime("%-m月%-d日") %>
+                    <%= massage.date.strftime("%-m/%-d") %>
                   <% end %>
                 <% end %>
               </td>

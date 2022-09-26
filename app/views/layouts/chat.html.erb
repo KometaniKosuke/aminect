@@ -23,7 +23,7 @@
         <% end %>
       </aside>
       <footer>
-        <% if current_user.present? %>
+        <% if current_page?(rooms_path) %>
           <%= render "shared/under_menubar" %>
         <% end %>
       </footer>

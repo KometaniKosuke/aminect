@@ -65,9 +65,11 @@
 <% if @users.present? %>
   <table>
     <% @users.each do |u| %>
-      <tr>
-        <td><%= u.name %></td>
-      </tr>
+      <% if u!=current_user %>
+        <tr>
+          <td><%= link_to u.name, u %></td>
+        </tr>
+      <% end %>
     <% end %>
   </table>
 <% end  %>
