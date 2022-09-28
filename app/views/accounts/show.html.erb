@@ -114,13 +114,16 @@
 
 
 <% num = @tags.count/2 %>
-<% if @tags.count%2 == 0 %>
+<% if @tags.count%2 == 0 %> <!-- タグが偶数 -->
   <div class="inline-block_test">
   <table class="tag_table">
     <% for i in 1..num %>
-      <% a = @tags.limit(i).last %><% ta = current_user.user_tags.find_by(tag_id: a.id) %>
+      <% a = @tags.limit(i*2-1).last %><% ta = current_user.user_tags.find_by(tag_id: a.id) %>
       <tr>
-        <td><%= image_tag ta.tag_image.url, width: '170px', height: '160px', style: "border: 1px solid black" %></td>
+        <td>
+          <% modal_a = "modal_a"+i.to_s %>
+          <%= render partial: "shared/test", :locals=>{:user_tag => ta, :modal_id => modal_a, :modal_name => a.name, :modal_image => ta.tag_image.url} %>
+        </td>
       </tr>
       <tr>
         <td style="padding-bottom: 12px;"># <%= a.name %></td>
@@ -133,7 +136,10 @@
     <% for i in 1..num %>
       <% b = @tags.limit(i*2).last %><% tb = current_user.user_tags.find_by(tag_id: b.id) %>
       <tr>
-        <td><%= image_tag tb.tag_image.url, width: '170px', height: '100px', style: "border: 1px solid black" %></td>
+        <td>
+          <% modal_b = "modal_b"+i.to_s %>
+          <%= render partial: "shared/test", :locals=>{:user_tag => tb, :modal_id => modal_b, :modal_name => b.name, :modal_image => tb.tag_image.url} %>
+        </td>
       </tr>
       <tr>
         <td style="padding-bottom: 12px;"># <%= b.name %></td>
@@ -145,32 +151,41 @@
   <div class="inline-block_test">
   <table class="tag_table">
     <% for i in 1..num %>
-      <% a = @tags.limit(i).last %><% ta = current_user.user_tags.find_by(tag_id: a.id) %>
+      <% c = @tags.limit(i*2-1).last %><% tc = current_user.user_tags.find_by(tag_id: c.id) %>
       <tr>
-        <td><%= image_tag ta.tag_image.url, width: '170px', height: '160px', style: "border: 1px solid black" %></td>
+        <td>
+          <% modal_c = "modal_c"+i.to_s %>
+          <%= render partial: "shared/test", :locals=>{:user_tag => tc, :modal_id => modal_c,:modal_name => c.name, :modal_image => tc.tag_image.url} %>
+        </td>
       </tr>
       <tr>
-        <td style="padding-bottom: 12px;"># <%= a.name %></td>
+        <td style="padding-bottom: 12px;"># <%= c.name %></td>
       </tr>
     <% end %>
-    <% a = @tags.last %><% ta = current_user.user_tags.find_by(tag_id: a.id) %>
+    <% d = @tags.last %><% td = current_user.user_tags.find_by(tag_id: d.id) %>
     <tr>
-      <td><%= image_tag ta.tag_image.url, width: '170px', height: '100px', style: "border: 1px solid black" %></td>
+      <td>
+        <% modal_d = "modal_d"+i.to_s %>
+        <%= render partial: "shared/test", :locals=>{:user_tag => td, :modal_id => modal_d,:modal_name => d.name, :modal_image => td.tag_image.url} %>
+      </td>
     </tr>
     <tr>
-      <td style="padding-bottom: 12px;"># <%= a.name %></td>
+      <td style="padding-bottom: 12px;"># <%= d.name %></td>
     </tr>
   </table>
   </div>
   <div class="inline-block_test">
   <table class="tag_table">
     <% for i in 1..num %>
-      <% b = @tags.limit(i*2).last %><% tb = current_user.user_tags.find_by(tag_id: b.id) %>
+      <% e = @tags.limit(i*2).last %><% te = current_user.user_tags.find_by(tag_id: e.id) %>
       <tr>
-        <td><%= image_tag tb.tag_image.url, width: '170px', height: '200px', style: "border: 1px solid black" %></td>
+        <td>
+          <% modal_e = "modal_e"+i.to_s %>
+          <%= render partial: "shared/test", :locals=>{:user_tag => te, :modal_id => modal_e,:modal_name => e.name, :modal_image => te.tag_image.url} %>
+        </td>
       </tr>
       <tr>
-        <td style="padding-bottom: 12px;">#<%= b.name %></td>
+        <td style="padding-bottom: 12px;"># <%= e.name %></td>
       </tr>
     <% end %>
   </table>
@@ -178,6 +193,6 @@
 <% end %>
 
 <br>
-<%= link_to "タグ", :new_account_tag %>
+<%= button_to "タグ編集", :new_account_tag, {method: :get, class: "pro-btn"} %>
 <br>
 <%= link_to "<<ユーザ一覧に戻る", :users %>

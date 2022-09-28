@@ -1,0 +1,15 @@
+<a href="#<%= modal_id %>">
+  <%= image_tag modal_image, width: '170px', height: '160px', style: "border: 1px solid black" %>
+</a>
+
+<div class="modal-wrapper" id="<%= modal_id %>">
+  <a href="#!" class="modal-overlay"></a>
+  <div class="modal-window">
+    <div class="modal-content">
+      <p><%= image_tag modal_image, width: '200px', height: '200px', style: "border: 1px solid black" %></p>
+      <p># <%= modal_name %></p>
+      <p><%= link_to "しょうさい", controller: 'user_tags', action: 'show', id: user_tag.id %></p>
+    </div>
+    <a href="#!" class="modal-close">×</a>
+  </div>
+</div>
