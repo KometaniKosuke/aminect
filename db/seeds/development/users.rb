@@ -13,7 +13,7 @@ names.each_with_index do |name, idx|
     email: "aminect@example.com",
     twitter: "@Twitter",
     instagram: "@instagram",
-    tiktok: "@tiktok",
+    # tiktok: "@tiktok",
     password: "chat",
     password_confirmation: "chat"
   )

@@ -1,16 +1,6 @@
-<%= form_tag @user_tags, url:{ controller: "tags", action: "image_set" }, method: :get, :multiple => true do %>
-  <table>
-      <tr>
-        <% t=current_user.user_tags.find_by(tag_id: @tags.id) %>
-        <td><%= @tags.name %></td>
-        <td><%= image_tag t.tag_image.url, size: '128x128' %></td>
-        <td>
-          <%= hidden_field_tag :user_id, current_user.id %>
-          <%= hidden_field_tag :tag_id, @tags.id %>
-          <%= file_field_tag :tag_image %>
-          <%= hidden_field_tag :tag_image_cache %>
-        </td>
-      </tr>
-  </table>
-  <%= submit_tag "完了" %>
+<h2 class="back">
+  <%= link_to "< 趣味で探す", :root %>
+</h2>
+
+<%= form_tag :tag_search_tags, method: :get do %>
 <% end %>

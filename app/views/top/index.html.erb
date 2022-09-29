@@ -1,8 +1,10 @@
 <% if current_user.present? %>
   <div class="box_css">
-    <p>タグ検索</p>
+    <a href="spring_odakyu.html"><image src="/assets/IMG_2473.jpg" alt="タグ" class="menu_image2"></a>
+    <%= link_to "タグ検索", :tags %>
   </div>
   <div class="box_css">
+    <a href="spring_odakyu.html"><image src="/assets/IMG_1734.jpg" alt="タグ" class="menu_image2"></a>
     <% tt = Timetable.find_by(user_id: current_user.id) %>
     <%= link_to "空きコマ検索", :timetables %>
   </div>

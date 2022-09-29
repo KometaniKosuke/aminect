@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @timetable=Timetable.find(params[:id])
+    @tags = @user.tags
   end
 
   def create
@@ -17,7 +18,6 @@ class UsersController < ApplicationController
     if a.present?
       redirect_to "/register", notice: "このメールアドレスは既に登録されています。"
     else
-      # uid = rand(1..9)*10000+rand(10)*1000+rand(10)*100+rand(10)*10+rand(10)
       @pass = SecureRandom.alphanumeric(10)
       @user = User.new(password: @pass,email: params[:user][:email])
       if @user.save

@@ -3,7 +3,7 @@ class CreateUserTags < ActiveRecord::Migration[5.2]
     create_table :user_tags do |t|
       t.references :user
       t.references :tag
-      t.string :tag_image
+      # t.string :tag_image
     end
   end
 end

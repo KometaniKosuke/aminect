@@ -107,7 +107,6 @@ ActiveRecord::Schema.define(version: 2022_09_22_093037) do
   create_table "user_tags", force: :cascade do |t|
     t.integer "user_id"
     t.integer "tag_id"
-    t.string "tag_image"
     t.index ["tag_id"], name: "index_user_tags_on_tag_id"
     t.index ["user_id"], name: "index_user_tags_on_user_id"
   end
@@ -122,7 +121,6 @@ ActiveRecord::Schema.define(version: 2022_09_22_093037) do
     t.string "email"
     t.string "twitter"
     t.string "instagram"
-    t.string "tiktok"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"

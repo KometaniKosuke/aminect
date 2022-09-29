@@ -28,12 +28,6 @@ class TagsController < ApplicationController
     redirect_to :account
   end
 
-  # def image_set
-  #   user = params[:user_id]
-  #   tag = params[:tag_id]
-  #   ut = UserTag.find_by(user_id: user, tag_id: tag)
-  #   ut.update(tag_image: params[:tag_image])
-  #   ut.save
-  #   redirect_to :account
-  # end
+  def tag_seach
+  end
 end

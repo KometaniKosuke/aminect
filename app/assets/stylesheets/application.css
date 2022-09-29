@@ -48,3 +48,20 @@
    margin: 5em;
    border: solid 3px #000000;
  }
+ .menu_image2 {
+  width:300px;
+}
+.menu {
+  width:400px;
+  margin:10px auto;
+}
+.menu_width {
+  width:200px;
+}
+.image_text {
+  width:170px;
+  margin:0 auto;
+}
+.menu_image {
+  width:170px;
+}
