@@ -1,3 +1,18 @@
-<h4>メールを送信しました！</h4>
+<br><br>
+<div style="text-align: center">
+  <%= image_tag 'logo.png', size: "250x75"%>
+</div>
 
-<p>メールが届くまで少々時間がかかる場合があります。ご了承ください。</p>
+<div style="width:80%; margin: auto;">
+  <h3>メールを送信しました！</h3>
+  <p style="width: 250px; border-bottom: 1px solid black">宛先：<%= notice %></p>
+  <br>
+  <div style="border: dotted 3px green; padding: 10px 0">
+    <p style="margin-bottom: 10px">メールが届くまで数分程度お時間がかかる場合があります。</p>
+    <p>しばらく時間が経ってもメールが届かない場合は、お手数ですが以下の点を確認してください。</p>
+    <ul style="margin-top: 5px">
+      <li style="width: 225px; background: linear-gradient(transparent 89%, #ff5567 85%);">メールアドレスに誤りはないか</li>
+      <li style="width: 240px; background: linear-gradient(transparent 89%, #ff5567 85%);">迷惑メールに分類されていないか</li>
+    </ul>
+  </div>
+</div>

@@ -1,7 +1,5 @@
 class PasswordResetsController < ApplicationController
-  # render "errors/uid_login_required"
   layout 'pass_reset'
-
   def index
     @user = nil
   end

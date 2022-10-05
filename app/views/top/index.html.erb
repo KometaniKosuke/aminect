@@ -1,12 +1,15 @@
 <% if current_user.present? %>
   <div class="box_css">
-    <a href=""><image src="/assets/IMG_2473.jpg" alt="タグ" class="menu_image2"></a>
-    <%= link_to "タグ検索", :tags %>
+    <%= link_to :tags do %>
+      <p class="title">趣味タグから探す</p>
+      <%= image_tag "D1AD40B497BDBA95323FBC585797B029EFBD8E37.jpg", class:"menu_image2" %>
+    <% end %>
   </div>
   <div class="box_css">
-    <a href=""><image src="/assets/IMG_1734.jpg" alt="タグ" class="menu_image2"></a>
-    <% tt = Timetable.find_by(user_id: current_user.id) %>
-    <%= link_to "空きコマ検索", :timetables %>
+    <%= link_to :timetables do %>
+      <p class="title">空きコマから探す</p>
+      <%= image_tag "F33316CF1507DABD7E26050BA211D2660397FB42.jpg", class:"menu_image2" %>
+    <% end %>
   </div>
   <%= link_to "お知らせ", :announces %>
 <% end %>

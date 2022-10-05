@@ -1,13 +1,19 @@
+<br><br>
+<div style="text-align: center">
+<%= image_tag 'logo.png', size: "250x75"%>
+</div>
 <% if @user.nil? %>
-  <h4>登録時に使用した専修大メールアドレスを入力してください。</h4>
   <% if flash.notice %>
     <p class="notice"><%= flash.notice %></p>
   <% end %>
-  <%= form_tag :new_password_reset, method: :get do %>
-    <%= text_field_tag "email" %>
+  <%= form_tag :new_password_reset, method: :get, align: "center" do %>
+    <%= text_field_tag "email","", class: "textbox", placeholder: "専修大学メールアドレス" %>
     <%= submit_tag "完了" %>
   <% end %>
+  <p style="width: 80%; margin: auto;">登録時に使用した専修大学メールアドレスを入力してください。</p>
 <% else %>
   <h4>パスワードを変更しました。</h4>
   <%= link_to "ログインに進む", :root %>
 <% end %>
+<br>
+<%= button_to "←Topに戻る", :root, method: "get", style: "margin-left: 10%;" %>

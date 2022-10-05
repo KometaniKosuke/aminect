@@ -151,7 +151,7 @@
   height: 15%;
   background-color: white;
   width: 100%;
-  border-bottom: px solid #000;
+  border-bottom: 1px solid #000;
 }
 .rooms th {
   font-size: 20px;

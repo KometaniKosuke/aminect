@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       @user = User.new(password: @pass,email: params[:user][:email])
       if @user.save
         SendMailer.with(user: @user, pass: @pass).published_email.deliver_later
-        redirect_to :mails
+        redirect_to :mails, notice: @user.email
       else
         render "/register"
       end

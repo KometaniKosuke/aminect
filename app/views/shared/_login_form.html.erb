@@ -1,17 +1,25 @@
-<h2>ログイン</h2>
 <% if flash.alert %><p class="alert"><%= flash.alert %></p><% end %>
+<div class="space2">
+</div>
+<div style="text-align: center">
+  <%= image_tag 'logo.png', size: "250x75"%>
+</div>
 <%= form_tag :session, id: "login_form" do %>
-  <div>
-    <label>ユーザー名:</label>
-    <input type="text" name="name">
+  <div style="text-align: center">
+    <br>
+    <input type="text" class="textbox" name="name" placeholder="ユーザ名">
+    <input type="password" class="textbox" name="password" placeholder="パスワード">
   </div>
-  <div>
-    <label>パスワード:</label>
-    <input type="password" name="password">
-  </div>
-  <div>
-    <input type="submit" value="ログイン">
+
+  <div style="text-align: center">
+    <input type="submit" value="ログイン" class='buttonlogin'>
+  <space>
+  </space>
   </div>
 <% end %>
-<%= link_to "新規登録", :new_mail %>
-<%= link_to "パスワードを忘れた方はこちら", password_resets_path %>
+<div style="text-align: center; margin-bottom: 8px;">
+  <%= button_to "新規登録はこちら", :new_mail, method: "get", class: 'buttonentry' %>
+</div>
+<div style="text-align: center">
+<%= link_to "パスワードを忘れた方はこちら", password_resets_path, style: "font-size: 14px; text-decolation: none;" %>
+</div>

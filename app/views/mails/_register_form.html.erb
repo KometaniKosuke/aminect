@@ -1,5 +1,4 @@
 <%= form_with(model: user, local: true) do |form| %>
-  <label> メールアドレス </label>
-  <%= form.text_field :email %>
-  <%= form.submit "入力完了" %>
+  <%= form.text_field :email, placeholder: "専修大学メールアドレス", class: "textbox" %>
+  <%= form.submit "メール送信" %>
 <% end %>

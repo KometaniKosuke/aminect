@@ -1,5 +1,19 @@
-<h1>新規登録用ページ</h1>
-<% if flash.notice %>
-  <p class="notice"><%= flash.notice %></p>
-<% end %>
-<%= render 'register_form', user: @user %>
+<br><br>
+<div style="text-align: center">
+  <%= image_tag 'logo.png', size: "250x75"%>
+</div>
+<h3 style="margin-left: 10%">新規登録用ページ</h3>
+<div align="center">
+  <% if flash.notice %>
+    <p class="notice"><%= flash.notice %></p>
+  <% end %>
+  <%= render 'register_form', user: @user %>
+  <p>※専修大学のメールアドレスのみ有効です。</p>
+</div>
+<br>
+<div style="margin: 0 10% 0 10%; border: dotted 3px green;">
+  <p>入力されたメールアドレスに初回ログイン用のパスワードと登録に進むURLを記載したメールを送信します。</p>
+  <p>メールに記載したURLをクリックして登録に進んでください。</p>
+</div>
+<br>
+<%= button_to "←Topに戻る", :root, method: "get", style: "margin-left: 10%;" %>

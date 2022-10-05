@@ -1,16 +1,22 @@
-<h2><%= @user.name %>さん</h2>
+<div class="space2">
+</div>
+<div style="text-align: center">
+<%= image_tag 'logo.png', size: "200x60"%>
+</div>
+<h3 style="margin-left: 100px"><%= @user.name %>さん</h3>
 <%= form_for @user, method: :post, url: {controller: 'password_resets', action: 'create' } do |form| %>
-  <table>
+  <table style="margin: auto;">
     <%= form.hidden_field :email %>
     <tr>
       <th>新しいパスワード</th>
-      <td><%= form.password_field :password %></td>
+      <td><%= form.password_field :password,class: "textbox" %></td>
     </tr>
     <tr>
       <th>確認用</th>
-      <td><%= form.password_field :password_confirmation %></td>
+      <td><%= form.password_field :password_confirmation,class: "textbox" %></td>
+    </tr>
+    <tr>
+      <td align="center" colspan="2"><%= form.submit "変更" %></td>
     </tr>
   </table>
-
-  <div><%= form.submit "変更" %></div>
 <% end %>

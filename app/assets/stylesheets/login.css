@@ -1,0 +1,56 @@
+/* ここからログイン画面--------------------- */
+.textbox {
+  width: 272px;
+  height: 43px;
+  background: #FFFFFF;
+  border: 3px solid rgba(6, 6, 6, 0.4);
+  font-size: 20px;
+  letter-spacing: -0.3px;
+  margin: 12px auto 15px auto;
+  }
+
+  .space2 {
+    margin-bottom: 130px;
+  }
+
+  .buttonlogin {
+    display       : inline-block;
+    width         : 208px;
+    height:       : 42px;
+    border-radius : 10px;        /* 角丸       */
+    font-size     : 14pt;        /* 文字サイズ */
+    cursor        : pointer;     /* カーソル   */
+    padding       : auto;        /* 余白       */
+    background    : #1150d7;     /* 背景色     */
+    color         : #ffffff;     /* 文字色     */
+    line-height   : 2em;         /* 1行の高さ  */
+    transition    : .3s;         /* なめらか変化 */
+    border        : 2px solid;   /* 枠の指定 */
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+
+  .buttonentry {
+    display       : flex;
+    width         : 208px;
+    height:       : 42px;
+    margin        : 0 auto;
+    border-radius : 10px;        /* 角丸       */
+    font-size     : 14pt;        /* 文字サイズ */
+    cursor        : pointer;     /* カーソル   */
+    padding-top   : 7px;         /* 余白       */
+    padding-bottom: 7px;
+    padding-left  : 25px;
+    background    : #ffffff;     /* 背景色     */
+    color         : #000000;     /* 文字色     */
+    line-height   : 1em;         /* 1行の高さ  */
+    transition    : .3s;         /* なめらか変化 */
+    border        : 2px solid #000000;    /* 枠の指定 */
+  }
+
+  /* ここまでログイン画面--------------------- */
+  /* ここから会員登録、パスワード変更画面--------------------- */
+
+
+
+  /* ここまで会員登録、パスワード変更画面--------------------- */
