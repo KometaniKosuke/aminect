@@ -31,13 +31,11 @@
 
 <p align="center"><%= safe_join(@user.comment.split("\n"),tag(:br)) %></p>
 <br>
-<table border=1 style="margin: 0 auto;">
-  <tr>
-    <% @tags.each do |tag| %>
-      <td># <%= tag.name %></td>
-    <% end %>
-  </tr>
-</table>
+<p style="width: 90%; margin: auto;">
+  <% @tags.each do |tag| %>
+    <span style="margin: auto 5px auto 5px;">#<%= tag.name %></span>
+  <% end %>
+</p>
 <br>
 <table style="margin: 0 auto;">
   <tr align="center">

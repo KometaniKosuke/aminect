@@ -1,4 +1,4 @@
-for i in 1..6 do
+for i in 1..17 do
   Timetable.create(
     user_id: i,
     mon1: rand(2),

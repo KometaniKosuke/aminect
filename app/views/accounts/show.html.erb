@@ -59,16 +59,13 @@
   <%= button_to "質問箱", :new_request, {method: :get, class: "req-btn"} %>
 </p>
 <br>
-<table border=1 style="margin: 0 auto;">
-  <tr>
-    <% @tags.each do |tag| %>
-      <td># <%= tag.name %></td>
-    <% end %>
-  </tr>
-  <tr>
-    <td colspan="<%= @tags.count %>"><%= button_to "タグ編集", :new_account_tag, {method: :get} %></td>
-  </tr>
-</table>
+<p style="width: 90%; margin: auto;">
+  <% @tags.each do |tag| %>
+    <span style="margin: auto 5px auto 5px;">#<%= tag.name %></span>
+  <% end %>
+  <%= button_to "タグ編集", :new_account_tag, {method: :get} %>
+</p>
+
 
 <table border="3" style="margin: 0 auto;">
   <caption>時間割</caption>

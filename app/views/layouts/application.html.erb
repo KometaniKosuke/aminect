@@ -27,7 +27,7 @@
         <% end %>
       </main>
       <aside id="sidebar">
-        <% unless current_page?(new_account_path)||current_page?(register_path)||current_page?(mails_path) %>
+        <% unless current_page?(new_account_path)||current_page?(register_path)||current_page?(mails_path)||current_page?(new_mail_path) %>
           <%= render "shared/sidebar" %>
         <% end %>
       </aside>

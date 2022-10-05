@@ -1,5 +1,5 @@
 class MailsController < ApplicationController
-  before_action :login_required, except: [:new, :create, :index]
+  # before_action :login_required, except: [:new, :create, :index]
   def index
   end
 
