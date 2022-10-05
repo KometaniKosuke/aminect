@@ -11,16 +11,19 @@
   .menuitem{
     align-content: center;
   }
+  .menuitem a{
+    text-decoration: none;
+  }
 
   .menuitem-center{
     border-radius: 50%;
     line-height: 100px;
-    width: 22%;
-    height: 130%;
-    background-color: #efe;
-    border-color: #52FF00;
+    width: 102px;
+    height: 102px;
+    background-color: #fff;
+    border: 1px solid #52FF00;
     border-width: 2px;
-    margin-bottom: 2%;
+    margin-bottom: 3%;
   }
 
   .menuitem-side{
@@ -31,4 +34,27 @@
     background-color: #EEFFE6;
     /* background-color: #ccc; */
     border: #000;
+  }
+
+  .touch_c {
+    border-radius: 50%;
+    /* background-color: #ccc; */
+    width: 86px;
+    height: 86px;
+    align-items: center;
+  }
+  .touch_s {
+    padding-top: 10%;
+    /* background-color: #ccc; */
+    height: 80%;
+    align-items: center;
+  }
+  .touch_s p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 11px;
+    text-align: center;
+    letter-spacing: -0.3px;
+    color: #8E8E93;
   }

@@ -2,7 +2,7 @@
     margin: 0;
     box-sizing: border-box;
   }
-  
+
   .container {
     width: 100%;
     display: flex;
@@ -13,7 +13,7 @@
     padding: 2em;
     box-sizing: border-box;
   }
-  
+
   .schedule {
     width: 100%;
     max-width: 680px;
@@ -27,7 +27,7 @@
       display: flex;
     }
   }
-  
+
   .schedule th, .schedule td {
     padding: 1em;
     border-bottom: 1px solid #cccccc;
@@ -40,11 +40,11 @@
       display: block;
     }
   }
-  
+
   .schedule th {
     background: #ecf5f7;
   }
-  
+
   @media screen and (min-width: 769px) {
     .schedule thead {
       flex-direction: column;
@@ -61,7 +61,7 @@
       width: calc(100% / 7);
     }
   }
-  
+
   .schedule td:empty::after {
     content: '-';
     padding: .5em;
@@ -81,7 +81,7 @@
     background-color: #cccccc;
     border-radius: 50vh;
   }
-  
+
   .button02 a::after {
     content: '';
     width: 5px;
@@ -90,55 +90,55 @@
     border-right: 3px solid #00f;
     transform: rotate(45deg);
   }
-  
+
   .button02 a:hover {
     text-decoration: none;
     background-color: #bbbbbb;
   }
 
-  body {
+  /* body {
     padding: 10px;
     background-color: #fff;
-  }
-  
-  p {
+  } */
+
+  /* p {
     font-size: 12px;
     line-height: 1.4;
-  }
-  
-  table {
+  } */
+
+  /* table {
     margin: 30px 0;
-  }
-  
-  table th {
+  } */
+
+  /* table th {
     font-size: 12px;
-  }
-  
+  } */
+
   #float-box {
     overflow: hidden;
   }
-  
+
   #float-box img {
     float: left;
     max-width: 45%;
   }
-  
+
   #float-box p {
     float: right;
     max-width: 50%;
   }
-  
+/*
   img {
     max-width: 100%;
     height: atuo;
-  }
-  
+  } */
+/* 
   @media screen and (max-width: 400px) {
     #float-box img,
     #float-box p {
       float: none;
       max-width: 100%;
     }
-  }
+  } */
 
-  P { text-align: center }
+  /* P { text-align: center } */

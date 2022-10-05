@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :rooms do
     resources :messages
   end
+  resources :messages
   resource :session, only: [:create, :destroy]
 
   resource :profile,only: %i[show edit update]

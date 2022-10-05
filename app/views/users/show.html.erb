@@ -1,12 +1,12 @@
 <table style="width: 80%; font-size: 16px; margin: 3% auto auto auto; text-align: center;">
   <tr>
-    <td style="width: 10%;">
+    <td style="width: 30%;">
       <%= image_tag @user.image.url, class: 'rounded-circle', size: '98x98' %>
     </td>
     <td class="name" colspan="2" style="padding-right:10%;"><%= @user.name %></td>
   </tr>
 </table>
-<table style="width: 90%; font-size: 16px; margin: auto; text-align: center;" align="center">
+<table style="width: 70%; font-size: 16px; margin: auto; text-align: center;" align="center">
   <tr>
     <td>
       <p style="padding: 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
@@ -28,7 +28,7 @@
     </td>
   </tr>
 </table>
-
+<br>
 <p align="center"><%= safe_join(@user.comment.split("\n"),tag(:br)) %></p>
 <br>
 <p style="width: 90%; margin: auto;">
@@ -78,57 +78,7 @@
       </td>
     </tr>
   </table>
-  <table border="3" style="margin: 0 auto;">
-    <caption>時間割</caption>
-    <tr align="center">
-      <th width="30"></th>
-      <th width="50">月</th>
-      <th width="50">火</th>
-      <th width="50">水</th>
-      <th width="50">木</th>
-      <th width="50">金</th>
-    </tr>
-    <tr align="center" height="50">
-      <th>１</th>
-      <% if @timetable.mon1==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.tue1==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.wed1==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.thu1==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.fri1==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-    </tr>
-    <tr align="center" height="50">
-      <th>２</th>
-      <% if @timetable.mon2==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.tue2==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.wed2==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.thu2==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.fri2==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-    </tr>
-    <tr align="center" height="50">
-      <th>３</th>
-      <% if @timetable.mon3==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.tue3==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.wed3==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.thu3==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.fri3==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-    </tr>
-    <tr align="center" height="50">
-      <th>４</th>
-      <% if @timetable.mon4==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.tue4==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.wed4==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.thu4==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.fri4==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-    </tr>
-    <tr align="center" height="50">
-      <th width="30">５</th>
-      <% if @timetable.mon5==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.tue5==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.wed5==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.thu5==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-      <% if @timetable.fri5==0 %><td bgcolor="pink">空き</td><% else %><td><%= image_tag('study.png', size: "40x40")%></td><% end %>
-    </tr>
-  </table>
+  <%= render "shared/timetable" %>
 <% end %>
 <br>
 <%= link_to "<<ユーザ一覧に戻る", :users %>

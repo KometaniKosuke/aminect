@@ -1,17 +1,25 @@
 <div class="navbar">
   <button class="menuitem menuitem-side">
     <%= link_to :rooms do %>
-      <%= image_tag 'chat.png', width: "90%", height: "90%" %>
+      <div class="touch_s">
+        <%= image_tag 'chat.png', size: "22x22" %>
+        <p>Talk</p>
+      </div>
     <% end %>
   </button>
   <button class="menuitem menuitem-center">
     <%= link_to :root do %>
-      <%= image_tag 'home.png', width: "120%", height: "90%",:align => 'center', :border => 0 %>
+      <div class="touch_c">
+        <%= image_tag 'home.png', size: "23x19" %>
+      </div>
     <% end %>
   </button>
   <button class="menuitem menuitem-side">
     <%= link_to :account do %>
-      <%= image_tag 'account.png', width: "90%", height: "80%" %>
+      <div class="touch_s">
+        <%= image_tag 'account.png', size: "22x22" %>
+        <p>Profile</p>
+      </div>
     <% end %>
   </button>
 </div>
