@@ -44,7 +44,7 @@
  }
  /* ------------------------------ */
  .box_css{
-  width:300px;
+  width:250px;
   margin: 2em;
   border: solid 3px #000000;
 }
@@ -54,7 +54,7 @@
  font-weight: bold;
 }
 .menu_image2 {
- width:294px;
+ width:244px;
 }
 .menu_image2:hover {
  opacity:0.6;
@@ -73,6 +73,8 @@
 .menu_image {
  width:170px;
 }
+
+/* 通知 */
 .alert {
   height: 35px;
   width: 100%;
