@@ -68,9 +68,60 @@
 
 <%= render "shared/timetable" %>
 <br>
-<% @posts.each do |p| %>
-  <%= image_tag p.post_img.url %>
-  <%= p.text %>
+
+<% num = @posts.count/2 %>
+<% if @posts.count%2 == 0 %> <!-- 投稿が偶数 -->
+  <table align="center"  style="width:90%;">
+    <% for i in 1..num %>
+      <tr>
+        <td style="width: 50%;">
+          <% a = @posts.limit(i*2-1).last %>
+          <% modal_a = "modal_a"+i.to_s %>
+          <%= render partial: "post_modal", :locals=>{:modal_id => modal_a, :modal_post => a} %>
+        </td>
+        <td style="width: 50%;">
+          <% b = @posts.limit(i*2).last %>
+          <% modal_b = "modal_b"+i.to_s %>
+          <%= render partial: "post_modal", :locals=>{:modal_id => modal_b, :modal_post => b} %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %> <!-- 投稿が奇数 -->
+  <% if @posts.count!=1 %>
+    <table align="center"  style="width:90%;">
+      <% for i in 1..num %>
+        <tr>
+          <td style="width: 50%;">
+            <% a = @posts.limit(i*2-1).last %>
+            <% modal_a = "modal_a"+i.to_s %>
+            <%= render partial: "post_modal", :locals=>{:modal_id => modal_a, :modal_post => a} %>
+          </td>
+          <td style="width: 50%;">
+            <% b = @posts.limit(i*2).last %>
+            <% modal_b = "modal_b"+i.to_s %>
+            <%= render partial: "post_modal", :locals=>{:modal_id => modal_b, :modal_post => b} %>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <td style="width: 50%;">
+          <% c = @posts.last %>
+          <% modal_c = "modal_c"+i.to_s %>
+          <%= render partial: "post_modal", :locals=>{:modal_id => modal_c, :modal_post => c} %>
+        </td>
+      </tr>
+    </table>
+  <% else %>
+    <table style="width:45%; margin-left: 5%">
+      <tr>
+        <td style="width: 50%;">
+          <% a = @posts.last %>
+          <% modal_a = "modal_a"+i.to_s %>
+          <%= render partial: "post_modal", :locals=>{:modal_id => modal_a, :modal_post => a} %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
 <% end %>
-<br>
 <br><br>

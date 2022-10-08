@@ -1,0 +1,15 @@
+<a href="#<%= modal_id %>">
+  <%= image_tag modal_post.post_img.url, width: '94%', style: "border: 1px solid black; margin: auto 3%;" %>
+</a>
+
+<div class="modal-post" id="<%= modal_id %>">
+  <a href="#!" class="modal-overlay"></a>
+  <div class="modal-window">
+    <div class="modal-content">
+      <p><%= image_tag modal_post.post_img.url, width: '200px', height: '200px', style: "border: 1px solid black" %></p>
+      <p><%= modal_post.text %></p>
+      <%= button_to "削除", modal_post, method: :delete, data: { confirm: "本当に削除しますか?" } %>
+    </div>
+    <a href="#!" class="modal-close">×</a>
+  </div>
+</div>

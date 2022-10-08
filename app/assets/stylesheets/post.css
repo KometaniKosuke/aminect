@@ -1,4 +1,4 @@
-.modal-wrapper {
+.modal-post {
   z-index: 999;
   position: fixed;
   top: 0;
@@ -9,19 +9,19 @@
   text-align: center
 }
 
-.modal-wrapper:not(:target) {
+.modal-post:not(:target) {
   opacity: 0;
   visibility: hidden;
   transition: opacity .3s, visibility .3s;
 }
 
-.modal-wrapper:target {
+.modal-post:target {
   opacity: 1;
   visibility: visible;
   transition: opacity .4s, visibility .4s;
 }
 
-.modal-wrapper::after {
+.modal-post::after {
   display: inline-block;
   height: 100%;
   margin-left: -.05em;
@@ -29,13 +29,13 @@
   content: ""
 }
 
-.modal-wrapper .modal-window {
+.modal-post .modal-window {
   box-sizing: border-box;
   display: inline-block;
   z-index: 20;
   position: relative;
-  width: 70%;
-  max-width: 600px;
+  width: 80%;
+  /* max-width: 100px; */
   padding: 30px 30px 15px;
   border-radius: 2px;
   background: #fff;
@@ -43,7 +43,7 @@
   vertical-align: middle
 }
 
-.modal-wrapper .modal-window .modal-content {
+.modal-post .modal-window .modal-content {
   max-height: 80vh;
   overflow-y: auto;
 }
@@ -58,7 +58,7 @@
   background: rgba(0, 0, 0, .8)
 }
 
-.modal-wrapper .modal-close {
+.modal-post .modal-close {
   z-index: 20;
   position: absolute;
   top: 0;
@@ -73,6 +73,6 @@
   text-indent: 0
 }
 
-.modal-wrapper .modal-close:hover {
+.modal-post .modal-close:hover {
   color: #2b2e38 !important
 }
