@@ -81,4 +81,10 @@
   <%= render "shared/timetable" %>
 <% end %>
 <br>
-<%= link_to "<<ユーザ一覧に戻る", :users %>
+<br>
+<% @posts.each do |p| %>
+  <%= image_tag p.post_img.url %>
+  <%= p.text %>
+<% end %>
+<br>
+<br><br>

@@ -7,6 +7,7 @@ class AccountsController < ApplicationController
     @follows = Follow.where(from_id: current_user)
     @followers = Follow.where(to_id: current_user)
     @tags = current_user.tags
+    @posts = current_user.posts
   end
 
   def edit

@@ -22,6 +22,8 @@ class User < ApplicationRecord
   has_many :followings, through: :follows, source: :to
   has_many :followers, through: :reverse_of_relationships, source: :from
 
+  has_many :posts, dependent: :destroy
+
   # フォローしたときの処理
   def follow(user_id)
     follows.create(to_id: user_id)

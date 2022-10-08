@@ -1,0 +1,8 @@
+<h2 class="back">
+  <%= link_to "< 新しい投稿", :account %>
+</h2>
+
+<%= form_for @post do |form| %>
+  <%= render "post_form", form: form %>
+  <%= form.submit "投稿する" %>
+<% end %>

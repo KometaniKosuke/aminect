@@ -17,3 +17,9 @@ names.each_with_index do |name, idx|
     password_confirmation: "chat"
   )
 end
+for i in 1..17 do
+  Post.create(
+    user_id: i,
+    text: "趣味です。"
+  )
+end

@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     resources :rooms
     resources :timetables
     resources :requests, except: [:edit, :update]
+    resources :posts, only: [:index, :show]
   end
+  resources :posts
   resources :users, only: [:index, :show] do
     resource :follows, only: [:index, :create, :destroy]
     get 'followings' => 'follows#followings', as: 'followings'
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
     get 'followings' => 'follows#followings', as: 'followings'
     get 'followers' => 'follows#followers', as: 'followers'
     resources :tags
+    resources :posts
   end
   resources :user_tags
   resources :timetables, only: [:index, :show, :edit, :update] do

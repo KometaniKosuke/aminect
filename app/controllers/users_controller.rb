@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @timetable=Timetable.find(params[:id])
     @tags = @user.tags
+    @posts = @user.posts
   end
 
   def create

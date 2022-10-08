@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_22_093037) do
+ActiveRecord::Schema.define(version: 2022_10_08_072144) do
 
   create_table "administrators", force: :cascade do |t|
     t.string "name"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 2022_09_22_093037) do
     t.integer "room_id"
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "user_id"
+    t.text "text"
+    t.string "post_img"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "requests", force: :cascade do |t|

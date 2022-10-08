@@ -27,6 +27,9 @@
         <% else %>
           <%= yield %>
         <% end %>
+        <% if current_page?(:account) %>
+          <%= button_to "+", :new_account_post, method: "get", class: "post-btn" %>
+        <% end %>
       </main>
       <aside id="sidebar">
         <% unless current_page?(new_account_path)||current_page?(register_path)||current_page?(mails_path)||current_page?(new_mail_path) %>

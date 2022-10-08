@@ -68,27 +68,9 @@
 
 <%= render "shared/timetable" %>
 <br>
-<!--
+<% @posts.each do |p| %>
+  <%= image_tag p.post_img.url %>
+  <%= p.text %>
+<% end %>
 <br>
-  <table class="menu">
-  <tr>
-    <td class="menu_width"><p class="image_text"><image src="/assets/IMG_2473.jpg" alt="タグ" class="menu_image"></p>
-    </td>
-    <td class="menu_width"><p class="image_text"><image src="/assets/IMG_1734.jpg" alt="タグ" class="menu_image"></p>
-    </td>
-  </tr>
-  <tr>
-    <td class="menu_width"><p class="image_text"><image src="/assets/IMG_1734.jpg" alt="タグ" class="menu_image"></p>
-    </td>
-    <td class="menu_width"><p class="image_text"><image src="/assets/IMG_2473.jpg" alt="タグ" class="menu_image"></p>
-    </td>
-  </tr>
-  <tr>
-    <td class="menu_width"><p class="image_text"><image src="/assets/IMG_2473.jpg" alt="タグ" class="menu_image"></p>
-    </td>
-    <td class="menu_width"><p class="image_text"><image src="/assets/IMG_1734.jpg" alt="タグ" class="menu_image"></p>
-    </td>
-  </tr>
-  </table>
-<br> -->
-<%= link_to "<<ユーザ一覧に戻る", :users %>
+<br><br>
