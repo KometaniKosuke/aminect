@@ -32,21 +32,23 @@ class TagsController < ApplicationController
     tagname = params[:tagname]
     tags = Tag.where.not(ancestry: nil)
     tag_m = tags.find_by(name: tagname)
-    tag_r = TagRelation.where(tag1_id: tag_m.id).or(TagRelation.where(tag2_id: tag_m.id)).order(:degree)
-    @users=Array.new
-    if tag_r.present?
-      tag_r.each do |tr|
-        id = 0
-        if tr.tag1_id <= tr.tag2_id
-          id = tr.tag1_id
-        else
-          id = tr.tag2_id
-        end
-        uts = UserTag.where(tag_id: id)
-        uts.each do |ut|
-          u = User.find(ut.user_id)
-          if !@users.include?(u) && u!=current_user
-            @users.append(u)
+    if tag_m.present?
+      tag_r = TagRelation.where(tag1_id: tag_m.id).or(TagRelation.where(tag2_id: tag_m.id)).order(:degree)
+      @users=Array.new
+      if tag_r.present?
+        tag_r.each do |tr|
+          id = 0
+          if tr.tag1_id <= tr.tag2_id
+            id = tr.tag1_id
+          else
+            id = tr.tag2_id
+          end
+          uts = UserTag.where(tag_id: id)
+          uts.each do |ut|
+            u = User.find(ut.user_id)
+            if !@users.include?(u) && u!=current_user
+              @users.append(u)
+            end
           end
         end
       end

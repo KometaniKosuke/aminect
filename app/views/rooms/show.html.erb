@@ -39,7 +39,7 @@
   </div>
 <div class="send">
   <%= form_for @message do |f| %>
-    <table style="width:100%;">
+    <table style="width:98%;">
       <td><%= f.text_area :text, class: "input" %></td>
       <%= f.hidden_field :room_id %>
       <td style="width: 3%;"><%= f.submit "送信", class: "btn", id: "btn" %></td>
