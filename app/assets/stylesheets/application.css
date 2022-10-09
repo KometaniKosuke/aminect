@@ -108,3 +108,7 @@
    color: #fff;
    text-align: center;
  }
+ .new-img{
+   width: 70%;
+   object-fit: cover;
+ }

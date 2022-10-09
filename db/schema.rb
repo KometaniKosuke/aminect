@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2022_10_08_072144) do
 
   create_table "timetables", force: :cascade do |t|
     t.integer "user_id"
+    t.string "timetable_img"
     t.integer "mon1", default: 0
     t.integer "mon2", default: 0
     t.integer "mon3", default: 0

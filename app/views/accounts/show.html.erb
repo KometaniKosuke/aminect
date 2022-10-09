@@ -66,7 +66,12 @@
   <%= button_to "タグ編集", :new_account_tag, {method: :get} %>
 </p>
 
-<%= render "shared/timetable" %>
+<% if @timetable.timetable_img.present? %>
+  <%= image_tag @timetable.timetable_img.url, style: "width: 84%; margin-left: 8%" %>
+<% else %>
+  <%= render "shared/timetable" %>
+<% end %>
+<%= button_to "時間割編集", edit_account_timetable_path(@timetable.id), {method: :get} %>
 <br>
 
 <% num = @posts.count/2 %>

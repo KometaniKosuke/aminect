@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     get 'followers' => 'follows#followers', as: 'followers'
     resources :tags
     resources :posts
+    resources :timetables
   end
   resources :user_tags
   resources :timetables, only: [:index, :show, :edit, :update] do

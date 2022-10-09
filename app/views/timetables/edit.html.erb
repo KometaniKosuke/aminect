@@ -1,5 +1,21 @@
-<h2 class="back"><%= link_to "< My時間割", :timetable %></h2>
+<h2 class="back"><%= link_to "< 時間割編集", :account %></h2>
 <%= form_for @timetable do |tt| %>
+  <table border =1 align="center" width="90%">
+    <% if @timetable.timetable_img.present? %>
+      <tr>
+        <td colspan="2"><%= image_tag @timetable.timetable_img.url, id:"alter-image", width: "90%",style: "margin-left: 5%" %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>
+        <%= tt.label :timetable_img, "時間割の写真を選択", class: "image_input_btn" %>
+        <%= tt.file_field :timetable_img, accept: 'image/*', style: "display: none;" %>
+        <%= tt.hidden_field :timetable_img_cache %>
+      </td>
+      <td><%= tt.check_box :remove_timetable_img %>画像を削除する</td>
+    </tr>
+  </table>
+  <br>
   <table border="3" align="center">
     <tr align="center">
       <th width="30"></th>

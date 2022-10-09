@@ -14,7 +14,7 @@ class TimetablesController < ApplicationController
     tt = Timetable.find(params[:id])
     tt.assign_attributes(params[:timetable])
     if tt.save
-      redirect_to :timetable, notice: "空きコマを変更しました"
+      redirect_to :account, notice: "時間割を変更しました"
     end
   end
   def search
