@@ -24,6 +24,22 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
 
+  # ブロックをした、されたの関係
+  has_many :deals, class_name: "Deal", foreign_key: "from_id", dependent: :destroy
+  has_many :reverse_of_deals, class_name: "Deal", foreign_key: "to_id", dependent: :destroy
+
+  # 一覧画面で使う
+  has_many :blockings, through: :deals, source: :to
+  has_many :blocked, through: :reverse_of_deals, source: :from
+
+  # 通報をした、されたの関係
+  has_many :reports, class_name: "Report", foreign_key: "from_id", dependent: :destroy
+  has_many :reverse_of_reports, class_name: "Report", foreign_key: "to_id", dependent: :destroy
+
+  # 一覧画面で使う
+  has_many :reportings, through: :reports, source: :to
+  has_many :reported, through: :reverse_of_reports, source: :from
+
   # フォローしたときの処理
   def follow(user_id)
     follows.create(to_id: user_id)
@@ -35,5 +51,31 @@ class User < ApplicationRecord
   # フォローしているか判定
   def following?(user)
     followings.include?(user)
+  end
+
+  # ブロックしたときの処理
+  def block(user_id)
+    deals.create(to_id: user_id)
+  end
+  # ブロックを外すときの処理
+  def unblock(user_id)
+    deals.find_by(to_id: user_id).destroy
+  end
+  # ブロックしているか判定
+  def blocking?(user)
+    blockings.include?(user)
+  end
+
+  # 通報したときの処理
+  def report(user_id)
+    reports.create(to_id: user_id)
+  end
+  # 通報を外すときの処理
+  def unreport(user_id)
+    reports.find_by(to_id: user_id).destroy
+  end
+  # 通報しているか判定
+  def reporting?(user)
+    reportings.include?(user)
   end
 end

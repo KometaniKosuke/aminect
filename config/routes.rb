@@ -15,6 +15,14 @@ Rails.application.routes.draw do
     resource :follows, only: [:index, :create, :destroy]
     get 'followings' => 'follows#followings', as: 'followings'
     get 'followers' => 'follows#followers', as: 'followers'
+    
+    resource :deals, only: [:index, :create, :destroy]
+    get 'blockings' => 'blocks#blockings', as: 'blockings'
+    get 'blockers' => 'blocks#blockers', as: 'blockers'
+
+    resource :reports, only: [:create, :destroy]
+    get 'reportings' => 'reports#reportings', as: 'reportings'
+    get 'reporters' => 'reports#reporters', as: 'reporters'
     resources :tags
   end
   resource :account, except: [:index, :destroy] do
@@ -53,5 +61,6 @@ Rails.application.routes.draw do
       get 'followers' => 'follows#followers', as: 'followers'
     end
     resources :requests, only: [:index, :edit, :update]
+    resources :reports, only: [:index, :destroy]
   end
 end

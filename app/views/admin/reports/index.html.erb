@@ -1,0 +1,16 @@
+<table border=5 width="500px">
+  <tr align="center">
+    <th>ID</th>
+    <th>通報者</th>
+    <th>通報された人</th>
+  </tr>
+  <% @users.each do |user| %>
+      <tr align="center">
+        <td><%= user.id %></td>
+        <td><%= user.from.name %></td>
+        <td><%= user.to.name %></td>
+      </tr>
+  <% end %>
+</table>
+<br>
+<%= link_to "<<戻る", :admin_root %>

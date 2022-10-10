@@ -2,6 +2,7 @@
   <tr align="center">
     <th>ID</th>
     <th>名前</th>
+    <th>ルーム</th>
   </tr>
   <% @users.each do |user| %>
     <% a=0 %>
@@ -20,15 +21,20 @@
             <% room_url=Room.find(ur.room_id) %>
           <% end %>
         <% end %>
-        <% if a!=0 %>
-          <td><%= link_to "チャット", room_url %></td>
+        <% if user.blocking?(current_user) %>
+         <td><%= "ブロックされています"%></td>
         <% else %>
-          <td><%= link_to "ルーム作成", new_user_room_path(user) %></td>
+          <% if a!=0 %>
+            <td><%= link_to "チャット", room_url %></td>
+          <% else %>
+            <td><%= link_to "ルーム作成", new_user_room_path(user) %></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>
   <% end %>
 </table>
+
 <br>
 
 <table border=5 width="80%">
@@ -36,6 +42,7 @@
     <th>ID</th>
     <th>名前</th>
     <th>フォロー</th>
+    <th>ブロック</th>
     <th>ルーム</th>
   </tr>
   <% @users.each do |user| %>
@@ -47,12 +54,30 @@
           <%= link_to user.name, user %>
         </td>
         <td>
+        <% if user.blocking?(current_user) %>
+          <%= "ブロックされています"%>
+        <% else %>
           <% if current_user.following?(user) %>
             <%= link_to "フォロー外す", user_follows_path(user.id), method: :delete %>
           <% else %>
               <%= link_to "フォローする", user_follows_path(user.id), method: :post %>
           <% end %>
+        <% end %>
         </td>
+        <td>
+          <% if current_user.blocking?(user) %>
+            <%= link_to "ブロック外す", user_deals_path(user.id), method: :delete %>
+          <% else %>
+            <%= link_to "ブロックする", user_deals_path(user.id), method: :post %>
+          <% end %>
+        </td>
+        <td>
+        <% if current_user.reporting?(user) %>
+          <%= link_to "通報外す", user_reports_path(user.id), method: :delete %>
+        <% else %>
+          <%= link_to "通報する", user_reports_path(user.id), method: :post %>
+        <% end %>
+      </td>
         <% urs=UserRoom.where(user_id: current_user.id) %>
         <% room_url=Room.new() %>
         <% urs.each do |ur| %>
@@ -73,3 +98,4 @@
 </table>
 <br>
 <%= link_to "<<戻る", :root %>
+
