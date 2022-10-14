@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 2022_10_08_072144) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "deals", force: :cascade do |t|
+    t.integer "from_id"
+    t.integer "to_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "follows", force: :cascade do |t|
     t.integer "from_id"
     t.integer "to_id"
@@ -46,6 +53,13 @@ ActiveRecord::Schema.define(version: 2022_10_08_072144) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.integer "from_id"
+    t.integer "to_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "requests", force: :cascade do |t|

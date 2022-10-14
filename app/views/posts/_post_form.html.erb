@@ -1,5 +1,8 @@
 <table>
   <tr>
+    <td colspan="2"><div id="new-image" style="width:40%;"></div></td>
+  </tr>
+  <tr>
     <th><%= form.label :post_img, "写真を選択" %></th>
     <td><%= form.file_field :post_img, accept: 'image/*' %><%= form.hidden_field :post_img_cache %></td>
   </tr>

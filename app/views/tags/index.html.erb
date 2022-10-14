@@ -2,29 +2,73 @@
   <%= link_to "< 趣味で探す", :root %>
 </h2>
 
-<%= form_tag :tag_search_tags, method: :get do %>
-  <div class="wrapper">
-    <div class="search-area">
-      <%= text_field_tag "tagname", params[:tagname],{id: "search-text", placeholder: "検索ワードを入力"} %>
-      <%= submit_tag "検索" %>
-      <input type="button" id="button4" value="×" >
-      <div class="search-result">
-        <div id="search-result__list"></div>
-      </div>
-    </div>
-
-    <span class="target-area">
-      <% Tag.where.not(ancestry: nil).each do |t| %>
-        <p class="hashtag">
-          <%= link_to ({ controller: "tags", action: "tag_search", tagname: t.name }) do %>
-            <span><%= t.name %></span>
-          <% end %>
-        </p>
-      <% end %>
-    </span>
-  </div>
+<% if params[:tagname].present? %>
+  <p class="searchtag">
+    <span><%= params[:tagname] %></span>
+  </p>
 <% end %>
 
+<% parents = Tag.where(ancestry: nil) %>
+<table align="center" width="98%">
+  <tr>
+    <td width="50%" style="vertical-align: top;">
+      <% for i in 1..6 do %>
+        <% pa=parents.find(i*2-1) %>
+        <% cs = Tag.where(ancestry: pa.id.to_s) %>
+        <table width="100%">
+          <tr>
+            <td>
+              <div id="accordion" class="accordion-container_2">
+                <h4 class="accordion-title_2 js-accordion-title" style="height: 24px"><%= pa.name %></h4>
+                <div class="accordion-content_2" style="padding-bottom: 5px;">
+                  <% cs.each do |c| %>
+                    <p class="hashtag">
+                      <%= link_to ({ controller: "tags", action: "tag_search", tagname: c.name })  do %>
+                        <span><%= c.name %></span>
+                      <% end %>
+                    </p>
+                  <% end %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </td>
+    <td width="50%" style="vertical-align: top;">
+      <% for i in 1..6 do %>
+        <% pa=parents.find(i*2) %>
+        <% cs = Tag.where(ancestry: pa.id.to_s) %>
+          <table width="100%">
+            <tr>
+              <td>
+                <div id="accordion" class="accordion-container_2">
+                <h4 class="accordion-title_2 js-accordion-title" style="height: 24px"><%= pa.name %></h4>
+                <div class="accordion-content_2" style="padding-bottom: 5px;">
+                  <% cs.each do |c| %>
+                    <p class="hashtag">
+                      <%= link_to ({ controller: "tags", action: "tag_search", tagname: c.name })  do %>
+                        <span>
+                          <% if c.name=="ダーツ ビリヤード ボーリング" %>
+                            ﾀﾞｰﾂ ﾋﾞﾘﾔｰﾄﾞ ﾎﾞｳﾘﾝｸﾞ
+                          <% else %>
+                            <%= c.name %>
+                          <% end %>
+                        </span>
+                      <% end %>
+                    </p>
+                  <% end %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<br>
 <% if params[:tagname].present? %>
   <% if @users.length!=0 %>
     <% @users.each do |user| %>

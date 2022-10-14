@@ -38,11 +38,12 @@
 }
 
 .accordion-title:after {
-  content: "＋";
+  content: "+";
+  text-align: center;
   font-size: 22px;
   position: absolute;
   right: 25px;
-  top: 35%;
+  top: 23%;
   transition: all 0.3s ease-in-out;
   display: block;
   width: 25px;
@@ -53,9 +54,10 @@
 }
 
 .accordion-title.open:after {
-  content: "ー";
+  content: "−";
+  text-align: center;
   font-size: 22px;
-  top: 35%;
+  top: 23%;
   align-items: center;
   border-top: solid 2px #D9D9D9;
   border-right: solid 2px #D9D9D9;
@@ -64,9 +66,12 @@
 
 .accordion-content {
   display: none;
-  padding-left: 2.3125em;
+  padding-left: 2em;
+  padding-bottom: 10px;
 }
-
+.accordion-content p {
+  margin: 3px;
+}
 .tag-btn {
   margin-top: 2%;
   margin-bottom:  7%;

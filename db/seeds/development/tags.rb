@@ -41,7 +41,7 @@ end
 ["ONE PIECE","SPY×FAMILY","呪術廻戦","ドラゴンボール","ドラえもん","ヒロアカ","五等分の花嫁","進撃の巨人","HUNTER×HUNTER","名探偵コナン","京アニ","エヴァ","ワールドトリガー","ジャンプ(JC)","マガジン(KC)","鬼滅の刃","ハイキュー"].each do |name| #17
   cartoon.children.create(name: name)
 end
-["インスタ映え","おもしろ動画","TikTok","VTuber","ゲーム実況","Youtube","歌ってみた・踊ってみた"].each do |name| #7
+["インスタ映え","おもしろ動画","TikTok","VTuber","ゲーム実況","Youtube","歌ってみた 踊ってみた"].each do |name| #7
   sns.children.create(name: name)
 end
 ["ネイル","メイク","スキンケア","韓国コスメ"].each do |name|  #4
