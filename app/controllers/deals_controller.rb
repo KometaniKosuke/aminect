@@ -4,7 +4,7 @@ class DealsController < ApplicationController
   def create
     current_user.block(params[:user_id])
     user = User.find(params[:user_id])
-    redirect_to :users, notice: "ブロックしました"
+    redirect_to user, notice: "ブロックしました"
   end
   # ブロックを外すとき
   def destroy
@@ -12,7 +12,7 @@ class DealsController < ApplicationController
     user = User.find(params[:user_id])
     f = Deal.find_by(from_id: current_user.id, to_id: user.id)
     f.destroy
-    redirect_to :users, notice: "ブロックを解除しました"
+    redirect_to user, notice: "ブロックを解除しました"
   end
   # ブロック一覧
   def blockings

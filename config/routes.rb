@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resource :follows, only: [:index, :create, :destroy]
     get 'followings' => 'follows#followings', as: 'followings'
     get 'followers' => 'follows#followers', as: 'followers'
-    
+
     resource :deals, only: [:index, :create, :destroy]
     get 'blockings' => 'blocks#blockings', as: 'blockings'
     get 'blockers' => 'blocks#blockers', as: 'blockers'
@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     resources :posts
     resources :timetables
   end
+  resource :password, only: [:edit, :update]
   resources :user_tags
   resources :timetables, only: [:index, :show, :edit, :update] do
     get "search", on: :collection

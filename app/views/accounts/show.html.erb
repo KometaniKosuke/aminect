@@ -31,7 +31,7 @@
       <p style="padding: 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
         <% if @user.sex==1 %>男性
         <% elsif @user.sex==2 %>女性
-        <% else %>--
+        <% else %>—
         <% end %>
       </p>
     </td>
@@ -44,11 +44,11 @@
 <p align="center">
   <% if @user.twitter.present? %>
     <% tw = 'https://twitter.com/'.concat(@user.twitter) %>
-    <%= link_to image_tag("Twitter_logo.png", size:"86x86"),tw, style: "padding-right:50px;" %>
+    <%= link_to image_tag("Twitter_logo.png", size:"86x86"),tw, style: "padding:0 7%;" %>
   <% end %>
   <% if @user.instagram.present? %>
     <% i = 'https://www.instagram.com/'.concat(@user.instagram) %>
-    <%= link_to image_tag("Instagram_logo.png", size:"86x86"),i, style: "padding-left:50px;"%>
+    <%= link_to image_tag("Instagram_logo.png", size:"86x86"),i, style: "padding:0 7%;"%>
   <% end %>
 </p>
 
@@ -59,24 +59,29 @@
   <%= button_to "質問箱", :new_request, {method: :get, class: "req-btn"} %>
 </p>
 <br>
-<p style="width: 90%; margin: auto;">
+
+<p style="width: 90%; margin: auto;" align="center">
   <% @tags.each do |tag| %>
-    <span style="margin: auto 5px auto 5px;">#<%= tag.name %></span>
+    <span style="margin: auto 5px auto 5px; white-space: nowrap; color: #007AFF;">#<%= tag.name %></span>
   <% end %>
   <%= button_to "タグ編集", :new_account_tag, {method: :get} %>
 </p>
 
-<% if @timetable.timetable_img.present? %>
-  <%= image_tag @timetable.timetable_img.url, style: "width: 84%; margin-left: 8%" %>
-<% else %>
-  <%= render "shared/timetable" %>
-<% end %>
-<%= button_to "時間割編集", edit_account_timetable_path(@timetable.id), {method: :get} %>
+<div class="timetable" align=center>
+  <%= link_to edit_account_timetable_path(@timetable.id), {method: :get, class: "edit_img"} do %>
+    <h3>時間割 <%= image_tag("edit.png", size: "15x15") %></h3>
+  <% end %>
+  <% if @timetable.timetable_img.present? %>
+    <%= image_tag @timetable.timetable_img.url, style: "width: 84%; margin-left: 8%" %>
+  <% else %>
+    <%= render "shared/timetable" %>
+  <% end %>
+</div>
 <br>
 
 <% num = @posts.count/2 %>
 <% if @posts.count%2 == 0 %> <!-- 投稿が偶数 -->
-  <table align="center"  style="width:90%;">
+  <table align="center"  style="width:84%;">
     <% for i in 1..num %>
       <tr>
         <td style="width: 50%;">
@@ -94,7 +99,7 @@
   </table>
 <% else %> <!-- 投稿が奇数 -->
   <% if @posts.count!=1 %>
-    <table align="center"  style="width:90%;">
+    <table align="center"  style="width:84%;">
       <% for i in 1..num %>
         <tr>
           <td style="width: 50%;">
@@ -118,7 +123,7 @@
       </tr>
     </table>
   <% else %>
-    <table style="width:45%; margin-left: 5%">
+    <table style="width:42%; margin-left: 8%">
       <tr>
         <td style="width: 50%;">
           <% a = @posts.last %>
@@ -129,4 +134,4 @@
     </table>
   <% end %>
 <% end %>
-<br><br>
+<br><br><br><br>

@@ -1,3 +1,17 @@
+<div class="deal-content">
+  <p class="js-deal-open" href="">• • •</p>
+</div>
+<div class="deal js-deal">
+  <div class="deal__bg js-deal-close"></div>
+  <div class="deal__content" align="center">
+    <% unless Deal.find_by(from_id: current_user.id, to_id: @user.id).present? %>
+      <%= button_to "ブロック", user_deals_path(@user.id), method: :post, class: "deal-btn", data: {confirm: "ブロックしますか?"} %>　
+    <% end %>
+    <%= button_to "通報", user_reports_path(@user.id), method: :post, class: "deal-btn", data: {confirm: "通報しますか?"} %>
+  </div>
+</div>
+
+
 <table style="width: 80%; font-size: 16px; margin: 3% auto auto auto; text-align: center;">
   <tr>
     <td style="width: 30%;">
@@ -22,73 +36,126 @@
       <p style="padding: 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
         <% if @user.sex==1 %>男性
         <% elsif @user.sex==2 %>女性
-        <% else %>--
+        <% else %>—
         <% end %>
       </p>
     </td>
   </tr>
 </table>
 <br>
-<p align="center"><%= safe_join(@user.comment.split("\n"),tag(:br)) %></p>
-<br>
-<p style="width: 90%; margin: auto;">
-  <% @tags.each do |tag| %>
-    <span style="margin: auto 5px auto 5px;">#<%= tag.name %></span>
-  <% end %>
-</p>
-<br>
-<% if @user.blocking?(current_user) %>
-  <%= "ブロックされています"%>
-<% else %>
-  <table style="margin: 0 auto;">
-    <tr align="center">
-      <% if current_user.following?(@user) %>
-        <td><%= link_to "フォロー外す", user_follows_path(@user.id), method: :delete %></td>
-        <% urs=UserRoom.where(user_id: current_user.id) %>
-        <% a=0 %>
-        <% room_url=Room.new() %>
-        <% urs.each do |ur| %>
-          <% i = UserRoom.find_by(user_id: @user.id, room_id: ur.room_id) %>
-          <% if i.present? %>
-            <% a=1 %>
-            <% room_url=Room.find(ur.room_id) %>
-          <% end %>
-        <% end %>
-        <% if a!=0 %>
-          <td><%= link_to "メッセージ", room_url %></td>
-        <% else %>
-          <td><%= link_to "メッセージ", new_user_room_path(@user) %></td>
-        <% end %>
-      <% else %>
-        <td><%= link_to "フォローする", user_follows_path(@user.id), method: :post %></td>
-      <% end %>
-    </tr>
-  </table>
+<% unless Deal.find_by(from_id: current_user.id, to_id: @user.id).present? %>
+  <p align="center"><%= safe_join(@user.comment.split("\n"),tag(:br)) %></p>
   <br>
-
-  <% if current_user.following?(@user) %>
-    <table style="margin: 0 auto;">
-      <tr>
-        <td>
-          <% if @user.twitter.present? %>
-            <% tw = 'https://twitter.com/'.concat(@user.twitter) %>
-            <%= link_to image_tag("Twitter_logo.png", size:"86x86"),tw, style: "padding-right:50px;" %>
+  <p style="width: 90%; margin: auto;" align="center">
+    <% @tags.each do |tag| %>
+      <span style="margin: auto 5px auto 5px; white-space: nowrap; color: #007AFF;">#<%= tag.name %></span>
+    <% end %>
+  </p>
+  <br>
+  <% if @user.blocking?(current_user) %>
+    <%= "ブロックされています"%>
+  <% else %>
+    <table style="margin: 0 auto; width: 90%;">
+      <tr align="center">
+        <% if current_user.following?(@user) %>
+          <td><%= button_to "フォロー中", user_follows_path(@user.id), method: :delete, class: "unfollow" %></td>
+          <% urs=UserRoom.where(user_id: current_user.id) %>
+          <% a=0 %>
+          <% room_url=Room.new() %>
+          <% urs.each do |ur| %>
+            <% i = UserRoom.find_by(user_id: @user.id, room_id: ur.room_id) %>
+            <% if i.present? %>
+              <% a=1 %>
+              <% room_url=Room.find(ur.room_id) %>
+            <% end %>
           <% end %>
-          <% if @user.instagram.present? %>
-            <% i = 'https://www.instagram.com/'.concat(@user.instagram) %>
-            <%= link_to image_tag("Instagram_logo.png", size:"86x86"),i, style: "padding-left:50px;"%>
+          <% if a!=0 %>
+            <td><%= button_to "メッセージ", room_url, method: :get, class: "msg" %></td>
+          <% else %>
+            <td><%= button_to "メッセージ", new_user_room_path(@user), class: "msg" %></td>
           <% end %>
-        </td>
+        <% else %>
+          <td><%= button_to "フォローする", user_follows_path(@user.id), method: :post, class: "follow" %></td>
+        <% end %>
       </tr>
     </table>
-    <%= render "shared/timetable" %>
+    <br>
+
+    <% if current_user.following?(@user) %>
+      <p align="center">
+        <% if @user.twitter.present? %>
+          <% tw = 'https://twitter.com/'.concat(@user.twitter) %>
+          <%= link_to image_tag("Twitter_logo.png", size:"86x86"),tw, style: "padding:0 7%;" %>
+        <% end %>
+        <% if @user.instagram.present? %>
+          <% i = 'https://www.instagram.com/'.concat(@user.instagram) %>
+          <%= link_to image_tag("Instagram_logo.png", size:"86x86"),i, style: "padding:0 7%;"%>
+        <% end %>
+      </p>
+      <div class="timetable" align=center>
+        <h3>時間割</h3>
+        <%= render "shared/timetable" %>
+      </div>
+    <% end %>
   <% end %>
+  <br>
+  <br>
+  <% num = @posts.count/2 %>
+  <% if @posts.count%2 == 0 %> <!-- 投稿が偶数 -->
+    <table align="center"  style="width:90%;">
+      <% for i in 1..num %>
+        <tr>
+          <td style="width: 50%;">
+            <% a = @posts.limit(i*2-1).last %>
+            <% modal_a = "modal_a"+i.to_s %>
+            <%= render partial: "modal", :locals=>{:modal_id => modal_a, :modal_post => a} %>
+          </td>
+          <td style="width: 50%;">
+            <% b = @posts.limit(i*2).last %>
+            <% modal_b = "modal_b"+i.to_s %>
+            <%= render partial: "modal", :locals=>{:modal_id => modal_b, :modal_post => b} %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %> <!-- 投稿が奇数 -->
+    <% if @posts.count!=1 %>
+      <table align="center"  style="width:90%;">
+        <% for i in 1..num %>
+          <tr>
+            <td style="width: 50%;">
+              <% a = @posts.limit(i*2-1).last %>
+              <% modal_a = "modal_a"+i.to_s %>
+              <%= render partial: "modal", :locals=>{:modal_id => modal_a, :modal_post => a} %>
+            </td>
+            <td style="width: 50%;">
+              <% b = @posts.limit(i*2).last %>
+              <% modal_b = "modal_b"+i.to_s %>
+              <%= render partial: "modal", :locals=>{:modal_id => modal_b, :modal_post => b} %>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td style="width: 50%;">
+            <% c = @posts.last %>
+            <% modal_c = "modal_c"+i.to_s %>
+            <%= render partial: "modal", :locals=>{:modal_id => modal_c, :modal_post => c} %>
+          </td>
+        </tr>
+      </table>
+    <% else %>
+      <table style="width:45%; margin-left: 5%">
+        <tr>
+          <td style="width: 50%;">
+            <% a = @posts.last %>
+            <% modal_a = "modal_a"+i.to_s %>
+            <%= render partial: "modal", :locals=>{:modal_id => modal_a, :modal_post => a} %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  <% end %>
+  <br><br><br>
+<% else %>
+  <%= button_to "ブロック解除", user_deals_path(@user.id), method: :delete, class: "unblock" %>
 <% end %>
-<br>
-<br>
-<% @posts.each do |p| %>
-  <%= image_tag p.post_img.url %>
-  <%= p.text %>
-<% end %>
-<br>
-<br><br>

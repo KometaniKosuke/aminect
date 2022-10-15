@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :tags, through: :user_tags
 
   mount_uploader :image, ImageUploader
+  attr_accessor :current_password
 
   # フォローをした、されたの関係
   has_many :follows, class_name: "Follow", foreign_key: "from_id", dependent: :destroy
