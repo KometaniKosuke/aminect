@@ -11,6 +11,8 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     urs = UserRoom.where(room_id: @room.id)
     talker = urs.where.not(user_id: current_user.id)
+    ur = urs.where(user_id: current_user.id)
+    ur.update(date: Time.current)
     @talker = User.find_by(id: talker.first.user_id)
     @messages = @room.messages
     @message = Message.new(room_id: @room.id, user_id: current_user.id)

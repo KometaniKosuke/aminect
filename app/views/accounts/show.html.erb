@@ -7,10 +7,18 @@
   </tr>
   <tr height="0">
     <td width="30%">
-      <%= link_to @user.followers.count, :followers_account %><br>フォロワー
+      <div>
+        <%= link_to :followers_account, style: "text-decoration:none; color:#000;" do %>
+          <%= @user.followers.count %><br>フォロワー
+        <% end %>
+      </div>
     </td>
     <td width="30%">
-      <%= link_to @user.followings.count, :followings_account %><br>フォロー
+      <div>
+        <%= link_to :followings_account, style: "text-decoration:none; color:#000;" do %>
+          <%= @user.followings.count %><br>フォロー
+        <% end %>
+      </div>
     </td>
   </tr>
 </table>
@@ -60,12 +68,18 @@
 </p>
 <br>
 
-<p style="width: 90%; margin: auto;" align="center">
-  <% @tags.each do |tag| %>
-    <span style="margin: auto 5px auto 5px; white-space: nowrap; color: #007AFF;">#<%= tag.name %></span>
-  <% end %>
-  <%= button_to "タグ編集", :new_account_tag, {method: :get} %>
-</p>
+<%= link_to :new_account_tag, style: "text-decoration:none" do %>
+  <table style="width: 86%; margin: auto;" align="center">
+    <tr>
+      <td align="center">
+        <% @tags.each do |tag| %>
+          <span style="margin: auto 5px auto 5px; white-space: nowrap; color: #007AFF;">#<%= tag.name %></span>
+        <% end %>
+      </td>
+      <td><%= image_tag "edit.png", size: "25x25" %></td>
+    </tr>
+  </table>
+<% end %>
 
 <div class="timetable" align=center>
   <%= link_to edit_account_timetable_path(@timetable.id), {method: :get, class: "edit_img"} do %>

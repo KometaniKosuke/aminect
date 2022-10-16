@@ -1,4 +1,7 @@
 <h2 style="font-size:150%;">
+  <div>
+    <p class="js-delete-open" href="" style="position: absolute; right:1%;">•••</p>
+  </div>
   <div class="back">
     <%= link_to :rooms do %>
       < <%= @talker.name %>
@@ -6,43 +9,54 @@
   </div>
 </h2>
 
+
+
 <% date=Time.local(2022, 1, 1, 0, 0, 0) %>
 <% wd=["日","月","火","水","木","金","土"] %>
 
 <div class="scroll messageDetails" id="scroll-inner">
-    <% @messages.each do |message| %>
-      <% month=date.month %>
-      <% day=date.day %>
-      <% if month!=message.date.month or day!=message.date.day %>
-        <div class="date"><p><%= message.date.strftime("%-m/%-d(#{wd[message.date.wday]})") %></p></div>
-        <% date=message.date %>
-      <% end %>
-      <% if message.user != current_user %>
-        <div class="partner">
-          <div class="faceicon">
-            <%= link_to (image_tag message.user.image.url, width: "40px", height: "40px"), message.user %>
-          </div>
-          <div class="chatting">
-            <div class="says">
-              <p><%= message.text %></p>
-            </div>
-            <span style="font-size: 10px;"><%= message.date.strftime('%-H:%M') %></span>
-          </div>
-        </div>
-      <% else %>
-        <div class="self">
-          <span style="font-size: 10px;"><%= message.date.strftime('%-H:%M') %></span>
-          <p><%= message.text %></p>
-        </div>
-      <% end %>
+  <% @messages.each do |message| %>
+    <% month=date.month %>
+    <% day=date.day %>
+    <% if month!=message.created_at.month or day!=message.created_at.day %>
+      <div class="date"><p><%= message.created_at.strftime("%-m/%-d(#{wd[message.created_at.wday]})") %></p></div>
+      <% date=message.created_at %>
     <% end %>
-  </div>
+    <% if message.user != current_user %>
+      <div class="partner">
+        <div class="faceicon">
+          <%= link_to (image_tag message.user.image.url, width: "40px", height: "40px"), message.user %>
+        </div>
+        <div class="chatting">
+          <div class="says">
+            <p><%= message.text %></p>
+          </div>
+          <span style="font-size: 10px;"><%= message.created_at.strftime('%-H:%M') %></span>
+        </div>
+      </div>
+    <% else %>
+      <div class="self">
+        <span style="font-size: 10px;"><%= message.created_at.strftime('%-H:%M') %></span>
+        <p><%= message.text %></p>
+      </div>
+    <% end %>
+  <% end %>
+</div>
 <div class="send">
   <%= form_for @message do |f| %>
     <table style="width:98%;">
-      <td><%= f.text_area :text, class: "input" %></td>
+      <td style="border: 1px solid black;border-radius: 10px;"><%= f.text_area :text, class: "input" %></td>
       <%= f.hidden_field :room_id %>
       <td style="width: 3%;"><%= f.submit "送信", class: "btn", id: "btn" %></td>
     </table>
   <% end %>
+</div>
+<div class="delete js-delete">
+  <div class="delete__bg js-delete-close"></div>
+  <div class="delete__content" align="center">
+    <p>
+      <%= @talker.name %>さんとのトークルームを削除しますか?
+      <%= button_to "削除", @room, method: :post, class: "delete-btn", data: {confirm: "トーク内容も全てなくなりますがよろしいですか?"} %>
+    </p>
+  </div>
 </div>

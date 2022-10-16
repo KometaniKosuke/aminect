@@ -1,0 +1,40 @@
+.ff {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.4);
+  text-decoration: none;
+}
+.ff_2 {
+  font-size: 20px;
+  color: #000;
+  margin: 0;
+
+}
+.ff_name {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 27px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.015em;
+  color: #000000;
+  text-decoration: none;
+}
+.ff_msg {
+  font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 17px;
+line-height: 22px;
+/* identical to box height */
+
+text-align: center;
+letter-spacing: -0.3px;
+
+color: #000000;
+  background-color: #fff;
+  border: 1px solid #007AFF;
+  border-radius: 20px;
+}

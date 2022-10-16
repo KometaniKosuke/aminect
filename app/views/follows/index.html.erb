@@ -1,12 +1,32 @@
-<%= current_user.name %>
+<%= link_to :account, style:"text-decoration:none; color:#000" do %>
+  <h2 class="back"><</h2>
+<% end %>
+<table border=1 width="100%" style="border-collapse: collapse;">
+  <tr>
+    <td align="center" width="50%">
+      <% if current_page?(:followers_account) %>
+        <p class="ff_2">フォロワー</p>
+      <% else %>
+        <%= link_to :followers_account, class:"ff" do %><div style="background: rgba(139, 139, 139, 0.19);">フォロワー</div><% end %>
+      <% end %>
+    </td>
+    <td align="center" width="50%">
+      <% if current_page?(:followings_account) %>
+        <p class="ff_2">フォロー</p>
+      <% else %>
+        <%= link_to :followings_account, class:"ff" do %><div style="background: rgba(139, 139, 139, 0.19);">フォロー</div><% end %>
+      <% end %>
+    </td>
+  </tr>
+</table>
 
 <% if current_page?(:followings_account) %>
-  <table>
+  <table width="100%" style="border:none;border-collapse: collapse;" border=1>
     <% @followings.each do |follow| %>
       <% a=0 %>
       <tr align="center">
-        <td><%= image_tag follow.image.url, class: 'rounded-circle', size: '56x56' %></td>
-        <td><%= link_to follow.name, follow %></td>
+        <td width="20%" style="border-right: none !important;border-left: none !important;"><%= image_tag follow.image.url, class: 'rounded-circle', size: '56x56' %></td>
+        <td style="padding-left: 2%;border-right: none !important;border-left: none !important;"><%= link_to follow.name, follow, class:"ff_name" %></td>
         <% urs = UserRoom.where(user_id: current_user.id) %>
         <% room_url = Room.new() %>
         <% urs.each do |ur| %>
@@ -16,23 +36,23 @@
             <% room_url=Room.find(ur.room_id) %>
           <% end %>
         <% end %>
-        <td>
+        <td style="border-right: none !important;border-left: none !important;">
           <% if a!=0 %>
-            <%= link_to "メッセージ", room_url %>
+            <%= button_to "メッセージ", room_url, method: :get,class:"ff_msg" %>
           <% else %>
-            <%= link_to "メッセージ", new_user_room_path(follow) %>
+            <%= button_to "メッセージ", new_user_room_path(follow), method: :get,class:"ff_msg" %>
           <% end %>
         </td>
       </tr>
     <% end %>
   </table>
 <% elsif current_page?(:followers_account) %>
-  <table>
+  <table width="100%" style="border:none;border-collapse: collapse;" border=1>
     <% @followers.each do |follower| %>
       <% a=0 %>
       <tr align="center">
-        <td><%= image_tag follower.image.url, class: 'rounded-circle', size: '56x56' %></td>
-        <td><%= link_to follower.name, follower %></td>
+        <td width="20%" style="border-right: none !important;border-left: none !important;"><%= image_tag follower.image.url, class: 'rounded-circle', size: '56x56' %></td>
+        <td style="padding-left: 2%;border-right: none !important;border-left: none !important;"><%= link_to follower.name, follower, class:"ff_name" %></td>
         <% urs = UserRoom.where(user_id: current_user.id) %>
         <% room_url = Room.new() %>
         <% urs.each do |ur| %>
@@ -42,11 +62,11 @@
             <% room_url=Room.find(ur.room_id) %>
           <% end %>
         <% end %>
-        <td>
+        <td style="border-right: none !important;border-left: none !important;">
           <% if a!=0 %>
-            <%= link_to "メッセージ", room_url %>
+            <%= button_to "メッセージ", room_url, method: :get,class:"ff_msg" %>
           <% else %>
-            <%= link_to "メッセージ", new_user_room_path(follower) %>
+            <%= button_to "メッセージ", new_user_room_path(follower), method: :get,class:"ff_msg" %>
           <% end %>
         </td>
       </tr>

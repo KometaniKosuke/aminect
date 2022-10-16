@@ -72,7 +72,7 @@
           <% if a!=0 %>
             <td><%= button_to "メッセージ", room_url, method: :get, class: "msg" %></td>
           <% else %>
-            <td><%= button_to "メッセージ", new_user_room_path(@user), class: "msg" %></td>
+            <td><%= button_to "メッセージ", new_user_room_path(@user), method: :get, class: "msg" %></td>
           <% end %>
         <% else %>
           <td><%= button_to "フォローする", user_follows_path(@user.id), method: :post, class: "follow" %></td>
