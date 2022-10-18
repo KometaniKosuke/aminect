@@ -42,15 +42,7 @@
     <% end %>
   <% end %>
 </div>
-<div class="send">
-  <%= form_for @message do |f| %>
-    <table style="width:98%;">
-      <td style="border: 1px solid black;border-radius: 10px;"><%= f.text_area :text, class: "input" %></td>
-      <%= f.hidden_field :room_id %>
-      <td style="width: 3%;"><%= f.submit "送信", class: "btn", id: "btn" %></td>
-    </table>
-  <% end %>
-</div>
+
 <div class="delete js-delete">
   <div class="delete__bg js-delete-close"></div>
   <div class="delete__content" align="center">

@@ -11,13 +11,20 @@
   </div>
 </div>
 
-
+<% c = (Report.where(to_id: @user.id).select(:from_id).distinct.count+1)/2 %>
 <table style="width: 80%; font-size: 16px; margin: 3% auto auto auto; text-align: center;">
   <tr>
     <td style="width: 30%;">
       <%= image_tag @user.image.url, class: 'rounded-circle', size: '98x98' %>
     </td>
-    <td class="name" colspan="2" style="padding-right:10%;"><%= @user.name %></td>
+    <td class="name" colspan="2" style="padding-right:10%;">
+      <% if c!=0 %>
+        <% for i in 1..c do %>
+          <%= image_tag "bad.png", size: "20x20", style: "margin: 0;" %>
+        <% end %><br>
+      <% end %>
+      <%= @user.name %>
+    </td>
   </tr>
 </table>
 <table style="width: 70%; font-size: 16px; margin: auto; text-align: center;" align="center">
@@ -52,7 +59,7 @@
     <% end %>
   </p>
   <br>
-  <% if @user.blocking?(current_user) %>
+  <% if @user.blocking?(current_user) %><!-- kokohenkou -->
     <%= "ブロックされています"%>
   <% else %>
     <table style="margin: 0 auto; width: 90%;">

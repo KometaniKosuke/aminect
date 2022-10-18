@@ -13,4 +13,18 @@
   <% end %>
 </table>
 <br>
+<% users=@users.select(:from_id, :to_id).distinct %>
+<table border=5 width="500px">
+  <tr align="center">
+    <th>通報者</th>
+    <th>通報された人</th>
+  </tr>
+  <% users.each do |user| %>
+      <tr align="center">
+        <td><%= user.from_id %></td>
+        <td><%= user.to_id %></td>
+      </tr>
+  <% end %>
+</table>
+<br>
 <%= link_to "<<戻る", :admin_root %>

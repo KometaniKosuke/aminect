@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :users do
     resources :rooms
     resources :timetables
-    resources :requests, except: [:edit, :update]
     resources :posts, only: [:index, :show]
   end
   resources :posts
@@ -38,7 +37,7 @@ Rails.application.routes.draw do
   resources :timetables, only: [:index, :show, :edit, :update] do
     get "search", on: :collection
   end
-  resources :requests
+  resources :requests, only: [:index]
   resources :tags do
     get "tag_search", on: :collection
   end
@@ -61,7 +60,6 @@ Rails.application.routes.draw do
       get 'followings' => 'follows#followings', as: 'followings'
       get 'followers' => 'follows#followers', as: 'followers'
     end
-    resources :requests, only: [:index, :edit, :update]
     resources :reports, only: [:index, :destroy]
   end
 end

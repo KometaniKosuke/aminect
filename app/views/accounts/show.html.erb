@@ -1,9 +1,17 @@
+<% c = (Report.where(to_id: @user.id).select(:from_id).distinct.count+1)/2 %>
 <table style="width: 90%; font-size: 16px; margin: 3% auto auto auto; text-align: center;" align="center">
   <tr>
     <td width="40%" rowspan="2">
       <%= image_tag @user.image.url, class: 'rounded-circle', size: '128x128' %>
     </td>
-    <td class="name" colspan="2"><%= @user.name %></td>
+    <td class="name" colspan="2">
+      <% if c!=0 %>
+        <% for i in 1..c do %>
+          <%= image_tag "bad.png", size: "20x20", style: "margin: 0;" %>
+        <% end %><br>
+      <% end %>
+      <%= @user.name %>
+    </td>
   </tr>
   <tr height="0">
     <td width="30%">
@@ -64,7 +72,7 @@
 
 <p>
   <%= button_to "プロフィールを編集する", :edit_account, {method: :get, class: "pro-btn"} %>
-  <%= button_to "質問箱", :new_request, {method: :get, class: "req-btn"} %>
+  <%= button_to "利用規約・質問箱", :requests, {method: :get, class: "req-btn"} %>
 </p>
 <br>
 

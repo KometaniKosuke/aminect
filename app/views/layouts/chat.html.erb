@@ -14,17 +14,22 @@
       <header>
         <%= render "shared/header" %>
       </header>
-      <main>
+      <main style="position: absolute;width: 100%;height: 83%;">
         <%= yield %>
       </main>
-      <aside id="sidebar">
-        <% unless current_page?(new_account_path) %>
-          <%= render "shared/sidebar" %>
-        <% end %>
-      </aside>
       <footer>
         <% if current_page?(rooms_path) %>
           <%= render "shared/under_menubar" %>
+        <% else %>
+        <div class="send">
+          <%= form_for @message do |f| %>
+            <table style="width:98%;">
+              <td style="border: 1px solid black;border-radius: 10px;background-color: #fff;"><%= f.text_area :text, class: "input" %></td>
+              <%= f.hidden_field :room_id %>
+              <td style="width: 3%;"><%= f.submit "送信", class: "btn", id: "btn" %></td>
+            </table>
+          <% end %>
+        </div>
         <% end %>
       </footer>
     </div>

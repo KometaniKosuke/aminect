@@ -11,6 +11,8 @@ class Admin::UsersController < Admin::Base
   def show
     @user = User.find(params[:id])
     @timetable=Timetable.find(params[:id])
+    @tags = @user.tags
+    @posts = @user.posts
   end
 
   def destory
