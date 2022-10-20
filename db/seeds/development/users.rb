@@ -14,7 +14,8 @@ names.each_with_index do |name, idx|
     instagram: "@instagram",
     # tiktok: "@tiktok",
     password: "chat",
-    password_confirmation: "chat"
+    password_confirmation: "chat",
+    agreement: true
   )
 end
 for i in 1..17 do

@@ -1,7 +1,7 @@
-<h2>Talk</h2>
+<h2>トーク</h2>
 
 <% if @rooms.count==0 %>
-  <p>友達をフォローしてトークを開始しよう！</p>
+  <p align=center style="border: dotted 3px green;padding: 10px 0;width:90%;margin: 5%;font-size: 15px;font-weight: bolder;">友達をフォローしてトークを開始しよう！</p>
 <% else %>
   <% wd=["日","月","火","水","木","金","土"] %>
   <% @rooms.each do |id| %>

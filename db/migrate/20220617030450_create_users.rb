@@ -11,6 +11,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :twitter
       t.string :instagram
       # t.string :tiktok
+      t.boolean :agreement
       t.timestamps
     end
   end

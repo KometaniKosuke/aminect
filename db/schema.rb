@@ -63,15 +63,6 @@ ActiveRecord::Schema.define(version: 2022_10_08_072144) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "requests", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "content"
-    t.string "response"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_requests_on_user_id"
-  end
-
   create_table "rooms", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -145,6 +136,7 @@ ActiveRecord::Schema.define(version: 2022_10_08_072144) do
     t.string "email"
     t.string "twitter"
     t.string "instagram"
+    t.boolean "agreement"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"

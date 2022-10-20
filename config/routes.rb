@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :mails, only: [:new, :index]
+  resources :mails, only: [:new, :index, :create]
   root "top#index"
   get "/register" => "mails#new"
   resources :password_resets, only: [:new, :create, :index]

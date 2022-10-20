@@ -1,4 +1,16 @@
 <%= form_with(model: user, local: true) do |form| %>
-  <%= form.text_field :email, placeholder: "専修大学メールアドレス", class: "textbox" %>
-  <%= form.submit "メール送信" %>
+<table>
+  <tr>
+    <td><%= form.check_box :agreement, checked:false %>利用規約に同意する</td>
+  </tr>
+  <tr>
+    <td><%= form.text_field :email, placeholder: "専修大学メールアドレス", class: "textbox", required: :true %></td>
+    <td>
+      <div style="height: 44px; padding-top: 2px; border: 3px solid rgba(6, 6, 6, 0.4); background-color: #ddd;">
+        <%= image_submit_tag "send_mail.png", height: "30px", style: "margin-top:5px" %>
+      </div>
+    </td>
+  </tr>
+</table>
+  <p style="margin:0">※専修大学のメールアドレスのみ有効です。</p>
 <% end %>

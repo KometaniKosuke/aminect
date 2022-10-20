@@ -14,7 +14,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    # 後々バリデーションを行うーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
     a = User.where(email: params[:user][:email])
     if a.present?
       redirect_to "/register", notice: "このメールアドレスは既に登録されています。"
@@ -25,7 +24,7 @@ class UsersController < ApplicationController
         SendMailer.with(user: @user, pass: @pass).published_email.deliver_later
         redirect_to :mails, notice: @user.email
       else
-        render "/register"
+        render "mails/new"
       end
     end
   end

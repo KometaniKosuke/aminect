@@ -7,7 +7,6 @@ class User < ApplicationRecord
   has_many :rooms, through: :user_rooms
 
   has_many :timetables, dependent: :destroy
-  has_many :requests
 
   has_many :user_tags
   has_many :tags, through: :user_tags
@@ -79,4 +78,11 @@ class User < ApplicationRecord
   def reporting?(user)
     reportings.include?(user)
   end
+
+  validates :name,
+    length: { maximum: 12, allow_blank: true }
+  validates :email,
+    presence: true,
+    format: { with: /\A[a-z]{1,2}[0-9]{6}(@senshu-u.jp)\z/, allow_blank: true },
+    uniqueness: { case_sensitive: false }
 end

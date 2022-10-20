@@ -80,8 +80,12 @@
   <table style="width: 86%; margin: auto;" align="center">
     <tr>
       <td align="center">
-        <% @tags.each do |tag| %>
-          <span style="margin: auto 5px auto 5px; white-space: nowrap; color: #007AFF;">#<%= tag.name %></span>
+        <% if @tag.present? %>
+          <% @tags.each do |tag| %>
+            <span style="margin: auto 5px auto 5px; white-space: nowrap; color: #007AFF;">#<%= tag.name %></span>
+          <% end %>
+        <% else %>
+          <span style="margin: auto 5px auto 5px; white-space: nowrap; color: #007AFF;">趣味タグを選択してみよう！</span>
         <% end %>
       </td>
       <td><%= image_tag "edit.png", size: "25x25" %></td>
@@ -100,6 +104,8 @@
   <% end %>
 </div>
 <br>
+
+<hr>投稿<hr>
 
 <% num = @posts.count/2 %>
 <% if @posts.count%2 == 0 %> <!-- 投稿が偶数 -->

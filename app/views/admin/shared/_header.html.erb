@@ -4,7 +4,9 @@
 
   <% if current_admin.present? %>
     <div class="logout">
-      <%= link_to "ログアウト", :admin_session, method: :delete, data: { confirm: "ログアウトしますか?" } %>
+      <%= link_to :admin_session, method: :delete, data: { confirm: "ログアウトしますか?" } do %>
+        ログアウト<%= image_tag "logout.png", size: "20x20" %>
+      <% end %>
     </div>
   <% end %>
 </div>
