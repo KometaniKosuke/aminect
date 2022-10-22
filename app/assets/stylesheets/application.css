@@ -54,7 +54,10 @@
  font-weight: bold;
 }
 .menu_image2 {
- width:244px;
+  width: 90%;
+  margin: 3% 5%;
+  border: 1px solid black;
+  border-radius: 10px;
 }
 .menu_image2:hover {
  opacity:0.6;

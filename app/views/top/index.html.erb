@@ -1,15 +1,9 @@
 <% if current_user.present? %>
-<%= link_to image_tag("bell.png", size: "30x30", style: "padding-top:8px;"), :announces, style: "margin-left: 85%;" %>
-  <div class="box_css">
-    <%= link_to :tags do %>
-      <p class="title">趣味タグから探す</p>
-      <%= image_tag "D1AD40B497BDBA95323FBC585797B029EFBD8E37.jpg", class:"menu_image2" %>
-    <% end %>
-  </div>
-  <div class="box_css">
-    <%= link_to :timetables do %>
-      <p class="title">空きコマから探す</p>
-      <%= image_tag "F33316CF1507DABD7E26050BA211D2660397FB42.jpg", class:"menu_image2" %>
-    <% end %>
-  </div>
+<%= link_to image_tag("bell.png", size: "25x25", style: "padding-top:8px;"), :announces, style: "margin-left: 85%;" %>
+  <%= link_to :tags do %>
+    <%= image_tag "shumi.png", class:"menu_image2" %>
+  <% end %>
+  <%= link_to :timetables do %>
+    <%= image_tag "akikoma.png", class:"menu_image2" %>
+  <% end %>
 <% end %>
