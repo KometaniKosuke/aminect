@@ -18,9 +18,14 @@ ActiveRecord::Schema.define(version: 2022_10_08_072144) do
   end
 
   create_table "announces", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "title"
     t.string "text"
+    t.string "url"
+    t.string "url_title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_announces_on_user_id"
   end
 
   create_table "deals", force: :cascade do |t|

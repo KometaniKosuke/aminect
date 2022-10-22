@@ -1,0 +1,98 @@
+.zenninn {
+  font-size: 12px;
+  width: 70px;
+  background-color: #ffd700;
+  border-radius: 5px;
+}
+.anke-to {
+  font-size: 12px;
+  width: 70px;
+  color: white;
+  background-color: #4169e1;
+  border-radius: 5px;
+}
+.kojin {
+  font-size: 12px;
+  width: 70px;
+  color: white;
+  background-color: #dc143c;
+  border-radius: 5px;
+}
+
+/* ------------------------------------ */
+.modal-announce {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 60px 10px;
+  text-align: center
+}
+
+.modal-announce:not(:target) {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s, visibility .3s;
+}
+
+.modal-announce:target {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .4s, visibility .4s;
+}
+
+.modal-announce::after {
+  display: inline-block;
+  height: 100%;
+  margin-left: -.05em;
+  vertical-align: middle;
+  content: ""
+}
+
+.modal-announce .modal-window {
+  box-sizing: border-box;
+  display: inline-block;
+  z-index: 20;
+  position: relative;
+  width: 94%;
+  padding: 15px;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 0 30px rgba(0, 0, 0, .25);
+}
+
+.modal-announce .modal-window .modal-content {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-announce .modal-overlay {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .3)
+}
+
+.modal-announce .modal-close {
+  z-index: 20;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35px;
+  color: #95979c !important;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 35px;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0
+}
+
+.modal-announce .modal-close:hover {
+  color: #2b2e38 !important
+}

@@ -1,8 +1,35 @@
 <h2>投稿</h2>
 　　<%= link_to "<<一覧",:admin_announces %>
+<% ulist=Array.new %>
+<% ulist.append(["アンケート",0]) %>
 
+<% User.all.each do |u| %>
+  <% ulist.append([u.name, u.id]) %>
+<% end %>
 <%= form_for [:admin, @announce] do |form| %>
-  <%= form.text_area :text, style: "margin-left: 10%; width: 80%;", rows: "20%" %>
-
-  <%= form.submit "投稿する", data: {confirm: "この内容で投稿しますか?"}, class: "announce-btn" %>
+  <table align=center width="90%">
+    <tr>
+      <th>見出し</th>
+      <td><%= form.text_field :title, style: "width: 100%;" %></td>
+    </tr>
+    <tr>
+      <th width=10%>内容</th>
+      <td><%= form.text_area :text, style: "width: 100%;", rows: "10%", required: :true %></td>
+    </tr>
+    <tr>
+      <th>URLタイトル</th>
+      <td><%= form.text_field :url_title, style: "width: 100%;" %></td>
+    </tr>
+    <tr>
+      <th>URL</th>
+      <td><%= form.text_field :url, style: "width: 100%;" %></td>
+    </tr>
+    <tr>
+      <th>対象ユーザ</th>
+      <td><%= form.select :user_id, ulist, { include_blank: '全員' } %></td>
+    </tr>
+    <tr>
+      <td><%= form.submit "更新する", data: {confirm: "この内容で保存しますか?"}, class: "announce-btn" %></td>
+    </tr>
+  </table>
 <% end %>

@@ -23,6 +23,7 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :from
 
   has_many :posts, dependent: :destroy
+  has_many :announces
 
   # ブロックをした、されたの関係
   has_many :deals, class_name: "Deal", foreign_key: "from_id", dependent: :destroy

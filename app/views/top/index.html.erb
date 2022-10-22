@@ -1,5 +1,11 @@
 <% if current_user.present? %>
-<%= link_to image_tag("bell.png", size: "25x25", style: "padding-top:8px;"), :announces, style: "margin-left: 85%;" %>
+  <%= link_to :announces, style: "margin-left: 85%;" do %>
+    <% if current_user.announces.present? %>
+      <%= image_tag "bell_2.png", size: "30x30", style: "margin-top:10px;" %>
+    <% else %>
+      <%= image_tag "bell.png", size: "30x30", style: "margin-top:10px;" %>
+    <% end %>
+  <% end %>
   <%= link_to :tags do %>
     <%= image_tag "shumi.png", class:"menu_image2" %>
   <% end %>

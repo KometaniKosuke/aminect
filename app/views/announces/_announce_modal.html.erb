@@ -1,0 +1,42 @@
+<a href="#<%= announce_id %>" style="text-decoration: none; color: black;">
+  <table width=90% style="margin-left: 5%;">
+    <tr>
+      <th style="text-align: left; width: 25%; padding: 5px 0 2px 0;"><%= announce.updated_at.strftime("%Y/%-m/%-d") %></th>
+      <td style="text-align: left;">
+        <% if announce.user_id==nil %>
+          <div align=center class="zenninn">全員宛て</div>
+        <% elsif announce.user_id==0 %>
+          <div align=center class="anke-to">アンケート</div>
+        <% elsif announce.user_id==current_user.id %>
+          <div align=center class="kojin">個人宛</div>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan=2 style="font-size: 18px"><%= announce.title %></td>
+    </tr>
+    <tr>
+      <td colspan="2"><hr style="border:none; border-top: 1px dashed #8c8b8b;"></td>
+    </tr>
+  </table>
+</a>
+
+<div class="modal-announce" id="<%= announce_id %>">
+  <a href="#!" class="modal-overlay"></a>
+  <div class="modal-window">
+    <div class="modal-content">
+      <p align=left style="margin:0; font-weight: bold;"><%= announce.updated_at.strftime("%Y/%-m/%-d") %></p>
+      <h3 align=left style="margin:0; border-bottom: 1px solid black;"><%= announce.title %></h3>
+      <p align=left><%= safe_join(announce.text.split("\n"),tag(:br)) %></p>
+      <% if announce.url.present? %>
+        <table>
+          <tr>
+            <th>CLICK!→</th>
+            <td><%= link_to announce.url_title, announce.url %></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+    <a href="#!" class="modal-close">×</a>
+  </div>
+</div>
