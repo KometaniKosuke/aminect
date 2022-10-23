@@ -26,7 +26,9 @@
       <% a=0 %>
       <tr align="center">
         <td width="20%" style="border-right: none !important;border-left: none !important;"><%= image_tag follow.image.url, class: 'rounded-circle', size: '56x56' %></td>
-        <td style="padding-left: 2%;border-right: none !important;border-left: none !important;"><%= link_to follow.name, follow, class:"ff_name" %></td>
+        <td style="padding-left: 2%;border-right: none !important;border-left: none !important;">
+          <%= link_to follow.name, follow, class:"ff_name" %>
+        </td>
         <% urs = UserRoom.where(user_id: current_user.id) %>
         <% room_url = Room.new() %>
         <% urs.each do |ur| %>
@@ -36,11 +38,21 @@
             <% room_url=Room.find(ur.room_id) %>
           <% end %>
         <% end %>
-        <td style="border-right: none !important;border-left: none !important;">
-          <% if a!=0 %>
-            <%= button_to "メッセージ", room_url, method: :get,class:"ff_msg" %>
+        <td align=center style="border-right: none !important;border-left: none !important; width: 30%">
+          <% if follow.blocking?(current_user) %>
+            <div align=center style="width: 100px; height: 14px; font-size:10px; font-weight:normal; padding:3px; background-color:#ddd; border-radius: 3px;">
+              ブロックされています
+            </div>
+          <% elsif current_user.blocking?(follow) %>
+            <div align=center style="width: 100px; height: 14px; font-size:10px; font-weight:normal; padding:3px; background-color:#ddd; border-radius: 3px;">
+              ブロック中
+            </div>
           <% else %>
-            <%= button_to "メッセージ", new_user_room_path(follow), method: :get,class:"ff_msg" %>
+            <% if a!=0 %>
+              <%= button_to "メッセージ", room_url, method: :get,class:"ff_msg" %>
+            <% else %>
+              <%= button_to "メッセージ", new_user_room_path(follow), method: :get,class:"ff_msg" %>
+            <% end %>
           <% end %>
         </td>
       </tr>
@@ -52,7 +64,9 @@
       <% a=0 %>
       <tr align="center">
         <td width="20%" style="border-right: none !important;border-left: none !important;"><%= image_tag follower.image.url, class: 'rounded-circle', size: '56x56' %></td>
-        <td style="padding-left: 2%;border-right: none !important;border-left: none !important;"><%= link_to follower.name, follower, class:"ff_name" %></td>
+        <td style="padding-left: 2%;border-right: none !important;border-left: none !important;">
+          <%= link_to follower.name, follower, class:"ff_name" %>
+        </td>
         <% urs = UserRoom.where(user_id: current_user.id) %>
         <% room_url = Room.new() %>
         <% urs.each do |ur| %>
@@ -62,11 +76,21 @@
             <% room_url=Room.find(ur.room_id) %>
           <% end %>
         <% end %>
-        <td style="border-right: none !important;border-left: none !important;">
-          <% if a!=0 %>
-            <%= button_to "メッセージ", room_url, method: :get,class:"ff_msg" %>
+        <td align=center style="border-right: none !important;border-left: none !important; width: 30%">
+          <% if follower.blocking?(current_user) %>
+            <div align=center style="width: 100px; height: 14px; font-size:10px; font-weight:normal; padding:3px; background-color:#ddd; border-radius: 3px;">
+              ブロックされています
+            </div>
+          <% elsif current_user.blocking?(follower) %>
+            <div align=center style="width: 100px; height: 14px; font-size:10px; font-weight:normal; padding:3px; background-color:#ddd; border-radius: 3px;">
+              ブロック中
+            </div>
           <% else %>
-            <%= button_to "メッセージ", new_user_room_path(follower), method: :get,class:"ff_msg" %>
+            <% if a!=0 %>
+              <%= button_to "メッセージ", room_url, method: :get,class:"ff_msg" %>
+            <% else %>
+              <%= button_to "メッセージ", new_user_room_path(follower), method: :get,class:"ff_msg" %>
+            <% end %>
           <% end %>
         </td>
       </tr>

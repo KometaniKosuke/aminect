@@ -59,8 +59,11 @@
     <% end %>
   </p>
   <br>
-  <% if @user.blocking?(current_user) %><!-- kokohenkou -->
-    <%= "ブロックされています"%>
+  <% if @user.blocking?(current_user) %>
+    <p align=center
+       style="font-size: 16px; font-weight:bold; margin:5% 25%; padding:20px 0; width:50%; background-color:#f08080; color:#333; border-radius:10px">
+      ブロックされています
+    </p>
   <% else %>
     <table style="margin: 0 auto; width: 90%;">
       <tr align="center">

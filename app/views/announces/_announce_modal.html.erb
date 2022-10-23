@@ -25,7 +25,7 @@
   <a href="#!" class="modal-overlay"></a>
   <div class="modal-window">
     <div class="modal-content">
-      <p align=left style="margin:0; font-weight: bold;"><%= announce.updated_at.strftime("%Y/%-m/%-d") %></p>
+      <p align=left style="margin:0;"><%= announce.updated_at.strftime("%Y/%-m/%-d") %></p>
       <h3 align=left style="margin:0; border-bottom: 1px solid black;"><%= announce.title %></h3>
       <p align=left><%= safe_join(announce.text.split("\n"),tag(:br)) %></p>
       <% if announce.url.present? %>

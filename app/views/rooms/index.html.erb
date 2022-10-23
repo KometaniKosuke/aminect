@@ -10,46 +10,57 @@
     <% ur = urs.find_by(user_id: current_user.id) %>
     <% talker = urs.where.not(user_id: current_user.id) %>
     <% talker = User.find_by(id: talker.first.user_id) %>
-    <%= link_to room, :class=>"rooms",style:"text-decoration:none;" do %>
-      <table style="width: 96%; height: 10%; margin: auto;">
-        <td style="width: 20%;"><%= image_tag talker.image.url, size:"65x65",class:"rounded-circle" %></td>
-        <td>
-          <table style="width: 98%; text-align: left; table-layout: fixed;">
-            <% massage = Message.where(room_id: room.id).last %>
-            <tr>
-              <th style="font-weight: bold"><%= talker.name %></th>
-              <td style="width: 10%;">
-                <% if massage.present? %>
-                  <% if massage.created_at.strftime("%y/%-m/%-d")==Time.current.strftime("%y/%-m/%-d") %>
-                    <%= massage.created_at.strftime("%-H:%M") %>
-                  <% else %>
-                    <%= massage.created_at.strftime("%-m/%-d") %>
+    <% unless Deal.where(from_id: current_user.id, to_id: talker.id).present? %>
+      <%= link_to room, :class=>"rooms",style:"text-decoration:none;" do %>
+        <table style="width: 96%; height: 10%; margin: auto;">
+          <td style="width: 20%;"><%= image_tag talker.image.url, size:"65x65",class:"rounded-circle" %></td>
+          <td>
+            <table style="width: 98%; text-align: left; table-layout: fixed;">
+              <% massage = Message.where(room_id: room.id).last %>
+              <tr>
+                <th style="font-weight: bold; display:flex; vertical-align:middle">
+                  <%= talker.name %>
+                  <% if talker.blocking?(current_user) %>
+                    <div align=center style="width: 100px; height: 14px; font-size:10px; font-weight:normal; padding:3px; background-color:#ddd; border-radius: 3px; margin: 4px auto 4px 30px;">
+                      ブロックされています
+                    </div>
                   <% end %>
-                <% end %>
-              </td>
-            </tr>
-            <tr>
-              <% if massage.present? %>
-                <td style="padding: 0 2%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #888;">
-                  <%= massage.text %>
+                </th>
+                <td style="width: 10%;">
+                  <% if massage.present? %>
+                    <% if massage.created_at.strftime("%y/%-m/%-d")==Time.current.strftime("%y/%-m/%-d") %>
+                      <%= massage.created_at.strftime("%-H:%M") %>
+                    <% else %>
+                      <%= massage.created_at.strftime("%-m/%-d") %>
+                    <% end %>
+                  <% end %>
                 </td>
-                <% new_msg = Message.where("user_id = ? and room_id = ?", talker.id, room.id) %>
-                <% c = new_msg.where("created_at > ?", ur.date).count %>
-                <% if c!=0 %>
-                  <td align=center>
-                    <p class="msg-count"><%= c %></p>
-                    </td>
+              </tr>
+              <tr>
+                <% if massage.present? %>
+                  <td style="padding: 0 2%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #888;">
+                    <%= massage.text %>
+                  </td>
+                  <% new_msg = Message.where("user_id = ? and room_id = ?", talker.id, room.id) %>
+                  <% c = new_msg.where("created_at > ?", ur.date).count %>
+                  <% if c!=0 %>
+                    <td align=center>
+                      <p class="msg-count"><%= c %></p>
+                      </td>
+                  <% end %>
+                <% else %>
+                  <td style="padding: 0 2%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    <% m="" %><%= m %>
+                  </td>
                 <% end %>
-              <% else %>
-                <td style="padding: 0 2%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                  <% m="" %><%= m %>
-                </td>
-              <% end %>
-            </tr>
-          </table>
-        </td>
-      </table>
+              </tr>
+            </table>
+          </td>
+        </table>
+      <% end %>
+      <hr style="border: none; border-bottom: 1px solid #333; margin: 0;">
+    <% else %>
+      <p align=center style="border: dotted 3px green;padding: 10px 0;width:90%;margin: 5%;font-size: 15px;font-weight: bolder;">友達をフォローしてトークを開始しよう！</p>
     <% end %>
-    <hr style="border: none; border-bottom: 1px solid #333; margin: 0;">
   <% end %>
 <% end %>
