@@ -61,14 +61,6 @@
   </p>
 <% end %>
 
-<% if @users.present? %>
-  <table>
-    <% @users.each do |u| %>
-      <% if u!=current_user %>
-        <tr>
-          <td><%= link_to u.name, u %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  </table>
-<% end  %>
+<% if params[:tt].present? %>
+  <%= render "search_result" %>
+<% end %>

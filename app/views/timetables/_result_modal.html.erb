@@ -1,0 +1,54 @@
+<a href="#<%= modal_id %>">
+  <% imgs=modal_user.posts %>
+  <% ids = Array.new %>
+  <% imgs.each do |img| %>
+    <% ids.append(img.id) %>
+  <% end %>
+  <% id = ids[rand(ids.size)] %>
+  <%= image_tag Post.find(id).post_img.url, width: '94%', style: "border: 1px solid black; margin: auto 3%;" %>
+</a>
+
+<div class="modal-user" id="<%= modal_id %>">
+  <a href="#!" class="modal-overlay"></a>
+  <div class="modal-window">
+    <div class="modal-content">
+      <table align=center width=80%>
+        <tr>
+          <td>
+            <%= image_tag modal_user.image.url, class: 'rounded-circle', size: '80x80' %>
+          </td>
+          <th colspan="2" style="font-size: 25px;padding-left: 20px;" align=left><%= modal_user.name %></th>
+        </tr>
+        <tr>
+          <td>
+            <p style="margin:0; padding: 0 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
+              <%= modal_user.undergraduate %> <%= modal_user.grade %>年
+            </p>
+          </td>
+          <td>
+            <p style="margin:0; padding: 0 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
+              <%= modal_user.birthplace %>
+            </p>
+          </td>
+          <td>
+            <p style="margin:0; padding: 0 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
+              <% if modal_user.sex==1 %>男性
+              <% elsif modal_user.sex==2 %>女性
+              <% else %>—
+              <% end %>
+            </p>
+          </td>
+        </tr>
+      </table>
+      <% tags = modal_user.tags %>
+      <% if tags.present? %>
+        <% tags.each do |tag| %>
+          <span style="margin: auto 5px auto 5px; white-space: nowrap; color: #007AFF;">#<%= tag.name %></span>
+        <% end %>
+      <% end %>
+      <p><%= image_tag Post.find(id).post_img.url, width: '80%', style: "border: 1px solid black; margin: auto 3%;" %></p>
+      <p align=right style="margin-right:7%"><%= link_to "詳細はこちら", modal_user, class: "user_link" %></p>
+    </div>
+    <a href="#!" class="modal-close">×</a>
+  </div>
+</div>

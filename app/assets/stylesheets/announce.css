@@ -55,6 +55,7 @@
   box-sizing: border-box;
   display: inline-block;
   z-index: 20;
+  top: 12%;
   position: relative;
   width: 94%;
   padding: 15px;

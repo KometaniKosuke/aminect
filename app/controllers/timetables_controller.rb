@@ -22,10 +22,11 @@ class TimetablesController < ApplicationController
     k = hash.find_all{|k ,v| v=="1"}
     @keys = k.to_h
     @users = Array.new
+    timetable = Timetable.where.not(id: current_user.id)
     # -------------------------------------
     if params[:commit]=="あいまい検索"
       @keys.each do |k|
-        ts = Timetable.where(k)
+        ts = timetable.where(k)
         ts.each do |t|
           a = User.find(t.user_id)
           @users.push(a)
@@ -34,7 +35,7 @@ class TimetablesController < ApplicationController
       @users = @users.uniq
     # ------------------------------------
     elsif params[:commit]=="ピッタリ検索"
-      ts = Timetable.all
+      ts = timetable.all
       @keys.each do |k|
         ts = ts.where(k)
       end

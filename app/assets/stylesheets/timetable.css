@@ -91,24 +91,6 @@
     background-color: #bbbbbb;
   }
 
-  /* body {
-    padding: 10px;
-    background-color: #fff;
-  } */
-
-  /* p {
-    font-size: 12px;
-    line-height: 1.4;
-  } */
-
-  /* table {
-    margin: 30px 0;
-  } */
-
-  /* table th {
-    font-size: 12px;
-  } */
-
   #float-box {
     overflow: hidden;
   }
@@ -122,18 +104,101 @@
     float: right;
     max-width: 50%;
   }
-/*
-  img {
-    max-width: 100%;
-    height: atuo;
-  } */
-/* 
-  @media screen and (max-width: 400px) {
-    #float-box img,
-    #float-box p {
-      float: none;
-      max-width: 100%;
-    }
-  } */
+/* -------------------------- */
+.modal-user {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 60px 10px;
+  text-align: center
+}
 
-  /* P { text-align: center } */
+.modal-user:not(:target) {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s, visibility .3s;
+}
+
+.modal-user:target {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .4s, visibility .4s;
+}
+
+.modal-user::after {
+  display: inline-block;
+  height: 100%;
+  margin-left: -.05em;
+  vertical-align: middle;
+  content: ""
+}
+
+.modal-user .modal-window {
+  box-sizing: border-box;
+  display: inline-block;
+  z-index: 20;
+  top: 12%;
+  position: relative;
+  width: 94%;
+  padding: 15px;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 0 30px rgba(0, 0, 0, .25);
+}
+
+.modal-user .modal-window .modal-content {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-user .modal-overlay {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .3)
+}
+
+.modal-user .modal-close {
+  z-index: 20;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35px;
+  color: #95979c !important;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 35px;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0
+}
+
+.modal-user .modal-close:hover {
+  color: #2b2e38 !important
+}
+
+.user_link {
+  text-align: center;
+  font-size: 12px;
+  text-decoration: none;
+  color: #fff;
+  padding: 2px;
+  display: inline-block;
+  border-radius: 3px;
+  background-color: #44cd88;
+  width: 110px;
+}
+.user_link::after {
+  padding: 2px 1px 0 4px;
+  margin-left: 8px;
+  content: "▶︎";
+  color: #44cd88;
+  border-radius: 50%;
+  background-color: #fff;
+}

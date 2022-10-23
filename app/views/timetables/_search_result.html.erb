@@ -1,0 +1,61 @@
+<% if @users.present? %>
+  <h3 style="margin-left:10%; font-size: 22px;">検索結果</h3>
+  <% num = @users.count/2 %>
+  <% if @users.count%2 == 0 %> <!-- 投稿が偶数 -->
+    <table align="center"  style="width:84%;">
+      <% for i in 0..num-1 %>
+        <tr>
+          <td align=center style="width: 50%;">
+            <% a = @users[i*2] %>
+            <% modal_a = "modal_a"+i.to_s %>
+            <%= render partial: "result_modal", :locals=>{:modal_id => modal_a, :modal_user => a} %>
+          </td>
+          <td align=center style="width: 50%;">
+            <% b = @users[i*2+1] %>
+            <% modal_b = "modal_b"+i.to_s %>
+            <%= render partial: "result_modal", :locals=>{:modal_id => modal_b, :modal_user => b} %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %> <!-- 投稿が奇数 -->
+    <% if @users.count!=1 %>
+      <table align="center"  style="width:84%;">
+        <% for i in 1..num-1 %>
+          <tr>
+            <td align=center style="width: 50%;">
+              <% a = @users[i*2] %>
+              <% modal_a = "modal_a"+i.to_s %>
+              <%= render partial: "result_modal", :locals=>{:modal_id => modal_a, :modal_user => a} %>
+            </td>
+            <td align=center style="width: 50%;">
+              <% b = @users[i*2+1] %>
+              <% modal_b = "modal_b"+i.to_s %>
+              <%= render partial: "result_modal", :locals=>{:modal_id => modal_b, :modal_user => b} %>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td align=center style="width: 50%;">
+            <% c = @users[num-1] %>
+            <% modal_c = "modal_c"+i.to_s %>
+            <%= render partial: "result_modal", :locals=>{:modal_id => modal_c, :modal_user => c} %>
+          </td>
+        </tr>
+      </table>
+    <% else %>
+      <table style="width:42%; margin-left: 8%;">
+        <tr>
+          <td align=center style="width: 50%;">
+            <% a = @users[0] %>
+            <% modal_a = "modal_a"+i.to_s %>
+            <%= render partial: "result_modal", :locals=>{:modal_id => modal_a, :modal_user => a} %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  <% end %>
+<% else %>
+  <h3 style="margin-left:10%">検索結果</h3>
+  <p style="margin-left:8%">該当するユーザはいませんでした</p>
+<% end  %>
