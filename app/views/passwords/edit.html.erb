@@ -2,15 +2,15 @@
   <table>
     <tr>
       <th>現在のパスワード</th>
-      <td><%= form.password_field :current_password %></td>
+      <td><%= form.password_field :current_password,  required: :true %></td>
     </tr>
     <tr>
       <th>変更後のパスワード</th>
-      <td><%= form.password_field :password %></td>
+      <td><%= form.password_field :password,  required: :true %></td>
     </tr>
     <tr>
       <th>確認用</th>
-      <td><%= form.password_field :password_confirmation %></td>
+      <td><%= form.password_field :password_confirmation,  required: :true %></td>
     </tr>
   </table>
 

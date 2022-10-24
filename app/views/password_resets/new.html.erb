@@ -9,11 +9,11 @@
     <%= form.hidden_field :email %>
     <tr>
       <th>新しいパスワード</th>
-      <td><%= form.password_field :password,class: "textbox" %></td>
+      <td><%= form.password_field :password,class: "textbox",  required: :true %></td>
     </tr>
     <tr>
       <th>確認用</th>
-      <td><%= form.password_field :password_confirmation,class: "textbox" %></td>
+      <td><%= form.password_field :password_confirmation,class: "textbox",  required: :true %></td>
     </tr>
     <tr>
       <td align="center" colspan="2"><%= form.submit "変更" %></td>

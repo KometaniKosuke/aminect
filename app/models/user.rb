@@ -86,4 +86,6 @@ class User < ApplicationRecord
     presence: true,
     format: { with: /\A[a-z]{1,2}[0-9]{6}(@senshu-u.jp)\z/, allow_blank: true },
     uniqueness: { case_sensitive: false }
+  validates :password,
+    length: { minimum: 8, maximum: 15, allow_blank: true }
 end
