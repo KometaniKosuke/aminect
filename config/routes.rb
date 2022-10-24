@@ -31,13 +31,13 @@ Rails.application.routes.draw do
     resources :tags
     resources :posts
     resources :timetables
+    resources :requests, only: [:index]
   end
   resource :password, only: [:edit, :update]
   resources :user_tags
   resources :timetables, only: [:index, :show, :edit, :update] do
     get "search", on: :collection
   end
-  resources :requests, only: [:index]
   resources :tags do
     get "tag_search", on: :collection
   end

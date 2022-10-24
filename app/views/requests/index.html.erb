@@ -6,6 +6,22 @@
   </div>
 </h2>
 
-<h3> ー お問合せ ー </h3>
-<h3> ー FAQ ー </h3>
-<h3> ー 利用規約 ー </h3>
+<div style="margin:0 5%">
+  <h3> ー お問合せ ー </h3>
+  <div style="border: dotted 3px green; padding: 0 5px">
+    <p>お問い合わせはGoogleフォームにて受け付けます。</p>
+    <p>ご質問等には個別にメールにて対応するため、フォームの送信の際には送信者のメールアドレスを収集させていただきます。
+      収集したメールアドレスは返信対応以外の用途には使用致しません。
+    <p>フォームに寄せられた質問に関しましては、活動の一つとしてプロジェクトの成果物に反映される場合がございます。
+      あらかじめご了承ください(匿名で質問等の内容が引用される場合があります)。</p>
+    <p align="right" style="font-weight: bold;">
+      <% a = "https://docs.google.com/forms/d/e/1FAIpQLSccpHk9Jap7hujtKTcGTAk2qiMlsB5Gv5nBToTMQRbnL12-wA/viewform" %>
+      →<%= link_to "お問合せフォーム", a, style: "color: blue;" %>
+    </p>
+  </div>
+  <h3> ー Aminect利用規約 ー </h3>
+  <div class="terms">
+    <%= render "shared/terms" %>
+  </div>
+  <h3> ー FAQ ー </h3>
+</div>

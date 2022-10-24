@@ -1,12 +1,23 @@
-<%= form_with(model: user, local: true) do |form| %>
-<table>
+<%= form_with(model: user, local: true, url: {controller: "mails", action: "create"}) do |form| %>
+<table width=80%>
   <tr>
-    <td><%= form.check_box :agreement, checked:false %>利用規約に同意する</td>
+    <td colspan="2" style="height: 200px">
+      <div class="terms">
+        <p style="font-size: 22px; font-weight: bold;margin: 8px 0">【Aminect利用規約】</p>
+        <%= render "shared/terms" %>
+      </div>
+    </td>
   </tr>
   <tr>
-    <td><%= form.text_field :email, placeholder: "専修大学メールアドレス", class: "textbox", required: :true %></td>
-    <td>
-      <div style="height: 44px; padding-top: 2px; border: 3px solid rgba(6, 6, 6, 0.4); background-color: #ddd;">
+    <td colspan="2" style="display: flex">
+      <%= form.check_box :agreement, :as => :boolean %>
+      <%= form.label :agreement, "利用規約に同意する" %>
+    </td>
+  </tr>
+  <tr>
+    <td align=center><%= form.text_field :email, placeholder: "専修大学メールアドレス", class: "textbox", required: :true %></td>
+    <td align=center>
+      <div style="height: 44px; width:57px; padding-top: 2px; border: 3px solid rgba(6, 6, 6, 0.4); background-color: #ddd;">
         <%= image_submit_tag "send_mail.png", height: "30px", style: "margin-top:5px" %>
       </div>
     </td>

@@ -118,3 +118,29 @@
    background-color: #fcc;
    padding: 2px;
  }
+
+ .terms {
+   width: 94%;
+   height: 200px;
+   overflow-y: scroll;
+   overflow-x: hidden;
+   font-size: 12px;
+   padding: 5px 3%;
+   border: 1px solid #aaa;
+ }
+ ol .kakko {
+ 	list-style-type: none;
+ 	counter-increment: cnt;
+ 	position: relative;
+ }
+
+ ol .kakko:before {
+ 	content: "(" counter(cnt) ")";
+ 	display: inline-block;
+ 	margin-left: -3.5em; /* サイトに合せて調整 */
+ 	width: 3em; /* サイトに合せて調整 */
+ 	text-align: right;
+ 	position: absolute;
+ 	top: 0;
+ 	left: 0;
+ }

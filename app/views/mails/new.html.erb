@@ -2,13 +2,13 @@
 <div style="text-align: center">
   <%= image_tag 'logo.png', size: "250x75"%>
 </div>
-<h3 style="margin-left: 10%">新規登録用ページ</h3>
+<% if flash.notice %>
+  <p class="alert"><%= flash.notice %></p>
+<% end %>
 <%= render "shared/errors", obj: @user %>
+<h3 style="margin-left: 10%">新規登録用ページ</h3>
 <div align="center">
-  <% if flash.notice %>
-    <p class="notice"><%= flash.notice %></p>
-  <% end %>
-  <%= render 'register_form', user: @user %>
+  <%= render 'mails/register_form', user: @user %>
 </div>
 <br>
 <div style="margin: 0 10% 0 10%; border: dotted 3px green;">
@@ -17,3 +17,4 @@
 </div>
 <br>
 <%= link_to "←戻る", :root, style: "margin-left: 10%; font-size: 16px; color: #686b6f; text-decoration:none;border: 1px solid #686b6f; border-radius: 10px; padding: 3px" %>
+<br><br>

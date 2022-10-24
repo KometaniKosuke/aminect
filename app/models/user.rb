@@ -88,4 +88,5 @@ class User < ApplicationRecord
     uniqueness: { case_sensitive: false }
   validates :password,
     length: { minimum: 8, maximum: 15, allow_blank: true }
+  validates_acceptance_of :agreement, allow_nil: false, on: :create
 end

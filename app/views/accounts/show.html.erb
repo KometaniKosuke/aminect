@@ -72,7 +72,7 @@
 
 <p>
   <%= button_to "プロフィールを編集する", :edit_account, {method: :get, class: "pro-btn"} %>
-  <%= button_to "利用規約・質問箱", :requests, {method: :get, class: "req-btn"} %>
+  <%= button_to "利用規約・質問箱", :account_requests, {method: :get, class: "req-btn"} %>
 </p>
 <br>
 
@@ -80,7 +80,7 @@
   <table style="width: 86%; margin: auto;" align="center">
     <tr>
       <td align="center">
-        <% if @tag.present? %>
+        <% if @tags.present? %>
           <% @tags.each do |tag| %>
             <span style="margin: auto 5px auto 5px; white-space: nowrap; color: #007AFF;">#<%= tag.name %></span>
           <% end %>
