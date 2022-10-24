@@ -50,7 +50,7 @@
   <div class="delete__content" align="center">
     <p>
       <%= @talker.name %>さんとのトークルームを削除しますか?
-      <%= button_to "削除", @room, method: :post, class: "delete-btn", data: {confirm: "トーク内容も全てなくなりますがよろしいですか?"} %>
+      <%= button_to "削除", @room, method: :delete, class: "delete-btn", data: {confirm: "トーク内容も全てなくなりますがよろしいですか?"} %>
     </p>
   </div>
 </div>

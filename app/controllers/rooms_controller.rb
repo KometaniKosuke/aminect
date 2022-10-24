@@ -30,5 +30,12 @@ class RoomsController < ApplicationController
   end
 
   def destroy
+    @room = Room.find(params[:id])
+    urs = UserRoom.where(room_id: @room.id)
+    urs.each do |ur|
+      ur.destroy
+    end
+    @room.destroy
+    redirect_to :rooms
   end
 end

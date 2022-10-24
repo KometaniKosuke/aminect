@@ -3,11 +3,18 @@
   <br>
   <%= form_for @timetable do |tt| %>
     <table align="center" width="90%">
-      <% if @timetable.timetable_img.present? %>
-        <tr>
-          <td colspan="2"><%= image_tag @timetable.timetable_img.url, id:"alter-image", width: "90%",style: "margin-left: 5%" %></td>
-        </tr>
-      <% end %>
+      <tr>
+        <% if @timetable.timetable_img.present? %>
+          <td colspan="2">
+            <%= image_tag @timetable.timetable_img.url, id:"alter-image", height: "150px", style: "margin-left: auto" %>
+          </td>
+        <% else %>
+          <td colspan="2">
+            <%= image_tag "", id:"alter-image", style: "margin-left: auto" %>
+          </td>
+        <% end %>
+      </tr>
+
       <tr>
         <td>
           <%= tt.label :timetable_img, "時間割の写真を選択", class: "image_input_btn" %>
