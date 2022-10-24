@@ -1,22 +1,35 @@
-<div class="space2">
-</div>
+<br><br>
 <div style="text-align: center">
-<%= image_tag 'logo.png', size: "200x60"%>
+  <%= image_tag 'logo.png', size: "250x75"%>
 </div>
-<h3 style="margin-left: 100px"><%= @user.name %>さん</h3>
+
+<table style="width: 80%; font-size: 16px; margin: 3% auto auto auto; text-align: center; border-bottom: 2px dotted #666">
+  <tr>
+    <td style="width: 30%;">
+      <%= image_tag @user.image.url, class: 'rounded-circle', size: '70x70' %>
+    </td>
+    <td align=left style="vertical-align: bottom; padding: 8px 20px; font-size: 25px; font-weight: bold; ">
+      <%= @user.name %>
+    </td>
+  </tr>
+</table>
+<br>
+<%= render "shared/errors", obj: @user %>
 <%= form_for @user, method: :post, url: {controller: 'password_resets', action: 'create' } do |form| %>
   <table style="margin: auto;">
     <%= form.hidden_field :email %>
     <tr>
       <th>新しいパスワード</th>
-      <td><%= form.password_field :password,class: "textbox",  required: :true %></td>
+      <td><%= form.password_field :password, class: "pass", required: :true, placeholder: "英数字8~15文字" %></td>
     </tr>
     <tr>
-      <th>確認用</th>
-      <td><%= form.password_field :password_confirmation,class: "textbox",  required: :true %></td>
+      <th>(確認用)</th>
+      <td><%= form.password_field :password_confirmation, class: "pass", required: :true, placeholder: "英数字8~15文字" %></td>
     </tr>
     <tr>
-      <td align="center" colspan="2"><%= form.submit "変更" %></td>
+      <td align=right colspan="2" style="margin-right: 10px;"><%= form.submit "変更", class: "pass-btn" %></td>
     </tr>
   </table>
 <% end %>
+<br>
+<%= link_to "←ログイン画面へ", :root, style: "margin-left: 10%; font-size: 16px; color: #686b6f; text-decoration:none;border: 1px solid #686b6f; border-radius: 10px; padding: 3px" %>

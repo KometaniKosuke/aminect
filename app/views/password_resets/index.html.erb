@@ -8,12 +8,15 @@
   <% end %>
   <%= form_tag :new_password_reset, method: :get, align: "center" do %>
     <%= text_field_tag "email","", class: "textbox", placeholder: "専修大学メールアドレス" %>
-    <%= submit_tag "完了" %>
+    <%= submit_tag "完了", class: "complete-btn" %>
   <% end %>
   <p style="width: 80%; margin: auto;">登録時に使用した専修大学メールアドレスを入力してください。</p>
+  <br>
+  <%= link_to "←戻る", :root, style: "margin-left: 10%; font-size: 16px; color: #686b6f; text-decoration:none;border: 1px solid #686b6f; border-radius: 10px; padding: 3px" %>
 <% else %>
-  <h4>パスワードを変更しました。</h4>
-  <%= link_to "ログインに進む", :root %>
+  <div align=center>
+    <h3>パスワードを変更しました。</h3>
+    <%= link_to "← ログイン画面へ", :root, style: "font-size: 16px; color: #686b6f; text-decoration:none;border: 1px solid #686b6f; border-radius: 10px; padding: 3px" %>
+  </div>
 <% end %>
 <br>
-<%= button_to "←Topに戻る", :root, method: "get", style: "margin-left: 10%;" %>

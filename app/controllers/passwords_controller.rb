@@ -18,7 +18,7 @@ class PasswordsController < ApplicationController
             render "edit"
           end
         else
-          flash.alert = "現在のパスワードが違います"
+          @user.errors.add(:current_password, :wrong)
           render "edit"
         end
       else

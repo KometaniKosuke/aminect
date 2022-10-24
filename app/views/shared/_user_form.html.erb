@@ -6,10 +6,10 @@
     <td width="40%">
       <%= image_tag @user.image.url, class: 'rounded-circle', size: '128x128', id:"alter-image" %>
     </td>
-    <td>
+    <td style="color: #aaa">
       フォロワー<br><%= @user.followers.count %>
     </td>
-    <td>
+    <td style="color: #aaa">
       フォロー<br><%= @user.followings.count %>
     </td>
   </tr>
@@ -25,7 +25,7 @@
 <table style="width: 100%; font-size: 16px;">
   <tr>
     <th>名前</th>
-    <td><%= form.text_field :name, style: "width: 80%; font-size: 16px;",required: :true %></td>
+    <td><%= form.text_field :name, style: "width: 80%; font-size: 16px;",required: :true, placeholder: "12文字まで" %></td>
   </tr>
   <tr>
     <th>性別</th>

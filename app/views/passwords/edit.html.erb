@@ -1,18 +1,30 @@
+<h2 class="back"><%= link_to "< パスワード編集", :edit_account %></h2>
+<%= render "shared/errors", obj: @user %>
 <%= form_for @user, as: "account", url: :password do |form| %>
-  <table>
+  <table width=84% style="margin: 3% 8%">
     <tr>
-      <th>現在のパスワード</th>
-      <td><%= form.password_field :current_password,  required: :true %></td>
+      <th align=left style="padding-left: 2%; font-size: 16px">現在のパスワード</th>
     </tr>
     <tr>
-      <th>変更後のパスワード</th>
-      <td><%= form.password_field :password,  required: :true %></td>
+      <td align=center style="padding-bottom: 20px"><%= form.password_field :current_password, required: :true, class: "pass" %></td>
     </tr>
     <tr>
-      <th>確認用</th>
-      <td><%= form.password_field :password_confirmation,  required: :true %></td>
+      <th align=left style="padding-left: 2%; font-size: 16px">変更後のパスワード</th>
+    </tr>
+    <tr>
+      <td align=center><%= form.password_field :password, required: :true, class: "pass" %></td>
+    </tr>
+    <tr>
+      <th align=left style="padding-left: 2%; font-size: 16px">確認用</th>
+    </tr>
+    <tr>
+      <td align=center><%= form.password_field :password_confirmation, required: :true, class: "pass" %></td>
+    </tr>
+    <tr>
+      <td height=10px></td>
+    </tr>
+    <tr>
+      <td align=right style="padding-right: 3%"><%= form.submit "変更", class: "pass-btn" %></td>
     </tr>
   </table>
-
-  <div><%= form.submit "変更" %></div>
 <% end %>

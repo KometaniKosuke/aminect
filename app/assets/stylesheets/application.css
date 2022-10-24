@@ -144,3 +144,12 @@
  	top: 0;
  	left: 0;
  }
+/* ------------------- */
+ .complete-btn {
+   border: 1px solid;
+   color: #fff;
+   font-size: 20px;
+   padding: 5px 10px;
+   background-color: rgb(223, 6, 121);
+   border-radius: 5px;
+ }

@@ -87,6 +87,7 @@ class User < ApplicationRecord
     format: { with: /\A[a-z]{1,2}[0-9]{6}(@senshu-u.jp)\z/, allow_blank: true },
     uniqueness: { case_sensitive: false }
   validates :password,
-    length: { minimum: 8, maximum: 15, allow_blank: true }
+    length: { minimum: 8, maximum: 15, allow_blank: true },
+    format: { with: /\A[0-9a-zA-Z]+\z/ }
   validates_acceptance_of :agreement, allow_nil: false, on: :create
 end
