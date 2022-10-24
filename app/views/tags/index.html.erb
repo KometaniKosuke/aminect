@@ -2,12 +2,6 @@
   <%= link_to "< 趣味で探す", :root %>
 </h2>
 
-<% if params[:tagname].present? %>
-  <p class="searchtag">
-    <span><%= params[:tagname] %></span>
-  </p>
-<% end %>
-
 <% parents = Tag.where(ancestry: nil) %>
 <table align="center" width="98%">
   <tr>
@@ -67,16 +61,15 @@
     </td>
   </tr>
 </table>
-
-<br>
 <% if params[:tagname].present? %>
-  <% if @users.length!=0 %>
-    <% @users.each do |user| %>
-      <%= link_to user.name, user %>
-    <% end %>
-  <% else %>
-    該当するユーザはいません。
-  <% end %>
+  <p style="position:absolute; margin-left:5%; margin-bottom:0; font-size:18px;">検索：</p>
+  <p class="searchtag" style="margin-left: 19%; margin-bottom:0;">
+    <span><%= params[:tagname] %></span>
+  </p>
 <% end %>
-<%= render "shared/recommend_user" %>
+
+<% if params[:tagname].present? %>
+  <%= render "search_result" %>
+<% end %>
+<%= render "recommend_user" %>
 <br><br><br>

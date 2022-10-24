@@ -1,0 +1,87 @@
+<% mytags = current_user.user_tags.pluck(:tag_id) %>
+<% recommend = [] %> <!-- 各ユーザのおすすめ度を入れていく [user, point] -->
+
+<% users = User.all %>
+<% if users.count > 20 %>
+  <% users = users.order("RAND()").limit(20) %>
+<% end %>
+<% users.each do |other| %>
+  <% if other != current_user %>
+    <% othertags = other.user_tags.pluck(:tag_id) %>
+    <% point = [] %> <!-- 自分のタグごとの得点 ex)[k-popの点, j-popの点, ...] -->
+    <% mytags.each do |mt| %>
+      <% p = 0 %> <!-- 自分のタグ一つの得点 ex)k-popの点 -->
+      <% othertags.each do |ot| %>
+        <% rp = 0 %>
+        <% if mt < ot %>
+          <% if TagRelation.find_by(tag1_id: mt, tag2_id: ot).present? %> <% rp = TagRelation.find_by(tag1_id: mt, tag2_id: ot).degree %> <% end %>
+        <% else %>
+          <% if TagRelation.find_by(tag1_id: ot, tag2_id: mt).present? %> <% rp = TagRelation.find_by(tag1_id: ot, tag2_id: mt).degree %> <% end %>
+        <% end %>
+        <% p += rp %>  <!-- 加算方式(全て足す) -->
+      <% end %>
+      <% point << p %>
+    <% end %>
+    <% recommend << [other, point.sum] %>
+  <% end %>
+<% end %>
+<% recommend.sort_by! {|x| -x[1] } %>
+<br><br>
+<!-- ここまでで各ユーザのおすすめ度の計算 -->
+
+<h3 style="margin-left:10%; font-size: 22px;">おすすめ</h3>
+<% num = recommend.count/2 %>
+<% if recommend.count%2 == 0 %> <!-- 投稿が偶数 -->
+  <table align="center"  style="width:84%;">
+    <% for i in 0..num-1 %>
+      <tr>
+        <td align=center style="width: 50%;">
+          <% a = recommend[i*2][0] %>
+          <% modal_a = "modal_a"+i.to_s %>
+          <%= render partial: "shared/result_modal", :locals=>{:modal_id => modal_a, :modal_user => a} %>
+        </td>
+        <td align=center style="width: 50%;">
+          <% b = recommend[i*2+1][0] %>
+          <% modal_b = "modal_b"+i.to_s %>
+          <%= render partial: "shared/result_modal", :locals=>{:modal_id => modal_b, :modal_user => b} %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %> <!-- 投稿が奇数 -->
+  <% if recommend.count!=1 %>
+    <table align="center"  style="width:84%;">
+      <% for i in 1..num-1 %>
+        <tr>
+          <td align=center style="width: 50%;">
+            <% a = recommend[i*2][0] %>
+            <% modal_a = "modal_a"+i.to_s %>
+            <%= render partial: "shared/result_modal", :locals=>{:modal_id => modal_a, :modal_user => a} %>
+          </td>
+          <td align=center style="width: 50%;">
+            <% b = recommend[i*2+1][0] %>
+            <% modal_b = "modal_b"+i.to_s %>
+            <%= render partial: "shared/result_modal", :locals=>{:modal_id => modal_b, :modal_user => b} %>
+          </td>
+        </tr>
+      <% end %>
+      <tr>
+        <td align=center style="width: 50%;">
+          <% c = recommend[num-1][0] %>
+          <% modal_c = "modal_c"+i.to_s %>
+          <%= render partial: "shared/result_modal", :locals=>{:modal_id => modal_c, :modal_user => c} %>
+        </td>
+      </tr>
+    </table>
+  <% else %>
+    <table style="width:42%; margin-left: 8%;">
+      <tr>
+        <td align=center style="width: 50%;">
+          <% a = recommend[0] %>
+          <% modal_a = "modal_a"+i.to_s %>
+          <%= render partial: "shared/result_modal", :locals=>{:modal_id => modal_a, :modal_user => a} %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+<% end %>
