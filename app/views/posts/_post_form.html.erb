@@ -1,13 +1,23 @@
-<table>
+<table width="80%" style="margin-left: 10%">
   <tr>
-    <td colspan="2"><div id="new-image" style="width:40%;"></div></td>
+    <td colspan="2" align=center style="border:1px solid #000;">
+      <%= image_tag("", id:"alter-image", height: "200px", style: "margin-left:auto;") %>
+    </td>
   </tr>
   <tr>
-    <th><%= form.label :post_img, "写真を選択" %></th>
-    <td><%= form.file_field :post_img, accept: 'image/*' %><%= form.hidden_field :post_img_cache %></td>
+    <td colspan="2" align=center>
+      <%= form.label :post_img, "写真を選択", class: "image_input_btn", style: "color:#000; background-color:#ccc;" %>
+      <%= form.file_field :post_img, accept: 'image/*', style: "display:none;" %>
+      <%= form.hidden_field :post_img_cache %>
+    </td>
   </tr>
   <tr>
-    <th><%= form.label :text, "一言" %></th>
-    <td><%= form.text_field :text %></td>
+    <th align=left style="padding: 10px 0 0 20px; font-size:16px;"><%= form.label :text, "コメント" %></th>
+  </tr>
+  <tr>
+    <td><%= form.text_area :text, style: "width:98%; height:; font-size:14px; padding-top:6px;" %></td>
+  </tr>
+  <tr>
+    <td align=right><%= form.submit "投稿する", class: "post-btn_1" %></td>
   </tr>
 </table>

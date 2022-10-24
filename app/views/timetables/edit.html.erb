@@ -1,20 +1,19 @@
 <h2 class="back"><%= link_to "< 時間割編集", :account %></h2>
-<div class="timetable" align=center>
+<div style="width: 94%; margin:3%" align=center>
   <br>
   <%= form_for @timetable do |tt| %>
     <table align="center" width="90%">
       <tr>
         <% if @timetable.timetable_img.present? %>
-          <td colspan="2">
+          <td colspan="2" align=center style="border: 1px solid; border-radius: 5px;">
             <%= image_tag @timetable.timetable_img.url, id:"alter-image", height: "150px", style: "margin-left: auto" %>
           </td>
         <% else %>
-          <td colspan="2">
-            <%= image_tag "", id:"alter-image", style: "margin-left: auto" %>
+          <td colspan="2" align=center style="border: 1px solid; border-radius: 5px;">
+            <%= image_tag "", id:"alter-image", height: "150px", style: "margin-left: auto" %>
           </td>
         <% end %>
       </tr>
-
       <tr>
         <td>
           <%= tt.label :timetable_img, "時間割の写真を選択", class: "image_input_btn" %>
@@ -24,58 +23,61 @@
         <td><%= tt.check_box :remove_timetable_img %>画像を削除する</td>
       </tr>
     </table>
+    <div class="timetable" align=center>
+      <br>
+      <table border="3" align="center" style="width: 96%; margin: 2% auto; border-collapse: collapse; border: none; border-color:#ccc;">
+        <caption>空きコマを選択してください</caption>
+        <tr align="center">
+          <th width="30" style="border-top: none;border-left: none;"></th>
+          <th width="50" style="border-top: none;">月</th>
+          <th width="50" style="border-top: none;">火</th>
+          <th width="50" style="border-top: none;">水</th>
+          <th width="50" style="border-top: none;">木</th>
+          <th width="50" style="border-right: none;border-top: none;">金</th>
+        </tr>
+        <tr align="center">
+          <th style="border-left: none;">１</th>
+          <td><%= tt.check_box :mon1 %><%= label_tag :mon1, "" %></td>
+          <td><%= tt.check_box :tue1 %><%= label_tag :tue1, "" %></td>
+          <td><%= tt.check_box :wed1 %><%= label_tag :wed1, "" %></td>
+          <td><%= tt.check_box :thu1 %><%= label_tag :thu1, "" %></td>
+          <td style="border-right: none;"><%= tt.check_box :fri1 %><%= label_tag :fri1, "" %></td>
+        </tr>
+        <tr align="center">
+          <th style="border-left: none;">２</th>
+          <td><%= tt.check_box :mon2 %><%= label_tag :mon2, "" %></td>
+          <td><%= tt.check_box :tue2 %><%= label_tag :tue2, "" %></td>
+          <td><%= tt.check_box :wed2 %><%= label_tag :wed2, "" %></td>
+          <td><%= tt.check_box :thu2 %><%= label_tag :thu2, "" %></td>
+          <td style="border-right: none;"><%= tt.check_box :fri2 %><%= label_tag :fri2, "" %></td>
+        </tr>
+        <tr align="center">
+          <th style="border-left: none;">３</th>
+          <td><%= tt.check_box :mon3 %><%= label_tag :mon3, "" %></td>
+          <td><%= tt.check_box :tue3 %><%= label_tag :tue3, "" %></td>
+          <td><%= tt.check_box :wed3 %><%= label_tag :wed3, "" %></td>
+          <td><%= tt.check_box :thu3 %><%= label_tag :thu3, "" %></td>
+          <td style="border-right: none;"><%= tt.check_box :fri3 %><%= label_tag :fri3, "" %></td>
+        </tr>
+        <tr align="center">
+          <th style="border-left: none;">４</th>
+          <td><%= tt.check_box :mon4 %><%= label_tag :mon4, "" %></td>
+          <td><%= tt.check_box :tue4 %><%= label_tag :tue4, "" %></td>
+          <td><%= tt.check_box :wed4 %><%= label_tag :wed4, "" %></td>
+          <td><%= tt.check_box :thu4 %><%= label_tag :thu4, "" %></td>
+          <td style="border-right: none;"><%= tt.check_box :fri4 %><%= label_tag :fri4, "" %></td>
+        </tr>
+        <tr align="center">
+          <th style="border-bottom: none;border-left: none;">５</th>
+          <td style="border-bottom: none;"><%= tt.check_box :mon5 %><%= label_tag :mon5, "" %></td>
+          <td style="border-bottom: none;"><%= tt.check_box :tue5 %><%= label_tag :tue5, "" %></td>
+          <td style="border-bottom: none;"><%= tt.check_box :wed5 %><%= label_tag :wed5, "" %></td>
+          <td style="border-bottom: none;"><%= tt.check_box :thu5 %><%= label_tag :thu5, "" %></td>
+          <td style="border-right: none; border-bottom: none;"><%= tt.check_box :fri5 %><%= label_tag :fri5, "" %></td>
+        </tr>
+      </table>
+    </div>
     <br>
-    <table border="3" align="center" style="width: 96%; margin: 2% auto; border-collapse: collapse; border: none;">
-      <tr align="center">
-        <th width="30"></th>
-        <th width="50">月</th>
-        <th width="50">火</th>
-        <th width="50">水</th>
-        <th width="50">木</th>
-        <th width="50">金</th>
-      </tr>
-      <tr align="center">
-        <th>１</th>
-        <td><%= tt.check_box :mon1 %><%= label_tag :mon1, "空き" %></td>
-        <td><%= tt.check_box :tue1 %><%= label_tag :tue1, "空き" %></td>
-        <td><%= tt.check_box :wed1 %><%= label_tag :wed1, "空き" %></td>
-        <td><%= tt.check_box :thu1 %><%= label_tag :thu1, "空き" %></td>
-        <td><%= tt.check_box :fri1 %><%= label_tag :fri1, "空き" %></td>
-      </tr>
-      <tr align="center">
-        <th>２</th>
-        <td><%= tt.check_box :mon2 %><%= label_tag :mon2, "空き" %></td>
-        <td><%= tt.check_box :tue2 %><%= label_tag :tue2, "空き" %></td>
-        <td><%= tt.check_box :wed2 %><%= label_tag :wed2, "空き" %></td>
-        <td><%= tt.check_box :thu2 %><%= label_tag :thu2, "空き" %></td>
-        <td><%= tt.check_box :fri2 %><%= label_tag :fri2, "空き" %></td>
-      </tr>
-      <tr align="center">
-        <th>３</th>
-        <td><%= tt.check_box :mon3 %><%= label_tag :mon3, "空き" %></td>
-        <td><%= tt.check_box :tue3 %><%= label_tag :tue3, "空き" %></td>
-        <td><%= tt.check_box :wed3 %><%= label_tag :wed3, "空き" %></td>
-        <td><%= tt.check_box :thu3 %><%= label_tag :thu3, "空き" %></td>
-        <td><%= tt.check_box :fri3 %><%= label_tag :fri3, "空き" %></td>
-      </tr>
-      <tr align="center">
-        <th>４</th>
-        <td><%= tt.check_box :mon4 %><%= label_tag :mon4, "空き" %></td>
-        <td><%= tt.check_box :tue4 %><%= label_tag :tue4, "空き" %></td>
-        <td><%= tt.check_box :wed4 %><%= label_tag :wed4, "空き" %></td>
-        <td><%= tt.check_box :thu4 %><%= label_tag :thu4, "空き" %></td>
-        <td><%= tt.check_box :fri4 %><%= label_tag :fri4, "空き" %></td>
-      </tr>
-      <tr align="center">
-        <th>５</th>
-        <td><%= tt.check_box :mon5 %><%= label_tag :mon5, "空き" %></td>
-        <td><%= tt.check_box :tue5 %><%= label_tag :tue5, "空き" %></td>
-        <td><%= tt.check_box :wed5 %><%= label_tag :wed5, "空き" %></td>
-        <td><%= tt.check_box :thu5 %><%= label_tag :thu5, "空き" %></td>
-        <td><%= tt.check_box :fri5 %><%= label_tag :fri5, "空き" %></td>
-      </tr>
-    </table>
-    <br>
-    <%= tt.submit "更新", style: "margin-left: 80%;" %>
+    <%= tt.submit "更新", style: "margin-left: 70%;", class: "tt-btn" %>
   <% end %>
 </div>
