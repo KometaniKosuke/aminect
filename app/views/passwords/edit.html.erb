@@ -1,4 +1,4 @@
-<h2 class="back"><%= link_to "< パスワード編集", :edit_account %></h2>
+<h2 class="back"><%= link_to "< パスワード編集", :account %></h2>
 <%= render "shared/errors", obj: @user %>
 <%= form_for @user, as: "account", url: :password do |form| %>
   <table width=84% style="margin: 3% 8%">

@@ -12,7 +12,7 @@ class PasswordsController < ApplicationController
       if current_password.present?
         if @user.authenticate(current_password)
           @user.assign_attributes(params[:account])
-          if @user.save
+          if @user.save(context: :pass)
             redirect_to :account, notice: "パスワードを変更しました。"
           else
             render "edit"

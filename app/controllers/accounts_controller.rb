@@ -18,13 +18,9 @@ class AccountsController < ApplicationController
 
   def update
     @user = current_user
-    @user.assign_attributes(account_params)
-    # tt=Timetable.find_by(user_id: current_user.id)
-    # tt.assign_attributes(params[:account][:timetable])
+    @user.assign_attributes(params[:account])
     if @user.save
-      # if tt.save
-        redirect_to :account, notice: "アカウント情報を更新しました。"
-      # end
+      redirect_to :account, notice: "アカウント情報を更新しました。"
     else
       render "edit"
     end
@@ -54,11 +50,31 @@ class AccountsController < ApplicationController
     end
   end
 
-  private def account_params
-    params.require(:account).permit(:name, :sex, :birthplace, :undergraduate, :comment, :image, :twitter, :instagram, :tiktok, timetables_attributes: [:timetable, :destroy, :id])
+  def update_without_current_password(params, *options)
+    params.delete(:current_password)
+
+    if params[:password].blank? && params[:password_confirmation].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
   end
+  protected
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
+  def after_update_path_for(_resource)
+     :account
+   end
+
+  # private def account_params
+  #   params.require(:account).permit(:name, :sex, :birthplace, :undergraduate, :comment, :image, :twitter, :instagram, timetables_attributes: [:timetable, :destroy, :id])
+  # end
   private def user_params
-    params.require(:user).permit(:name, :sex, :birthplace, :undergraduate, :comment, :image, :twitter, :instagram, :tiktok, :email)
+    params.require(:user).permit(:name, :sex, :birthplace, :undergraduate, :comment, :image, :twitter, :instagram, :email)
   end
 
   private def register_params

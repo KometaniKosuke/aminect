@@ -54,15 +54,15 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::FileUpdateChecker
 
-  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
-    port:                 587,
-    address:              'smtp.gmail.com',
-    domain:               'gmail.com',
-    user_name:            'aminect.official@gmail.com',
-    password:             'cos2022_aminect',
-    authentication:       'login',
+    address: 'smtp.gmail.com',
+    domain: 'gmail.com',
+    port: 587,
+    user_name: 'aminect.official@gmail.com',
+    password: 'ixbpluzpayposkhp',
+    authentication: 'login',
     enable_starttls_auto: true
   }
   require 'carrierwave/orm/activerecord'

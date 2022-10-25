@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        current_password: 現在のパスワード
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        agreement: 利用規約
+    errors:
+      messages:
+        wrong: が違います。(8~15文字)
+        too_short: が短すぎます。
+        too_long: が長すぎます。
+        invalid: は半角英数字のみ有効です。

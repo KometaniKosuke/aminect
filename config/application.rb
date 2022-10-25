@@ -31,6 +31,7 @@ module Aminect
 
     # Don't generate system test files.
     config.time_zone = 'Asia/Tokyo'
+    config.i18n.default_locale = :ja
     config.generators.system_tests = nil
 
     config.action_controller.permit_all_parameters = true

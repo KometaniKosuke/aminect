@@ -81,13 +81,18 @@ class User < ApplicationRecord
   end
 
   validates :name,
-    length: { maximum: 12, allow_blank: true }
+    length: { maximum: 12, allow_blank: true, message: "12文字まで" }
   validates :email,
     presence: true,
-    format: { with: /\A[a-z]{1,2}[0-9]{6}(@senshu-u.jp)\z/, allow_blank: true },
+    format: { with: /\A[a-z]{1,2}[0-9]{6}(@senshu-u.jp)\z/, allow_blank: true, message: "専修大学のメールアドレスのみ有効です。" },
     uniqueness: { case_sensitive: false }
   validates :password,
+    presence: true,
     length: { minimum: 8, maximum: 15, allow_blank: true },
-    format: { with: /\A[0-9a-zA-Z]+\z/ }
-  validates_acceptance_of :agreement, allow_nil: false, on: :create
+    format: { with: /\A[0-9a-zA-Z]+\z/ },
+    on: :pass
+  validates_acceptance_of :agreement,
+    allow_nil: false,
+    message: "に同意してください。",
+    on: :create
 end
