@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     # resources :posts, only: [:index, :show]
   # end
   resources :posts, only: [:new, :create, :destroy]
-  resources :users, only: [:index, :show] do
+  resources :users, only: [:index, :show, :destroy] do
     resource :follows, only: [:index, :create, :destroy]
     get 'followings' => 'follows#followings', as: 'followings'
     get 'followers' => 'follows#followers', as: 'followers'
@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :create, :destroy]
     resources :timetables, only: [:edit, :update]
     resources :requests, only: [:index]
-    resource :agrees, only: [:new, :create, :update] #=-----============================-
+    resource :agrees, only: [:new, :create, :update]
   end
 
   resource :password, only: [:edit, :update]

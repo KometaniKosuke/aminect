@@ -1,9 +1,9 @@
 <div class="header">
   <%= image_tag 'logo.png', size: "170x50" %>
   <% if current_page?(account_path) %>
-    <div class="logout">
+    <div align=right class="logout">
       <%= link_to :session, method: :delete, data: { confirm: "ログアウトしますか?" }, style: "text-decoration: none;" do %>
-        <p style="margin:0; display: flex;">ログアウト<%= image_tag "logout.png", size: "15x15", style: "padding: 4px;" %></p>
+        <p style="margin:0 5px; display: flex; font-size:12px">ログアウト<%= image_tag "logout.png", size: "12x12", style: "padding: 4px;" %></p>
       <% end %>
     </div>
   <% end %>

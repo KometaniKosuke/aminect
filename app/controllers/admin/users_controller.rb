@@ -81,8 +81,8 @@ class Admin::UsersController < Admin::Base
       urs.each do |ur|
         room_id=ur.room_id
         ur.destroy
-        UserRoom.find_by(room_id: room_id).destloy
-        room=Room.find(room_id).destloy
+        UserRoom.find_by(room_id: room_id).destroy
+        room=Room.find(room_id).destroy
       end
     end
     # ------------------------------------------

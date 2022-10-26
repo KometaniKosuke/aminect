@@ -23,4 +23,42 @@
   <div class="terms">
     <%= render "shared/terms" %>
   </div>
+  <h3> ー アカウント削除について ー </h3>
+  <p>
+    アカウントを削除する場合は、<a href="#delete" style="font-weight: bold; font-size: 16px">こちら</a>をクリック<br>※削除後、再度アカウントを作成することは可能です。
+  </p>
+</div>
+
+<div class="modal-post" id="delete">
+  <a href="#!" class="modal-overlay"></a>
+  <div class="modal-window">
+    <div class="modal-content">
+      <h2 style="margin-top:0">アカウント削除</h2>
+      <p>アカウント削除すると以下の情報が失われます</p>
+      <div style="background-color: #ddd; padding: 5px 0;">
+        <ul>
+          <li align=left>プロフィール情報</li>
+          <li align=left>投稿</li>
+          <li align=left>フォロー/フォロワー</li>
+          <li align=left>トークルーム</li>
+          <li align=left>メッセージ</li>
+        </ul>
+      </div>
+    </div>
+    <br>
+    <table width=100% >
+      <tr>
+        <td width="50%" align=right style="padding-right: 10px;">
+          <a href="#!" style="width:90px; border:1px solid #666; border-radius: 3px; padding:5px; color:#666; text-decoration:none">
+            キャンセル
+          </a>
+        </td>
+        <td width="50%" align=left style="padding-left: 10px;">
+          <%= link_to "　 削除 　", @user, method: :delete, data:{ confirm: "本当に削除しますか?" },
+           style:"width:82px; border-radius: 3px; padding:5px; color:white; background-color:#dc143c; text-decoration:none" %>
+         </td>
+      </tr>
+    </table>
+
+  </div>
 </div>
