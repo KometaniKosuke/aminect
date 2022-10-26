@@ -2,18 +2,36 @@
   <%= form_for @user, url: {controller: "accounts", action: "create"}, method: :post do |form| %>
     <%= render "shared/user_form", form: form %>
     <%= form.hidden_field :email  %>
-    <%= form.submit "登録する" %>
+    <%= form.submit "登録する", class: "tag-btn" %>
   <% end %>
 <% else %>
-  <h4>登録時に使用した専修大メールアドレスと発行したパスワードを入力してください。</h4>
-  <% if flash.notice %>
-    <p class="notice"><%= flash.notice %></p>
-  <% end %>
-  <%= form_tag :new_account, method: :get do %>
-    <label>メールアドレス</label>
-    <%= text_field_tag "email" %><br>
-    <label>パスワード</label>
-    <%= password_field_tag "password" %>
-    <%= submit_tag "完了" %>
-  <% end %>
+  <div style="margin:0 8%">
+    <h4>登録時に使用した専修大メールアドレスと発行したパスワードを入力してください。</h4>
+    <% if flash.notice %>
+      <p class="alert"><%= flash.notice %></p>
+    <% end %>
+    <%= form_tag :new_account, method: :get do %>
+      <table width=80% align=center>
+        <tr>
+          <th align=left>メールアドレス</th>
+        </tr>
+        <tr>
+          <td align=center style="margin:0;">
+            <%= text_field_tag :email,'', placeholder: "専修大学メールアドレス", style: "width: 272px;height: 45px;background: #FFFFFF;border: 3px solid rgba(6, 6, 6, 0.4);font-size: 20px;letter-spacing: -0.3px;margin: 0px auto 15px auto;", required: :true %>
+          </td>
+        </tr>
+        <tr>
+          <th align=left>パスワード</th>
+        </tr>
+        <tr>
+          <td align=center style="margin:0;">
+            <%= password_field_tag :password,'', placeholder: "初期パスワード", style: "width: 272px;height: 45px;background: #FFFFFF;border: 3px solid rgba(6, 6, 6, 0.4);font-size: 20px;letter-spacing: -0.3px;margin: 0px auto 15px auto;", required: :true %>
+          </td>
+        </tr>
+        <tr>
+          <td align=right rowspan="4" style="padding-right:5%"><%= submit_tag "完了", class:"complete-btn" %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
 <% end %>

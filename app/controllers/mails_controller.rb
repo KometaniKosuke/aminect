@@ -2,6 +2,10 @@ class MailsController < ApplicationController
   # before_action :login_required, except: [:new, :create, :index]
   layout 'mail'
   def index
+    if notice.present?
+      @user = notice[0]
+      @pass = notice[1]
+    end
   end
 
   def new
@@ -13,10 +17,10 @@ class MailsController < ApplicationController
       redirect_to "/register", notice: "このメールアドレスは既に登録されています。"
     else
       @pass = SecureRandom.alphanumeric(10)
-      @user = User.new(password: @pass, email: params[:user][:email], agreement: params[:user][:agreement])
+      @user = User.new(password: @pass, email: params[:user][:email],sex: 3, agreement: params[:user][:agreement])
       if @user.save
         SendMailer.with(user: @user, pass: @pass).published_email.deliver_later
-        redirect_to :mails, notice: @user.email
+        redirect_to :mails, notice: [@user,@pass]
       else
         render "new"
       end

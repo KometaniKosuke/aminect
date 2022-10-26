@@ -5,7 +5,7 @@
 
 <div style="width:80%; margin: auto;">
   <h3>メールを送信しました！</h3>
-  <p style="width: 250px; border-bottom: 1px solid black">宛先：<%= notice %></p>
+  <p style="width: 250px; border-bottom: 1px solid black">宛先：<%= @user["email"] %></p>
   <br>
   <div style="border: dotted 3px green; padding: 10px 0">
     <p style="margin-bottom: 10px">メールが届くまで数分程度お時間がかかる場合があります。</p>
@@ -16,3 +16,8 @@
     </ul>
   </div>
 </div>
+
+<ul>
+  <li>初期パスワード:<%= @pass %></li>
+  <li><%= link_to "登録用ページ", :new_account %></li>
+</ul>

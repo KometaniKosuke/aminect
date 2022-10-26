@@ -81,7 +81,7 @@ class User < ApplicationRecord
   end
 
   validates :name,
-    length: { maximum: 12, allow_blank: true, message: "12文字まで" }
+    length: { maximum: 12, allow_blank: true, message: "は12文字までです" }
   validates :email,
     presence: true,
     format: { with: /\A[a-z]{1,2}[0-9]{6}(@senshu-u.jp)\z/, allow_blank: true, message: "専修大学のメールアドレスのみ有効です。" },

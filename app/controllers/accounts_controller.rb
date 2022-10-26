@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
   before_action :login_required, except: [:new, :create, :update]
+  layout 'account'
 
   def show
     @user=current_user
@@ -23,7 +24,7 @@ class AccountsController < ApplicationController
     @user = current_user
     @user.assign_attributes(params[:account])
     if @user.save
-      redirect_to :account, notice: "アカウント情報を更新しました。"
+      redirect_to :account, notice: "アカウント情報を更新しました"
     else
       render "edit"
     end
@@ -35,8 +36,8 @@ class AccountsController < ApplicationController
       if @user&.authenticate(params[:password])
         @timetable = @user.timetables.new
       else
-        @user= nil
-        redirect_to :new_account, notice: "パスワードが違います。"
+        @user = nil
+        redirect_to :new_account, notice: "パスワードが違います"
       end
     else
       render "new"
@@ -49,7 +50,9 @@ class AccountsController < ApplicationController
     tt = @user.timetables.new
     if @user.save && tt.save
       cookies.signed[:user_id] = { value: @user.id }
-      redirect_to :root, notice: "会員情報を登録しました。"
+      redirect_to :root, notice: "会員情報を登録しました"
+    else
+      render "new"
     end
   end
 
