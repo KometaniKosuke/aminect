@@ -8,6 +8,9 @@ class AccountsController < ApplicationController
     @followers = Follow.where(to_id: current_user)
     @tags = current_user.tags
     @posts = current_user.posts
+    unless current_user.agreement
+      redirect_to new_account_agrees_path
+    end
   end
 
   def edit

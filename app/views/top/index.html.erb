@@ -3,11 +3,9 @@
     <% if current_user.announces.present? %>
       <%= image_tag "bell_2.png", size: "30x30", style: "margin-top:10px;" %>
     <% else %>
-      <% all = Announce.where(user_id: nil) %>
-      <% all = all.order(:updated_at).last %>
       <% ques = Announce.where(user_id: 0) %>
       <% ques = ques.order(:updated_time).last %>
-      <% if Time.now-ques.updated_at < 259200 %>
+      <% if ques.present? && Time.now-ques.updated_at < 259200 %>
         <%= image_tag "bell_2.png", size: "30x30", style: "margin-top:10px;" %>
       <% else %>
         <%= image_tag "bell.png", size: "30x30", style: "margin-top:10px;" %>
@@ -21,3 +19,5 @@
     <%= image_tag "akikoma.png", class:"menu_image2" %>
   <% end %>
 <% end %>
+<div style="margin:15%">
+</div>

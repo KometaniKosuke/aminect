@@ -1,4 +1,7 @@
 <hr>
+<%= link_to "削除", [:admin, @user], method: :delete, data: { confirm: "本当に削除しますか?" }, style:"margin-left:5%;" %>
+<hr>
+<p style="margin-left: 5%"><%= @user.email %></p>
 <% c = (Report.where(to_id: @user.id).select(:from_id).distinct.count+1)/2 %>
 <table style="width: 90%; font-size: 16px; margin: 3% auto auto auto; text-align: center;" align="center">
   <tr>
@@ -79,8 +82,12 @@
   </table>
 
 <div class="timetable" align=center>
-  <h3>時間割 <%= image_tag("edit.png", size: "15x15") %></h3>
-  <%= render "shared/timetable" %>
+  <h3>時間割</h3>
+  <% if @timetable.timetable_img.present? %>
+    <%= image_tag @timetable.timetable_img.url, style: "width: 84%; margin-left: 8%" %>
+  <% else %>
+    <%= render "admin/shared/timetable" %>
+  <% end %>
 </div>
 <br>
 

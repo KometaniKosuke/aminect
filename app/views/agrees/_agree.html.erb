@@ -1,0 +1,21 @@
+<%= form_with(model: @user, local: true, url: {controller: "agrees", action: "update"}) do |form| %>
+  <table width=80% style="margin: 10%">
+    <tr>
+      <td colspan="2" style="height: 200px">
+        <div class="terms">
+          <p style="font-size: 22px; font-weight: bold;margin: 8px 0">【Aminect利用規約】</p>
+          <%= render "shared/terms" %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td style="display: flex">
+        <%= form.check_box :agreement, :as => :boolean %>
+        <%= form.label :agreement, "同意する" %>
+      </td>
+      <td>
+        <%= form.submit "完了" %>
+      </td>
+    </tr>
+  </table>
+<% end %>

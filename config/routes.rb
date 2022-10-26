@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :posts
     resources :timetables
     resources :requests, only: [:index]
+    resource :agrees #=-----============================-
   end
   resource :password, only: [:edit, :update]
   resources :user_tags

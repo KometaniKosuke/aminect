@@ -8,7 +8,6 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
     <div id = "container">
       <header>
@@ -24,11 +23,11 @@
             <% end %>
             <%= yield %>
           </div>
+          <% if current_page?(:account) %>
+            <%= button_to "+", :new_account_post, method: "get", class: "post-btn" %>
+          <% end %>
         <% else %>
           <%= yield %>
-        <% end %>
-        <% if current_page?(:account) %>
-          <%= button_to "+", :new_account_post, method: "get", class: "post-btn" %>
         <% end %>
       </main>
       <aside id="sidebar">

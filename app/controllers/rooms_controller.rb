@@ -5,6 +5,9 @@ class RoomsController < ApplicationController
   def index
     urs = UserRoom.order(updated_at: :DESC).where(user_id: current_user.id)
     @rooms = urs.pluck(:room_id)
+    unless current_user.agreement
+      redirect_to new_account_agrees_path
+    end
   end
 
   def show
@@ -16,6 +19,9 @@ class RoomsController < ApplicationController
     @talker = User.find_by(id: talker.first.user_id)
     @messages = @room.messages
     @message = Message.new(room_id: @room.id, user_id: current_user.id)
+    unless current_user.agreement
+      redirect_to new_account_agrees_path
+    end
   end
 
   def new

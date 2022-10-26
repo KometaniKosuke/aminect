@@ -1,0 +1,50 @@
+<table border=1 style="width: 84%; margin: 2% auto; border-collapse: collapse; border: none; border-color:#ccc">
+  <tr align="center">
+    <th width="30" style="border-top: none;border-left: none;"></th>
+    <th width="40" style="border-top: none;">月</th>
+    <th width="40" style="border-top: none;">火</th>
+    <th width="40" style="border-top: none;">水</th>
+    <th width="40" style="border-top: none;">木</th>
+    <th width="40" style="border-right: none;border-top: none;"">金</th>
+  </tr>
+  <tr align="center" height="40">
+    <th style="border-left: none;">１</th>
+    <td><% if @timetable.mon1==1 %>空き<% end %></td>
+    <td><% if @timetable.tue1==1 %>空き<% end %></td>
+    <td><% if @timetable.wed1==1 %>空き<% end %></td>
+    <td><% if @timetable.thu1==1 %>空き<% end %></td>
+    <td style="border-right: none;"><% if @timetable.fri1==1 %>空き<% end %></td>
+  </tr>
+  <tr align="center" height="40">
+    <th style="border-left: none;">２</th>
+    <td><% if @timetable.mon2==1 %>空き<% end %></td>
+    <td><% if @timetable.tue2==1 %>空き<% end %></td>
+    <td><% if @timetable.wed2==1 %>空き<% end %></td>
+    <td><% if @timetable.thu2==1 %>空き<% end %></td>
+    <td style="border-right: none;"><% if @timetable.fri2==1 %>空き<% end %></td>
+  </tr>
+  <tr align="center" height="40">
+    <th style="border-left: none;">３</th>
+    <td><% if @timetable.mon3==1 %>空き<% end %></td>
+    <td><% if @timetable.tue3==1 %>空き<% end %></td>
+    <td><% if @timetable.wed3==1 %>空き<% end %></td>
+    <td><% if @timetable.thu3==1 %>空き<% end %></td>
+    <td style="border-right: none;"><% if @timetable.fri3==1 %>空き<% end %></td>
+  </tr>
+  <tr align="center" height="40">
+    <th style="border-left: none;">４</th>
+    <td><% if @timetable.mon4==1 %>空き<% end %></td>
+    <td><% if @timetable.tue4==1 %>空き<% end %></td>
+    <td><% if @timetable.wed4==1 %>空き<% end %></td>
+    <td><% if @timetable.thu4==1 %>空き<% end %></td>
+    <td style="border-right: none;"><% if @timetable.fri4==1 %>空き<% end %></td>
+  </tr>
+  <tr align="center" height="40">
+    <th width="30" style="border-bottom: none;border-left: none;">５</th>
+    <td style="border-bottom: none;"><% if @timetable.mon5==1 %>空き<% end %></td>
+    <td style="border-bottom: none;"><% if @timetable.tue5==1 %>空き<% end %></td>
+    <td style="border-bottom: none;"><% if @timetable.wed5==1 %>空き<% end %></td>
+    <td style="border-bottom: none;"><% if @timetable.thu5==1 %>空き<% end %></td>
+    <td style="border-right: none; border-bottom: none;"><% if @timetable.fri5==1 %>空き<% end %></td>
+  </tr>
+</table>
