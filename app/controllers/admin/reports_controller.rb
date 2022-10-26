@@ -16,6 +16,6 @@ class Admin::ReportsController < Admin::Base
   end
 
   def index
-    @users = Report.order("id")
+    @reports = Report.order("id")
   end
 end

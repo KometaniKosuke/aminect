@@ -73,9 +73,6 @@ class AccountsController < ApplicationController
      :account
    end
 
-  # private def account_params
-  #   params.require(:account).permit(:name, :sex, :birthplace, :undergraduate, :comment, :image, :twitter, :instagram, timetables_attributes: [:timetable, :destroy, :id])
-  # end
   private def user_params
     params.require(:user).permit(:name, :sex, :birthplace, :undergraduate, :comment, :image, :twitter, :instagram, :email)
   end

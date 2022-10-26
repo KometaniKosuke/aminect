@@ -4,12 +4,12 @@ Rails.application.routes.draw do
   get "/register" => "mails#new"
   resources :password_resets, only: [:new, :create, :index]
 
-  resources :users do
-    resources :rooms
-    resources :timetables
-    resources :posts, only: [:index, :show]
-  end
-  resources :posts
+  # resources :users do
+    # resources :rooms
+    # resources :timetables
+    # resources :posts, only: [:index, :show]
+  # end
+  resources :posts, only: [:new, :create, :destroy]
   resources :users, only: [:index, :show] do
     resource :follows, only: [:index, :create, :destroy]
     get 'followings' => 'follows#followings', as: 'followings'
@@ -22,40 +22,42 @@ Rails.application.routes.draw do
     resource :reports, only: [:create, :destroy]
     get 'reportings' => 'reports#reportings', as: 'reportings'
     get 'reporters' => 'reports#reporters', as: 'reporters'
-    resources :tags
+    resources :rooms
   end
+
   resource :account, except: [:index, :destroy] do
     resource :follows, only: [:index, :create, :destroy]
     get 'followings' => 'follows#followings', as: 'followings'
     get 'followers' => 'follows#followers', as: 'followers'
-    resources :tags
-    resources :posts
-    resources :timetables
+    resources :tags, only: [:new, :create]
+    resources :posts, only: [:new, :create, :destroy]
+    resources :timetables, only: [:edit, :update]
     resources :requests, only: [:index]
-    resource :agrees #=-----============================-
+    resource :agrees, only: [:new, :create, :update] #=-----============================-
   end
+
   resource :password, only: [:edit, :update]
-  resources :user_tags
-  resources :timetables, only: [:index, :show, :edit, :update] do
+
+  resources :timetables, only: [:index, :edit, :update] do
     get "search", on: :collection
   end
-  resources :tags do
+
+  resources :tags, only: [:index] do
     get "tag_search", on: :collection
   end
   resources :rooms do
     resources :messages
   end
-  resources :messages
-  resource :session, only: [:create, :destroy]
-
-  resource :profile,only: %i[show edit update]
-
+  resources :messages, only: [:create]
   resources :announces, only: [:index]
 
+  resource :session, only: [:create, :destroy]
+  resource :profile,only: %i[show edit update]
+# -------------------------------------------------------------------
   namespace :admin do
     root "top#index"
     resource :session, only: [:create, :destroy]
-    resources :announces, except: [:show]
+    resources :announces
     resources :users do
       resource :follows, only: [:create, :destroy]
       get 'followings' => 'follows#followings', as: 'followings'

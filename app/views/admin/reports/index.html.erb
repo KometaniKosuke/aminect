@@ -1,29 +1,32 @@
+<h3>通報一覧</h3>
+<table border=5 width="500px">
+  <tr align="center">
+    <th>通報者</th>
+    <th>通報された人</th>
+    <th>削除</th>
+  </tr>
+  <% @reports.each do |rep| %>
+    <tr align="center">
+      <td><%= rep.from.name %></td>
+      <td><%= rep.to.name %></td>
+      <td><%= link_to "×", [:admin, rep], method: :delete, data: { confirm: "本当に削除しますか?" } %></td>
+    </tr>
+  <% end %>
+</table>
+<br>
+<h3>通報された回数集計</h3>
 <table border=5 width="500px">
   <tr align="center">
     <th>ID</th>
     <th>通報者</th>
-    <th>通報された人</th>
+    <th>回数</th>
   </tr>
-  <% @users.each do |user| %>
-      <tr align="center">
-        <td><%= user.id %></td>
-        <td><%= user.from.name %></td>
-        <td><%= user.to.name %></td>
-      </tr>
-  <% end %>
-</table>
-<br>
-<% users=@users.select(:from_id, :to_id).distinct %>
-<table border=5 width="500px">
-  <tr align="center">
-    <th>通報者</th>
-    <th>通報された人</th>
-  </tr>
-  <% users.each do |user| %>
-      <tr align="center">
-        <td><%= user.from_id %></td>
-        <td><%= user.to_id %></td>
-      </tr>
+  <% User.all.each do |user| %>
+    <tr align="center">
+      <td><%= user.id %></td>
+      <td><%= user.name %></td>
+      <td><%= Report.where(to_id: user.id).count %></td>
+    </tr>
   <% end %>
 </table>
 <br>

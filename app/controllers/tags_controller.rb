@@ -1,12 +1,6 @@
 class TagsController < ApplicationController
   def index
-    # @user_tags = current_user.user_tags
-    # @tags = current_user.tags.first
   end
-
-  def new
-  end
-
   def create
     ts = UserTag.where(user_id: current_user.id)
     altags = ts.pluck(:tag_id)

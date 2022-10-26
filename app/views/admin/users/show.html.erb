@@ -1,7 +1,7 @@
 <hr>
 <%= link_to "削除", [:admin, @user], method: :delete, data: { confirm: "本当に削除しますか?" }, style:"margin-left:5%;" %>
 <hr>
-<p style="margin-left: 5%"><%= @user.email %></p>
+<p style="margin-left: 5%">id:<%= @user.id %> / <%= @user.email %></p>
 <% c = (Report.where(to_id: @user.id).select(:from_id).distinct.count+1)/2 %>
 <table style="width: 90%; font-size: 16px; margin: 3% auto auto auto; text-align: center;" align="center">
   <tr>
@@ -19,18 +19,10 @@
   </tr>
   <tr height="0">
     <td width="30%">
-      <div>
-        <%= link_to :followers_account, style: "text-decoration:none; color:#000;" do %>
-          <%= @user.followers.count %><br>フォロワー
-        <% end %>
-      </div>
+      <%= @user.followers.count %><br>フォロワー
     </td>
     <td width="30%">
-      <div>
-        <%= link_to :followings_account, style: "text-decoration:none; color:#000;" do %>
-          <%= @user.followings.count %><br>フォロー
-        <% end %>
-      </div>
+      <%= @user.followings.count %><br>フォロー
     </td>
   </tr>
 </table>
@@ -85,9 +77,8 @@
   <h3>時間割</h3>
   <% if @timetable.timetable_img.present? %>
     <%= image_tag @timetable.timetable_img.url, style: "width: 84%; margin-left: 8%" %>
-  <% else %>
-    <%= render "admin/shared/timetable" %>
   <% end %>
+  <%= render "admin/shared/timetable" %>
 </div>
 <br>
 

@@ -4,6 +4,11 @@ class Admin::AnnouncesController < Admin::Base
     @announces = Announce.all
     @announces = @announces.order(id: "DESC")
   end
+
+  def show
+    @announce = Announce.find(params[:id])
+  end
+
   def new
     @announce = Announce.new
   end

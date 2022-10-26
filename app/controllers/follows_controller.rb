@@ -24,7 +24,4 @@ class FollowsController < ApplicationController
     @followers = current_user.followers
     render "index"
   end
-
-  def index
-  end
 end

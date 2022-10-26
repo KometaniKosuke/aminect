@@ -1,9 +1,5 @@
 class TimetablesController < ApplicationController
   def index
-    @timetable = Timetable.find_by(user_id: current_user.id)
-  end
-  def show
-    @timetable = Timetable.find(params[:id])
   end
 
   def edit
