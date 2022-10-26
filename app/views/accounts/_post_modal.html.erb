@@ -7,8 +7,16 @@
   <div class="modal-window">
     <div class="modal-content">
       <p><%= image_tag modal_post.post_img.url, width: '200px', style: "border: 1px solid black" %></p>
-      <p><%= modal_post.text %></p>
-      <%= button_to "削除", modal_post, method: :delete, data: { confirm: "本当に削除しますか?" } %>
+      <table align=center width=100%>
+        <tr>
+          <td style="width:92%; word-wrap: break-word;"><%= modal_post.text %></td>
+          <td style="width:8%; vertical-align:bottom">
+            <%= link_to modal_post, method: :delete, data: { confirm: "本当に削除しますか?" } do %>
+              <%= image_tag "delete.png", size: "20x20", style:"padding: 4px; background-color:#ffb6c1; border-radius:5px; " %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
     </div>
     <a href="#!" class="modal-close">×</a>
   </div>

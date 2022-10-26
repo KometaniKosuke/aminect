@@ -3,7 +3,15 @@
     <% if current_user.announces.present? %>
       <%= image_tag "bell_2.png", size: "30x30", style: "margin-top:10px;" %>
     <% else %>
-      <%= image_tag "bell.png", size: "30x30", style: "margin-top:10px;" %>
+      <% all = Announce.where(user_id: nil) %>
+      <% all = all.order(:updated_at).last %>
+      <% ques = Announce.where(user_id: 0) %>
+      <% ques = ques.order(:updated_time).last %>
+      <% if Time.now-ques.updated_at < 259200 %>
+        <%= image_tag "bell_2.png", size: "30x30", style: "margin-top:10px;" %>
+      <% else %>
+        <%= image_tag "bell.png", size: "30x30", style: "margin-top:10px;" %>
+      <% end %>
     <% end %>
   <% end %>
   <%= link_to :tags do %>

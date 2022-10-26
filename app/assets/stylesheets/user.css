@@ -5,20 +5,20 @@
    font-size: 20px;
    color: white;
    background-color: #007AFF;
-   width: 80%;
+   width: 100%;
    height: auto;
-   margin: 2% 10%;
+   margin: 2% 0;
  }
  .req-btn {
    display: inline-block;
    border-radius: 8px;
    border: 1px solid;
-   font-size: 20px;
+   font-size: 16px;
    color: black;
    background-color: #E8E8E8;
-   width: 80%;
+   width: 100%;
    height: auto;
-   margin: auto 10%;
+   /* margin: auto 10%; */
  }
 
  .rounded-circle {
