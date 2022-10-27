@@ -9,12 +9,12 @@
       </td>
     </tr>
     <tr>
-      <td style="display: flex">
+      <td align=center width=50%>
         <%= form.check_box :agreement, :as => :boolean %>
         <%= form.label :agreement, "同意する" %>
       </td>
-      <td>
-        <%= form.submit "完了" %>
+      <td align=center>
+        <%= form.submit "完了", class: "complete-btn" %>
       </td>
     </tr>
   </table>

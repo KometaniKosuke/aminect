@@ -61,15 +61,10 @@
     </td>
   </tr>
 </table>
-<% if params[:tagname].present? %>
-  <p style="position:absolute; margin-left:5%; margin-bottom:0; font-size:18px;">検索：</p>
-  <p class="searchtag" style="margin-left: 19%; margin-bottom:0;">
-    <span><%= params[:tagname] %></span>
-  </p>
-<% end %>
+<!-- ↑検索エリア↑ -->
 
 <% if params[:tagname].present? %>
   <%= render "search_result" %>
 <% end %>
-<%= render "recommend_user" %>
-<br><br><br>
+  <%= render "recommend_user" %>
+<br><br><br><br>

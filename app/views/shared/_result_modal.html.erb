@@ -1,11 +1,16 @@
 <a href="#<%= modal_id %>">
-  <% imgs=modal_user.posts %>
-  <% ids = Array.new %>
-  <% imgs.each do |img| %>
-    <% ids.append(img.id) %>
+  <% if Post.where(user_id: modal_user.id).present? %>
+    <% imgs=modal_user.posts %>
+    <% ids = Array.new %>
+    <% imgs.each do |img| %>
+      <% ids.append(img.id) %>
+    <% end %>
+    <% id = ids[rand(ids.size)] %>
+    <% img = Post.find(id).post_img.url %>
+  <% else %>
+    <% img = "hobby.png" %>
   <% end %>
-  <% id = ids[rand(ids.size)] %>
-  <%= image_tag Post.find(id).post_img.url, width: '94%', style: "border: 1px solid black; margin: auto 3%;" %>
+  <%= image_tag img, width: '94%', style: "border: 1px solid black; margin: auto 3%;" %>
 </a>
 
 <div class="modal-user" id="<%= modal_id %>">
@@ -46,7 +51,9 @@
           <span style="margin: auto 5px auto 5px; white-space: nowrap; color: #007AFF;">#<%= tag.name %></span>
         <% end %>
       <% end %>
-      <p><%= image_tag Post.find(id).post_img.url, width: '80%', style: "border: 1px solid black; margin: auto 3%;" %></p>
+      <p>
+        <%= image_tag img, width: '80%', style: "border: 1px solid black; margin: auto 3%;" %>
+      </p>
       <p align=right style="margin-right:7%"><%= link_to "詳細はこちら", modal_user, class: "user_link" %></p>
     </div>
     <a href="#!" class="modal-close">×</a>

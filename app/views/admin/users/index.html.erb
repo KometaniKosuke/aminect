@@ -1,3 +1,7 @@
+<% if flash.notice %>
+  <p class="notice"><%= flash.notice %></p>
+<% end %>
+
 <table border=5 width="500px">
   <tr align="center">
     <th>ID</th>
@@ -13,4 +17,7 @@
   <% end %>
 </table>
 <br>
-<%= link_to "<<戻る", :admin_root %>
+<%= form_tag :term_change_admin_users, method: :patch do %>
+  <%= submit_tag "利用規約更新" %>
+<% end %>
+<br><br>

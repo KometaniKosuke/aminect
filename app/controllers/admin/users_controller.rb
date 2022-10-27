@@ -101,6 +101,15 @@ class Admin::UsersController < Admin::Base
     end
     # ------------------------------------------
     @user.destroy
-    redirect_to :admin_users, notice: "ユーザを削除しました。"
+    redirect_to :admin_users, notice: "ユーザを削除しました"
+  end
+
+  def term_change
+    users = User.all
+    users.each do |u|
+      u.update(agreement: :false)
+      u.save
+    end
+    redirect_to :admin_users, notice: "再同意を申請しました"
   end
 end

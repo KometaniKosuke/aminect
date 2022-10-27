@@ -62,6 +62,7 @@ Rails.application.routes.draw do
       resource :follows, only: [:create, :destroy]
       get 'followings' => 'follows#followings', as: 'followings'
       get 'followers' => 'follows#followers', as: 'followers'
+      patch 'term_change', on: :collection
     end
     resources :reports, only: [:index, :destroy]
   end
