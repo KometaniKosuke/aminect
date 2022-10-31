@@ -9,7 +9,7 @@ class AgreesController < ApplicationController
       current_user.save
       redirect_to :root
     else
-      flash.alert = "利用には同意が必要です。"
+      flash.alert = "利用には同意が必要です"
       render "new"
     end
   end
@@ -20,7 +20,7 @@ class AgreesController < ApplicationController
       current_user.save
       redirect_to :root
     else
-      flash.alert = "利用には同意が必要です。"
+      flash.alert = "利用には同意が必要です"
       render "new"
     end
   end

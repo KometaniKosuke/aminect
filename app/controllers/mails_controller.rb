@@ -14,12 +14,12 @@ class MailsController < ApplicationController
   def create
     a = User.where(email: params[:user][:email])
     if a.present?
-      redirect_to "/register", notice: "このメールアドレスは既に登録されています。"
+      redirect_to "/register", notice: "このメールアドレスは既に登録されています"
     else
       @pass = SecureRandom.alphanumeric(10)
       @user = User.new(password: @pass, email: params[:user][:email],sex: 3, agreement: params[:user][:agreement])
       if @user.save
-        SendMailer.with(user: @user, pass: @pass).published_email.deliver_later
+        # SendMailer.with(user: @user, pass: @pass).published_email.deliver_later
         redirect_to :mails, notice: [@user,@pass]
       else
         render "new"

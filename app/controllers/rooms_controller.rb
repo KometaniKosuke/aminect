@@ -42,6 +42,6 @@ class RoomsController < ApplicationController
       ur.destroy
     end
     @room.destroy
-    redirect_to :rooms
+    redirect_to :rooms, notice: "トークルームを削除しました"
   end
 end

@@ -7,7 +7,7 @@ class PasswordResetsController < ApplicationController
   def new
     @user = User.find_by(email: params[:email])
     if !@user.present?
-      redirect_to :password_resets, notice: "該当するユーザはいません。"
+      redirect_to :password_resets, notice: "該当するユーザはいません"
     end
   end
 

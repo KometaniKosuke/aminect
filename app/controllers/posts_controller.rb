@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(user_id: current_user.id, post_img: params[:post][:post_img], text: params[:post][:text])
     if @post.save
-      redirect_to :account, notice: "投稿しました。"
+      redirect_to :account, notice: "投稿しました"
     else
       render "new"
     end

@@ -9,7 +9,7 @@ names.each_with_index do |name, idx|
     undergraduate: ugs[rand(5)],
     grade: 3,
     comment: "よろしくお願いします！",
-    email: "am"+(100000+idx).to_s+"@senshu-u.jp",
+    email: "ne"+(900000+idx).to_s+"@senshu-u.jp",
     twitter: "@Twitter",
     instagram: "@instagram",
     # tiktok: "@tiktok",

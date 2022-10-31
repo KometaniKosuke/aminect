@@ -7,7 +7,7 @@ class SendMailer < ApplicationMailer
     @user = params[:user]
     @pass = params[:pass]
     mail(
-      from: '"小杉プロジェクト" <ne201218@senshu-u.jp>',
+      from: '"小杉プロジェクト" <aminect.official@gmail.com>',
       subject: 'Aminect会員登録のご案内（小杉プロジェクト）',
       to: @user.email
     )
