@@ -16,7 +16,7 @@
   .buttonlogin {
     display       : inline-block;
     width         : 208px;
-    height:       : 42px;
+    height        : 42px;
     border-radius : 10px;        /* 角丸       */
     font-size     : 14pt;        /* 文字サイズ */
     cursor        : pointer;     /* カーソル   */
@@ -33,7 +33,7 @@
   .buttonentry {
     display       : flex;
     width         : 208px;
-    height:       : 42px;
+    height        : 42px;
     margin        : 0 auto;
     border-radius : 10px;        /* 角丸       */
     font-size     : 14pt;        /* 文字サイズ */

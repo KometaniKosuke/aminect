@@ -118,6 +118,7 @@ GEM
     nokogiri (1.13.6)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
+    pg (1.4.4)
     public_suffix (5.0.0)
     puma (3.12.6)
     racc (1.6.0)
@@ -225,6 +226,7 @@ DEPENDENCIES
   net-imap
   net-pop
   net-smtp
+  pg
   puma (~> 3.11)
   rails (~> 5.2.8)
   rails-i18n (~> 5.1)
