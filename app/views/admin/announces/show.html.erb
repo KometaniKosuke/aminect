@@ -23,7 +23,7 @@
       <% elsif @announce.user_id==0 %>
         アンケート
       <% else %>
-        id:<%= @announce.user_id %> / <%= User.find(@announce.user_id) %>
+        id:<%= @announce.user_id %> / <%= User.find(@announce.user_id).name %>
       <% end %>
     </td>
   </tr>

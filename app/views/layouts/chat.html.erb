@@ -24,7 +24,7 @@
         <div class="send">
           <%= form_for @message do |f| %>
             <table style="width:98%;">
-              <td style="border: 1px solid black;border-radius: 10px;background-color: #fff;"><%= f.text_area :text, class: "input" %></td>
+              <td style="border: 1px solid black;border-radius: 10px;background-color: #fff;"><%= f.text_area :text,required: :true, class: "input" %></td>
               <%= f.hidden_field :room_id %>
               <td style="width: 3%;"><%= f.submit "送信", class: "btn", id: "btn" %></td>
             </table>

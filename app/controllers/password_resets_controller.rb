@@ -13,10 +13,20 @@ class PasswordResetsController < ApplicationController
 
   def create
     @user = User.find_by(email: params[:user][:email])
-    @user.update_attributes(password: params[:user][:password])
-    if @user.save
-      render "index"
+    if params[:user][:password].length>=8 && params[:user][:password].length<=15
+      if params[:user][:password]==params[:user][:password_confirmation]
+        @user.update_attributes(password: params[:user][:password])
+        if @user.save
+          render "index"
+        else
+          render "new"
+        end
+      else
+        flash.notice = "確認用に誤りがあります"
+        render "new"
+      end
     else
+      flash.notice = "パスワードは8~15文字にしてください"
       render "new"
     end
   end

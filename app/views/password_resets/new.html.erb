@@ -14,6 +14,9 @@
   </tr>
 </table>
 <br>
+<% if flash.notice %>
+  <p class="alert"><%= flash.notice %></p>
+<% end %>
 <%= render "shared/errors", obj: @user %>
 <%= form_for @user, method: :post, url: {controller: 'password_resets', action: 'create' } do |form| %>
   <table style="margin: auto;">
