@@ -8,7 +8,9 @@
   <div style="margin:0 8%">
     <h4>登録時に使用した専修大メールアドレスと発行したパスワードを入力してください。</h4>
     <% if flash.notice %>
-      <p class="alert"><%= flash.notice %></p>
+      <% if params[:email].present? %>
+        <p class="alert"><%= flash.notice %></p>
+      <% end %>
     <% end %>
     <%= form_tag :new_account, method: :get do %>
       <table width=80% align=center>

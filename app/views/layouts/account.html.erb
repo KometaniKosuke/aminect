@@ -18,7 +18,9 @@
         <% if current_user.present? %>
           <div class="content">
             <% if flash.notice %>
-              <p class="notice"><%= flash.notice %></p>
+              <% if params[:email].present? %>
+                <p class="notice"><%= flash.notice %></p>
+              <% end %>
             <% end %>
             <%= yield %>
           </div>

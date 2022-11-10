@@ -15,9 +15,20 @@ class Admin::AnnouncesController < Admin::Base
 
   def create
     @announce = Announce.new(params[:announce])
-    if @announce.save
-      redirect_to :admin_announces, notice: "投稿しました。"
+    if params[:announce][:url_title].present? && params[:announce][:url].present?
+      if @announce.save
+        redirect_to :admin_announces, notice: "告知・警告しました"
+      else
+        render "new"
+      end
+    elsif params[:announce][:url_title]==params[:announce][:url]
+      if @announce.save
+        redirect_to :admin_announces, notice: "告知・警告しました"
+      else
+        render "new"
+      end
     else
+      flash.notice = "URLとURLタイトルはセットにしてください"
       render "new"
     end
   end
@@ -28,10 +39,22 @@ class Admin::AnnouncesController < Admin::Base
 
   def update
     @announce = Announce.find(params[:id])
-    @announce.assign_attributes(params[:announce])
-    if @announce.save
-      redirect_to :admin_announces, notice: "会員情報を更新しました。"
+    if params[:announce][:url_title].present? && params[:announce][:url].present?
+      @announce.assign_attributes(params[:announce])
+      if @announce.save
+        redirect_to :admin_announces, notice: "告知・警告を更新しました。"
+      else
+        render "edit"
+      end
+    elsif params[:announce][:url_title].nil? && params[:announce][:url].nil?
+      @announce.assign_attributes(params[:announce])
+      if @announce.save
+        redirect_to :admin_announces, notice: "告知・警告を更新しました。"
+      else
+        render "edit"
+      end
     else
+      flash.notice = "URLとURLタイトルはセットにしてください"
       render "edit"
     end
   end
@@ -39,6 +62,6 @@ class Admin::AnnouncesController < Admin::Base
   def destroy
     @announce = Announce.find(params[:id])
     @announce.destroy
-    redirect_to :admin_announces, notice: "投稿を削除しました。"
+    redirect_to :admin_announces, notice: "告知・警告を削除しました。"
   end
 end

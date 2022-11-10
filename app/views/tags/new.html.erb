@@ -8,13 +8,13 @@
       <h4 class="accordion-title js-accordion-title"><%= pa.name %></h4>
 
       <% cs = Tag.where(ancestry: pa.id.to_s) %>
-      <div class="accordion-content">
+      <div class="accordion-content" style="padding-top: 5px">
         <% cs.each do |c| %>
           <% i += 1 %>
-          <p>
+          <span style="margin: auto 10px auto 0; white-space: nowrap;">
             <%= check_box "tag", i.to_s, { checked: UserTag.find_by(user_id: current_user.id, tag_id: i).present? } %>
-            <%= c.name %>
-          </p>
+            <%= label_tag "tag", c.name %>
+          </span>
         <% end %>
       </div>
     </div>

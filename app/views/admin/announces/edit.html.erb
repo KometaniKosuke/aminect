@@ -6,6 +6,11 @@
 <% User.all.each do |u| %>
   <% ulist.append([u.name, u.id]) %>
 <% end %>
+
+<% if flash.notice %>
+  <p class="alert"><%= flash.notice %></p>
+<% end %>
+
 <%= form_for [:admin, @announce] do |form| %>
   <table align=center width="90%">
     <tr>

@@ -13,7 +13,9 @@
     <%= link_to "通報", :admin_reports %>
   <% end %>
   |
-  <% if current_page?(:admin_announces) %>告知
-  <% else %><%= link_to "告知", :admin_announces %>
+  <% if current_page?(:admin_announces) %>
+    告知
+  <% else %>
+    <%= link_to "告知・警告", :admin_announces %>
   <% end %>
 </ul>

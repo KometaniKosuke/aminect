@@ -1,11 +1,11 @@
-<h2>告知一覧</h2>
+<h2>告知・警告一覧</h2>
 <% if flash.notice %>
   <p class="notice"><%= flash.notice %></p>
 <% end %>
 
 <table style="padding-left: 3%; width: 100%">
   <tr>
-    <td><%= link_to "新しい投稿", :new_admin_announce %></td>
+    <td><%= link_to "新しい告知・警告", :new_admin_announce %></td>
   </tr>
   <% @announces.each do |a| %>
     <tr>

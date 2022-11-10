@@ -31,15 +31,18 @@ class AccountsController < ApplicationController
   end
 
   def new
+
     @user = User.find_by(email: params[:email])
     if @user.present?
       if @user&.authenticate(params[:password])
         @timetable = @user.timetables.new
       else
         @user = nil
-        redirect_to :new_account, notice: "パスワードが違います"
+        flash.notice="パスワードが違います"
+        render "new"
       end
     else
+      flash.notice="メールアドレスに誤りがあります"
       render "new"
     end
   end
