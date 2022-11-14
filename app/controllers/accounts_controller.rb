@@ -31,14 +31,13 @@ class AccountsController < ApplicationController
   end
 
   def new
-
     @user = User.find_by(email: params[:email])
     if @user.present?
       if @user&.authenticate(params[:password])
         @timetable = @user.timetables.new
       else
         @user = nil
-        flash.notice="パスワードが違います"
+        flash.notice="パスワードに誤りがあります"
         render "new"
       end
     else
@@ -53,7 +52,7 @@ class AccountsController < ApplicationController
     tt = @user.timetables.new
     if @user.save && tt.save
       cookies.signed[:user_id] = { value: @user.id }
-      redirect_to :root, notice: "会員情報を登録しました"
+      redirect_to :edit_password, notice: "パスワードを変更できます"
     else
       render "new"
     end
@@ -80,7 +79,7 @@ class AccountsController < ApplicationController
    end
 
   private def user_params
-    params.require(:user).permit(:name, :sex, :birthplace, :undergraduate, :comment, :image, :twitter, :instagram, :email)
+    params.require(:user).permit(:name, :sex, :birthplace, :undergraduate, :grade, :comment, :image, :twitter, :instagram, :email)
   end
 
   private def register_params

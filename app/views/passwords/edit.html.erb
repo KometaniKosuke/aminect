@@ -12,13 +12,13 @@
       <th align=left style="padding-left: 2%; font-size: 16px">変更後のパスワード</th>
     </tr>
     <tr>
-      <td align=center><%= form.password_field :password, required: :true, class: "pass" %></td>
+      <td align=center><%= form.password_field :password, required: :true, class: "pass", placeholder:"英数字7~15文字" %></td>
     </tr>
     <tr>
       <th align=left style="padding-left: 2%; font-size: 16px">確認用</th>
     </tr>
     <tr>
-      <td align=center><%= form.password_field :password_confirmation, required: :true, class: "pass" %></td>
+      <td align=center><%= form.password_field :password_confirmation, required: :true, class: "pass", placeholder:"英数字7~15文字" %></td>
     </tr>
     <tr>
       <td height=10px></td>

@@ -2,7 +2,6 @@ class CreateTimetables < ActiveRecord::Migration[5.2]
   def change
     create_table :timetables do |t|
       t.references :user
-      t.string :timetable_img
       t.integer :mon1, default: 0 # 0→空き、1→授業
       t.integer :mon2, default: 0
       t.integer :mon3, default: 0

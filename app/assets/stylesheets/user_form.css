@@ -1,0 +1,10 @@
+.required {
+  font-size: 8px;
+  font-weight: normal;
+  border-radius: 3px;
+  background-color: #f14949;
+  color: white;
+  width: 28px;
+  height: 16px;
+  margin: 4px 8px;
+}

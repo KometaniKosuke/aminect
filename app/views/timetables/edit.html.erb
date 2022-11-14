@@ -2,27 +2,6 @@
 <div style="width: 94%; margin:3%" align=center>
   <br>
   <%= form_for @timetable do |tt| %>
-    <table align="center" width="90%">
-      <tr>
-        <% if @timetable.timetable_img.present? %>
-          <td colspan="2" align=center style="border: 1px solid; border-radius: 5px;">
-            <%= image_tag @timetable.timetable_img.url, id:"alter-image", height: "150px", style: "margin-left: auto" %>
-          </td>
-        <% else %>
-          <td colspan="2" align=center style="border: 1px solid; border-radius: 5px;">
-            <%= image_tag "", id:"alter-image", height: "150px", style: "margin-left: auto" %>
-          </td>
-        <% end %>
-      </tr>
-      <tr>
-        <td>
-          <%= tt.label :timetable_img, "時間割の写真を選択", class: "image_input_btn" %>
-          <%= tt.file_field :timetable_img, accept: 'image/*', style: "display: none;" %>
-          <%= tt.hidden_field :timetable_img_cache %>
-        </td>
-        <td><%= tt.check_box :remove_timetable_img %>画像を削除する</td>
-      </tr>
-    </table>
     <div class="timetable" align=center>
       <br>
       <table border="3" align="center" style="width: 96%; margin: 2% auto; border-collapse: collapse; border: none; border-color:#ccc;">

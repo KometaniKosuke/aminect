@@ -1,15 +1,9 @@
-<% c = (Report.where(to_id: @user.id).select(:from_id).distinct.count+1)/2 %>
-<table style="width: 90%; font-size: 16px; margin: 3% auto auto auto; text-align: center;" align="center">
+<table border="1" style="width: 90%; font-size: 16px; margin: 3% auto auto auto; text-align: center;" align="center">
   <tr>
     <td width="40%" rowspan="2">
       <%= image_tag @user.image.url, class: 'rounded-circle', size: '128x128' %>
     </td>
     <td class="name" colspan="2">
-      <% if c!=0 %>
-        <% for i in 1..c do %>
-          <%= image_tag "bad.png", size: "20x20", style: "margin: 0;" %>
-        <% end %><br>
-      <% end %>
       <%= @user.name %>
     </td>
   </tr>
@@ -102,11 +96,7 @@
   <%= link_to edit_account_timetable_path(@timetable.id), {method: :get, class: "edit_img"} do %>
     <h3>時間割 <%= image_tag("edit.png", size: "15x15") %></h3>
   <% end %>
-  <% if @timetable.timetable_img.present? %>
-    <%= image_tag @timetable.timetable_img.url, style: "width: 84%; margin-left: 8%" %>
-  <% else %>
-    <%= render "shared/timetable" %>
-  <% end %>
+  <%= render "shared/timetable" %>
 </div>
 <br>
 

@@ -84,7 +84,7 @@ class User < ApplicationRecord
     length: { maximum: 12, allow_blank: true, message: "は12文字までです" }
   validates :email,
     presence: true,
-    format: { with: /\A(e|ee|el|ew|ma|md|lg|lb|la|lt|lr|lk|lm|ne|hp|hs)[0-9]{6}(@senshu-u.jp)\z/, allow_blank: true, message: "のみ有効です。" },
+    format: { with: /\A(e|ee|el|ew|ma|md|lg|lb|la|lt|lr|lk|lm|ne|hp|hs)[0-9]{6}(@senshu-u\.jp)\z/, allow_blank: true, message: "のみ利用できます" },
     uniqueness: { case_sensitive: false }
   validates :password,
     presence: true,
@@ -93,6 +93,6 @@ class User < ApplicationRecord
     on: :pass
   validates_acceptance_of :agreement,
     allow_nil: false,
-    message: "に同意してください。",
+    message: "に同意してください",
     on: :create
 end
