@@ -56,8 +56,16 @@
     </tr>
   </table>
   <p align=center>
-    <%= submit_tag "あいまい検索", style: "margin-right: 2%;", class: "search_btn" %>
-    <%= submit_tag "ピッタリ検索", style: "margin-left : 2%;", class: "search_btn" %>
+    <% if params[:commit]=="あいまい検索" %>
+      <%= submit_tag "あいまい検索", style: "margin-right: 2%;", class: "search_btn_2" %>
+    <% else %>
+      <%= submit_tag "あいまい検索", style: "margin-right: 2%;", class: "search_btn" %>
+    <% end %>
+    <% if params[:commit]=="ピッタリ検索" %>
+      <%= submit_tag "ピッタリ検索", style: "margin-left : 2%;", class: "search_btn_2" %>
+    <% else %>
+      <%= submit_tag "ピッタリ検索", style: "margin-left : 2%;", class: "search_btn" %>
+    <% end %>
   </p>
 <% end %>
 

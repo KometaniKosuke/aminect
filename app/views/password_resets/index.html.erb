@@ -2,17 +2,41 @@
 <div style="text-align: center">
 <%= image_tag 'logo.png', size: "250x75"%>
 </div>
+
 <% if @user.nil? %>
-  <% if flash.notice %>
-    <p class="notice"><%= flash.notice %></p>
+  <h3 style="margin-left:8%; margin-bottom: 4px; border: none">ユーザ名の確認/パスワード変更</h3>
+  <p style="width: 80%; margin: auto;">下記の内容を入力してください</p>
+  <ul style="margin: 8px auto auto 3%;">
+    <li style="font-size:12px">登録した専修大学メールアドレス</li>
+    <li style="font-size:12px">登録時に送信したメールに記載した初期パスワード</li>
+  </ul>
+  <hr align=center width=84%>
+  <% if flash.alert %>
+    <p class="alert"><%= flash.alert %></p>
   <% end %>
-  <%= form_tag :new_password_reset, method: :get, align: "center" do %>
-    <%= text_field_tag "email","", class: "textbox", placeholder: "専修大学メールアドレス" %>
-    <%= submit_tag "完了", class: "complete-btn" %>
-  <% end %>
-  <p style="width: 80%; margin: auto;">登録時に使用した専修大学メールアドレスを入力してください。</p>
-  <br>
-  <%= link_to "←戻る", :root, style: "margin-left: 10%; font-size: 16px; color: #686b6f; text-decoration:none;border: 1px solid #686b6f; border-radius: 10px; padding: 3px" %>
+  <table width=80% align=center>
+    <%= form_tag :new_password_reset, method: :get, align: "center" do %>
+      <tr>
+        <th align=left>専修大学メールアドレス</th>
+      </tr>
+      <tr>
+        <td><%= text_field_tag "email","", class: "textbox", placeholder: "専修大学メールアドレス", style: "margin: 0 0 10px 20px", required: :true %></td>
+      </tr>
+      <tr>
+        <th align=left>初期パスワード</th>
+      </tr>
+      <tr>
+        <td><%= password_field_tag "identifier","", class: "textbox", placeholder: "初期パスワード", style: "margin: 0 0 0 20px", required: :true %></td>
+      </tr>
+      <tr>
+        <td align=center><%= submit_tag "完了", class: "complete-btn", style: "width:100px; margin: 15px 0" %></td>
+      </tr>
+      <tr>
+        <td align=center><%= link_to "戻る", :root, style: "font-size:16px; color:#686b6f; text-decoration:none; border:1px solid #686b6f; border-radius:5px; padding:3px 20px" %></td>
+      </tr>
+    <% end %>
+  </table>
+
 <% else %>
   <div align=center>
     <h3>パスワードを変更しました。</h3>

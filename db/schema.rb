@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(version: 2022_10_08_072144) do
     t.string "email"
     t.string "twitter"
     t.string "instagram"
+    t.string "identifier"
     t.boolean "agreement"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

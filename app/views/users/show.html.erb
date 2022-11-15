@@ -7,7 +7,12 @@
     <% unless Deal.find_by(from_id: current_user.id, to_id: @user.id).present? %>
       <%= button_to "ブロック", user_deals_path(@user.id), method: :post, class: "deal-btn", data: {confirm: "ブロックしますか?"} %>　
     <% end %>
-    <%= button_to "通報", user_reports_path(@user.id), method: :post, class: "deal-btn", data: {confirm: "通報しますか?"} %>
+    <% rep = Report.find_by(from_id: current_user.id, to_id: @user.id) %>
+    <% unless rep.present? %>
+      <%= button_to "通報", user_reports_path(@user.id), method: :post, class: "deal-btn", data: {confirm: "通報しますか?"} %>
+    <% else %>
+      <%= button_to "通報取消", user_reports_path(@user), method: :delete, data: { confirm: "通報を取り消しますか?" }, class: "deal-btn" %>
+    <% end %>
   </div>
 </div>
 
@@ -92,16 +97,18 @@
     <br>
 
     <% if current_user.following?(@user) %>
-      <p align="center">
-        <% if @user.twitter.present? %>
-          <% tw = 'https://twitter.com/'.concat(@user.twitter) %>
-          <%= link_to image_tag("Twitter_logo.png", size:"86x86"),tw, style: "padding:0 7%;" %>
-        <% end %>
-        <% if @user.instagram.present? %>
-          <% i = 'https://www.instagram.com/'.concat(@user.instagram) %>
-          <%= link_to image_tag("Instagram_logo.png", size:"86x86"),i, style: "padding:0 7%;"%>
-        <% end %>
-      </p>
+      <% if @user.following?(current_user) %>
+        <p align="center">
+          <% if @user.twitter.present? %>
+            <% tw = 'https://twitter.com/'.concat(@user.twitter) %>
+            <%= link_to image_tag("Twitter_logo.png", size:"86x86"),tw, style: "padding:0 7%;" %>
+          <% end %>
+          <% if @user.instagram.present? %>
+            <% i = 'https://www.instagram.com/'.concat(@user.instagram) %>
+            <%= link_to image_tag("Instagram_logo.png", size:"86x86"),i, style: "padding:0 7%;"%>
+          <% end %>
+        </p>
+      <% end %>
       <div class="timetable" align=center>
         <h3>時間割</h3>
         <%= render "shared/timetable" %>

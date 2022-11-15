@@ -4,11 +4,6 @@ Rails.application.routes.draw do
   get "/register" => "mails#new"
   resources :password_resets, only: [:new, :create, :index]
 
-  # resources :users do
-    # resources :rooms
-    # resources :timetables
-    # resources :posts, only: [:index, :show]
-  # end
   resources :posts, only: [:new, :create, :destroy]
   resources :users, only: [:index, :show, :destroy] do
     resource :follows, only: [:index, :create, :destroy]

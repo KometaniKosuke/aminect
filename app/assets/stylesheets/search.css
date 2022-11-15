@@ -11,6 +11,16 @@
    width: auto;
    height: auto;
  }
+ .search_btn_2 {
+   display: inline-block;
+   border-radius: 5px;
+   font-size: 20px;
+   color: white;
+   background-color: #44cd88;
+   border: 1px solid;
+   width: auto;
+   height: auto;
+ }
  .this {
    background-color: #EEFFE6;
  }

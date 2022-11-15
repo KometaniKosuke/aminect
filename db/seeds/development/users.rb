@@ -12,7 +12,7 @@ names.each_with_index do |name, idx|
     email: "ne"+(900000+idx).to_s+"@senshu-u.jp",
     twitter: "@Twitter",
     instagram: "@instagram",
-    # tiktok: "@tiktok",
+    identifier: SecureRandom.alphanumeric(10),
     password: "aminectaminect",
     password_confirmation: "aminectaminect",
     agreement: true

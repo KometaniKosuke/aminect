@@ -5,10 +5,13 @@
 
 <table style="width: 80%; font-size: 16px; margin: 3% auto auto auto; text-align: center; border-bottom: 2px dotted #666">
   <tr>
-    <td style="width: 30%;">
+    <td style="width: 30%;" rowspan="2">
       <%= image_tag @user.image.url, class: 'rounded-circle', size: '70x70' %>
     </td>
-    <td align=left style="vertical-align: bottom; padding: 8px 20px; font-size: 25px; font-weight: bold; ">
+    <td align=left>ユーザ名</td>
+  </tr>
+  <tr>
+    <td align=left style="vertical-align: top; padding: 8px 20px; font-size: 25px; font-weight: bold; ">
       <%= @user.name %>
     </td>
   </tr>
@@ -19,7 +22,7 @@
 <% end %>
 <%= render "shared/errors", obj: @user %>
 <%= form_for @user, method: :post, url: {controller: 'password_resets', action: 'create' } do |form| %>
-  <table style="margin: auto;">
+  <table style="margin: auto;" width=96%>
     <%= form.hidden_field :email %>
     <tr>
       <th>新しいパスワード</th>
@@ -30,9 +33,10 @@
       <td><%= form.password_field :password_confirmation, class: "pass", required: :true, placeholder: "英数字8~15文字" %></td>
     </tr>
     <tr>
-      <td align=right colspan="2" style="margin-right: 10px;"><%= form.submit "変更", class: "pass-btn" %></td>
+      <td align=center colspan="2"><%= form.submit "変更", class: "pass-btn", style: "width:100px; margin: 15px 0" %></td>
+    </tr>
+    <tr>
+      <td align=center colspan="2"><%= link_to "戻る", :back, style: "font-size:16px; color:#686b6f; text-decoration:none; border:1px solid #686b6f; border-radius:5px; padding:3px 20px" %></td>
     </tr>
   </table>
 <% end %>
-<br>
-<%= link_to "←ログイン画面へ", :root, style: "margin-left: 10%; font-size: 16px; color: #686b6f; text-decoration:none;border: 1px solid #686b6f; border-radius: 10px; padding: 3px" %>
