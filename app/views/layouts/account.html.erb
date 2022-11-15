@@ -18,7 +18,7 @@
         <% if current_user.present? %>
           <div class="content">
             <% if flash.notice %>
-              <% if params[:email].present? %>
+              <% if current_page?(:account) %>
                 <p class="notice"><%= flash.notice %></p>
               <% end %>
             <% end %>
@@ -35,7 +35,9 @@
       </aside>
       <footer>
         <% if current_user.present? %>
-          <%= render "shared/under_menubar" %>
+          <% unless current_page?(:new_account) %>
+            <%= render "shared/under_menubar" %>
+          <% end %>
         <% end %>
       </footer>
     </div>

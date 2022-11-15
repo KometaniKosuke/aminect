@@ -31,8 +31,8 @@
       <% if announce.url.present? %>
         <table>
           <tr>
-            <th>CLICK!→</th>
-            <td><%= link_to announce.url_title, announce.url %></td>
+            <th>URL:</th>
+            <td><%= link_to announce.url_title, announce.url,target: "_blank" %></td>
           </tr>
         </table>
       <% end %>

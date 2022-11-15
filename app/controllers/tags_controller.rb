@@ -6,20 +6,26 @@ class TagsController < ApplicationController
     altags = ts.pluck(:tag_id)
     hash = params[:tag].to_h
     k = hash.find_all{|k ,v| v=="1"}
-    tags = k.to_h.keys
-    tags= tags.map!{|x| x.to_i}
-    tags.each do |tag|
-      if altags.include?(tag)
-        altags.delete(tag)
-      else
-        ut=UserTag.new(user_id: current_user.id, tag_id: tag)
-        ut.save
+    if k.size <= 30
+      tags = k.to_h.keys
+      tags= tags.map!{|x| x.to_i}
+      tags.each do |tag|
+        if altags.include?(tag)
+          altags.delete(tag)
+        else
+          ut=UserTag.new(user_id: current_user.id, tag_id: tag)
+          ut.save
+        end
       end
+      altags.each do |al|
+        UserTag.find_by(user_id: current_user.id, tag_id: al).destroy
+      end
+      flash.notice="タグを変更しました"
+      redirect_to :account
+    else
+      flash.alert = "タグの上限は30個です"
+      render "new"
     end
-    altags.each do |al|
-      UserTag.find_by(user_id: current_user.id, tag_id: al).destroy
-    end
-    redirect_to :account
   end
 
   def tag_search

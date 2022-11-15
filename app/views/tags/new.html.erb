@@ -1,5 +1,11 @@
-<h2 class="back"><%= link_to "< タグ選択", :account %></h2>
-
+<h2 class="back">
+  <%= link_to :account, style:"display:flex" do %>
+    < タグ選択<div style="font-size:16px; margin-top:auto">（上限:30個）</div>
+  <% end %>
+</h2>
+<% if flash.alert %>
+  <p class="alert"><%= flash.alert %></p>
+<% end %>
 <% parents = Tag.where(ancestry: nil) %>
 <% i=12 %>
 <%= form_tag( {:controller => 'tags', :action => 'create'},{ :method => :post} ) do %>

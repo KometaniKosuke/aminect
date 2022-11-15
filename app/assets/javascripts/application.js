@@ -14,7 +14,7 @@
 //= require activestorage
 // require turbolinks
 //= require jquery
-//= require jquery_ujs
+
 
 //= require_tree .
 // チャット部分ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
