@@ -12,7 +12,9 @@
   <body>
     <div id = "container">
       <header>
-        <%= render "shared/header" %>
+        <% if current_user.present? %>
+          <%= render "shared/header" %>
+        <% end %>
       </header>
       <main>
         <% if current_user.present? %>
