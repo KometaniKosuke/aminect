@@ -10,28 +10,37 @@
   </head>
 
   <body>
-    <div id = "container">
-      <header>
-        <%= render "shared/header" %>
-      </header>
-      <main style="position: absolute;width: 100%;height: 83%;">
-        <%= yield %>
-      </main>
-      <footer>
-        <% if current_page?(rooms_path) %>
-          <%= render "shared/under_menubar" %>
-        <% else %>
-        <div class="send">
-          <%= form_for @message do |f| %>
-            <table style="width:98%;">
-              <td style="border: 1px solid black;border-radius: 10px;background-color: #fff;"><%= f.text_area :text,required: :true, class: "input" %></td>
-              <%= f.hidden_field :room_id %>
-              <td style="width: 3%;"><%= f.submit "送信", class: "btn", id: "btn" %></td>
-            </table>
+    <% if current_user.present? %>
+      <div id = "container">
+        <header>
+          <%= render "shared/header" %>
+        </header>
+        <main style="position: absolute;width: 100%;height: 83%;">
+          <%= yield %>
+        </main>
+        <footer>
+          <% if current_page?(rooms_path) %>
+            <%= render "shared/under_menubar" %>
+          <% else %>
+            <div class="send">
+              <%= form_for @message do |f| %>
+                <table style="width:98%;">
+                  <td style="border: 1px solid black;border-radius: 10px;background-color: #fff;"><%= f.text_area :text,required: :true, class: "input" %></td>
+                  <%= f.hidden_field :room_id %>
+                  <td style="width: 3%;"><%= f.submit "送信", class: "btn", id: "btn" %></td>
+                </table>
+              <% end %>
+            </div>
           <% end %>
+        </footer>
+      </div>
+    <% else %>
+      <aside id="sidebar">
+        <div align=center style="position:absolute; top:0; margin-left:auto; width:100%;">
+          <h5>セッションが切断されました<br>(再度ログインしてください)</h5>
         </div>
-        <% end %>
-      </footer>
-    </div>
+        <%= render "shared/sidebar" %>
+      </aside>
+    <% end %>
   </body>
 </html>

@@ -100,11 +100,19 @@
       <% if @user.following?(current_user) %>
         <p align="center">
           <% if @user.twitter.present? %>
-            <% tw = 'https://twitter.com/'.concat(@user.twitter) %>
+            <% if @user.twitter.include?('https://twitter.com/') %>
+              <% tw = @user.twitter %>
+            <% else %>
+              <% tw = 'https://twitter.com/'.concat(@user.twitter) %>
+            <% end %>
             <%= link_to image_tag("Twitter_logo.png", size:"86x86"),tw, style: "padding:0 7%;" %>
           <% end %>
           <% if @user.instagram.present? %>
-            <% i = 'https://www.instagram.com/'.concat(@user.instagram) %>
+            <% if @user.instagram.include?("https://www.instagram.com/") %>
+              <% i = @user.instagram %>
+            <% else %>
+              <% i = 'https://www.instagram.com/'.concat(@user.instagram) %>
+            <% end %>
             <%= link_to image_tag("Instagram_logo.png", size:"86x86"),i, style: "padding:0 7%;"%>
           <% end %>
         </p>
@@ -113,63 +121,78 @@
         <h3>時間割</h3>
         <%= render "shared/timetable" %>
       </div>
-    <% end %>
-  <% end %>
-  <br>
-  <br>
-  <% num = @posts.count/2 %>
-  <% if @posts.count%2 == 0 %> <!-- 投稿が偶数 -->
-    <table align="center"  style="width:90%;">
-      <% for i in 1..num %>
-        <tr>
-          <td style="width: 50%;">
-            <% a = @posts.limit(i*2-1).last %>
-            <% modal_a = "modal_a"+i.to_s %>
-            <%= render partial: "modal", :locals=>{:modal_id => modal_a, :modal_post => a} %>
-          </td>
-          <td style="width: 50%;">
-            <% b = @posts.limit(i*2).last %>
-            <% modal_b = "modal_b"+i.to_s %>
-            <%= render partial: "modal", :locals=>{:modal_id => modal_b, :modal_post => b} %>
-          </td>
-        </tr>
+      <br><br>
+      <% num = @posts.count/2 %>
+      <% if @posts.count%2 == 0 %> <!-- 投稿が偶数 -->
+        <div style="display: flex">
+          <table width=42% style="margin-left:8%"> <!-- 左 -->
+            <% for i in 1..num %>
+              <tr>
+                <td>
+                  <% a = @posts.limit(i*2-1).last %>
+                  <% modal_a = "modal_a"+i.to_s %>
+                  <%= render partial: "modal", :locals=>{:modal_id => modal_a, :modal_post => a} %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+          <table width=42%>  <!-- 右 -->
+            <% for i in 1..num %>
+              <tr>
+                <td>
+                  <% b = @posts.limit(i*2).last %>
+                  <% modal_b = "modal_b"+i.to_s %>
+                  <%= render partial: "modal", :locals=>{:modal_id => modal_b, :modal_post => b} %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      <% else %> <!-- 投稿が奇数 -->
+        <div style="display: flex">
+          <% if @posts.count!=1 %>
+            <table width=42% style="margin-left:8%">
+              <% for i in 1..num %>
+                <tr>
+                  <td>
+                    <% a = @posts.limit(i*2-1).last %>
+                    <% modal_a = "modal_a"+i.to_s %>
+                    <%= render partial: "modal", :locals=>{:modal_id => modal_a, :modal_post => a} %>
+                  </td>
+                </tr>
+              <% end %>
+              <tr>
+                <td>
+                  <% c = @posts.last %>
+                  <% modal_c = "modal_c"+i.to_s %>
+                  <%= render partial: "modal", :locals=>{:modal_id => modal_c, :modal_post => c} %>
+                </td>
+              </tr>
+            </table>
+            <table width=42%>
+              <% for i in 1..num %>
+                <tr>
+                  <td>
+                    <% b = @posts.limit(i*2).last %>
+                    <% modal_b = "modal_b"+i.to_s %>
+                    <%= render partial: "modal", :locals=>{:modal_id => modal_b, :modal_post => b} %>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+          <% else %>
+            <table style="width:42%; margin-left: 8%">
+              <tr>
+                <td>
+                  <% a = @posts.last %>
+                  <% modal_a = "modal_a"+i.to_s %>
+                  <%= render partial: "modal", :locals=>{:modal_id => modal_a, :modal_post => a} %>
+                </td>
+              </tr>
+            </table>
+          <% end %>
+        </div>
       <% end %>
-    </table>
-  <% else %> <!-- 投稿が奇数 -->
-    <% if @posts.count!=1 %>
-      <table align="center"  style="width:90%;">
-        <% for i in 1..num %>
-          <tr>
-            <td style="width: 50%;">
-              <% a = @posts.limit(i*2-1).last %>
-              <% modal_a = "modal_a"+i.to_s %>
-              <%= render partial: "modal", :locals=>{:modal_id => modal_a, :modal_post => a} %>
-            </td>
-            <td style="width: 50%;">
-              <% b = @posts.limit(i*2).last %>
-              <% modal_b = "modal_b"+i.to_s %>
-              <%= render partial: "modal", :locals=>{:modal_id => modal_b, :modal_post => b} %>
-            </td>
-          </tr>
-        <% end %>
-        <tr>
-          <td style="width: 50%;">
-            <% c = @posts.last %>
-            <% modal_c = "modal_c"+i.to_s %>
-            <%= render partial: "modal", :locals=>{:modal_id => modal_c, :modal_post => c} %>
-          </td>
-        </tr>
-      </table>
-    <% else %>
-      <table style="width:45%; margin-left: 5%">
-        <tr>
-          <td style="width: 50%;">
-            <% a = @posts.last %>
-            <% modal_a = "modal_a"+i.to_s %>
-            <%= render partial: "modal", :locals=>{:modal_id => modal_a, :modal_post => a} %>
-          </td>
-        </tr>
-      </table>
     <% end %>
   <% end %>
   <br><br><br>

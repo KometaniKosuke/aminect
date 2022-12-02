@@ -1,4 +1,5 @@
 class TagsController < ApplicationController
+  before_action :login_required
   def index
   end
   def create
@@ -30,26 +31,13 @@ class TagsController < ApplicationController
 
   def tag_search
     tagname = params[:tagname]
-    tags = Tag.where.not(ancestry: nil)
-    tag_m = tags.find_by(name: tagname)
-    if tag_m.present?
-      tag_r = TagRelation.where(tag1_id: tag_m.id).or(TagRelation.where(tag2_id: tag_m.id)).order(:degree)
+    tag = Tag.find_by(name: tagname)
+    users = UserTag.where(tag_id: tag.id).pluck(:user_id)
+    if users.present?
       @users=Array.new
-      if tag_r.present?
-        tag_r.each do |tr|
-          id = 0
-          if tr.tag1_id <= tr.tag2_id
-            id = tr.tag1_id
-          else
-            id = tr.tag2_id
-          end
-          uts = UserTag.where(tag_id: id)
-          uts.each do |ut|
-            u = User.find(ut.user_id)
-            if !@users.include?(u) && u!=current_user
-              @users.append(u)
-            end
-          end
+      users.each do |u|
+        if User.find(u)!=current_user
+          @users.append(User.find(u))
         end
       end
     end

@@ -81,7 +81,8 @@ class User < ApplicationRecord
   end
 
   validates :name,
-    length: { maximum: 12, allow_blank: true, message: "は12文字までです" }
+    length: { maximum: 12, allow_blank: true, message: "は12文字までです" },
+    uniqueness: { case_sensitive: false, message: "が既に使用されています", allow_nil: true}
   validates :email,
     presence: true,
     format: { with: /\A(e|ee|el|ew|ma|md|lg|lb|la|lt|lr|lk|lm|ne|hp|hs)[0-9]{6}(@senshu-u\.jp)\z/, allow_blank: true, message: "のみ利用できます" },

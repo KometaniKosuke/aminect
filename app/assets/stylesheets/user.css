@@ -22,9 +22,11 @@
  }
 
  .rounded-circle {
+   background-color: white;
    display: inline-block;
    border-radius: 50%;
    border: 1px solid;
+   object-fit: cover;
  }
  .image_input_btn{
    display: block;

@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :login_required
   def new
     @post = Post.new
   end

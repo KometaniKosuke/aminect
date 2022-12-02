@@ -75,9 +75,6 @@
 
 <div class="timetable" align=center>
   <h3>時間割</h3>
-  <% if @timetable.timetable_img.present? %>
-    <%= image_tag @timetable.timetable_img.url, style: "width: 84%; margin-left: 8%" %>
-  <% end %>
   <%= render "admin/shared/timetable" %>
 </div>
 <br>

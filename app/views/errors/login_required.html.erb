@@ -1,1 +1,7 @@
-<%= render "shared/login_form" %>
+<div align=center style="position:absolute; top:0; margin-left:auto; width:100%;">
+  <h5>セッションが切断されました<br>(再度ログインしてください)</h5>
+</div>
+
+<% if current_page?(:account)||current_page?(:edit_account) %>
+  <%= render "shared/login_form" %>
+<% end %>

@@ -51,7 +51,7 @@ class AccountsController < ApplicationController
     @user.assign_attributes(user_params)
     tt = @user.timetables.new
     if @user.save && tt.save
-      cookies.signed[:user_id] = { value: @user.id }
+      cookies.signed[:user_id] = { value: @user.id, expires: 2.hours.from_now }
       redirect_to :edit_password, notice: "パスワードを変更できます"
     else
       render "new"

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :update_expiration_time
-  
+
   private def current_user
     User.find_by(id: cookies.signed[:user_id]) if cookies.signed[:user_id]
   end
@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   private def update_expiration_time
     if cookies.signed[:user_id]
-      cookies.signed[:user_id] = {value: cookies.signed[:user_id],expires: 2.days.from_now}
+      cookies.signed[:user_id] = {value: cookies.signed[:user_id],expires: 2.hours.from_now}
     end
   end
 

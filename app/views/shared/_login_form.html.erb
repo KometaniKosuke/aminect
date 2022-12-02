@@ -7,7 +7,7 @@
 <%= form_tag :session, id: "login_form" do %>
   <div style="text-align: center">
     <br>
-    <input type="text" class="textbox" name="name" placeholder="ユーザ名">
+    <input type="text" class="textbox" name="name" placeholder="ユーザー名(登録名)">
     <input type="password" class="textbox" name="password" placeholder="パスワード">
   </div>
 
@@ -17,7 +17,7 @@
   </space>
   </div>
 <% end %>
-<div style="text-align: center; margin-bottom: 8px;">
+<div style="text-align: center; margin-bottom: 8px;" align=center>
   <%= button_to "新規登録はこちら", "/register", method: "get", class: 'buttonentry' %>
 </div>
 <div style="text-align: center">

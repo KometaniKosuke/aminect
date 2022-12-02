@@ -6,6 +6,9 @@ class MessagesController < ApplicationController
     @message.text=params[:message][:text]
     @message.created_at=Time.now
     @message.user_id=current_user.id
+    room=Room.find(params[:message][:room_id])
+    room.updated_at=Time.now
+    room.save
     if @message.save
       redirect_to Room.find(params[:message][:room_id])
     end

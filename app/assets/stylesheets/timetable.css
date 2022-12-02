@@ -140,18 +140,21 @@
   box-sizing: border-box;
   display: inline-block;
   z-index: 20;
-  top: 12%;
+  top: 7%;
   position: relative;
   width: 94%;
   padding: 15px;
   border-radius: 2px;
   background: #fff;
   box-shadow: 0 0 30px rgba(0, 0, 0, .25);
+  max-height: 93%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  vertical-align: middle;
 }
 
 .modal-user .modal-window .modal-content {
   max-height: 80vh;
-  overflow-y: auto;
 }
 
 .modal-user .modal-overlay {

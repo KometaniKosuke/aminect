@@ -1,8 +1,9 @@
 class Admin::ReportsController < Admin::Base
   # 通報外すとき
   def destroy
-    current_user.unreport(params[:user_id])
-    redirect_to request.referer
+    report = Report.find(params[:id])
+    report.destroy
+    redirect_to :admin_reports, notice: "通報を削除しました"
   end
   # 通報一覧
   def reportings

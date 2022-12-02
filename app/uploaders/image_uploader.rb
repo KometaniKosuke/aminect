@@ -19,12 +19,12 @@ class ImageUploader < CarrierWave::Uploader::Base
     "account.png"
   end
   #-------------------------------------
-  # version :thumb do
-  #   process resize_to_fit: [200, 200]
-  # end
-  # version :thumb50 do
-  #   process resize_to_fit: [100, 100]
-  # end
+  version :thumb do
+    process resize_to_fit: [200, 200]
+  end
+  version :thumb50 do
+    process resize_to_fit: [100, 100]
+  end
   def extension_allowlist
     %w(jpg jpeg gif png)
   end
