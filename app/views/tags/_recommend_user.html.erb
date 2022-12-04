@@ -1,9 +1,9 @@
 <% mytags = current_user.user_tags.pluck(:tag_id) %>
 <% recommend = [] %> <!-- 各ユーザのおすすめ度を入れていく [user, point] -->
 
-<% users = User.all %>
+<% users = User.where.not(id: current_user.id) %>
 <% if users.count > 20 %>
-  <% users = users.order("RAND()").limit(20) %>
+  <% users = users.order("RANDOM()").limit(20) %>
 <% end %>
 <% users.each do |other| %>
   <% if other != current_user %>
@@ -34,7 +34,7 @@
 <% if recommend.count%2 == 0 %> <!-- 投稿が偶数 -->
   <div style="display: flex">
     <table width=42% style="margin-left:8%"> <!-- 左 -->
-      <% for i in 1..num-1 %>
+      <% for i in 0..num-1 %>
         <tr>
           <td>
             <% a = recommend[i*2][0] %>
@@ -45,7 +45,7 @@
       <% end %>
     </table>
     <table width=42%>  <!-- 右 -->
-      <% for i in 1..num-1 %>
+      <% for i in 0..num-1 %>
         <tr>
           <td>
             <% b = recommend[i*2+1][0] %>
@@ -57,10 +57,10 @@
     </table>
   </div>
 <% else %> <!-- 投稿が奇数 -->
-  <div style="display: flex">
-    <% if recommend.count!=1 %>
+  <% if recommend.count!=1 %>
+    <div style="display: flex">
       <table width=42% style="margin-left:8%">
-        <% for i in 1..num-1 %>
+        <% for i in 0..num-1 %>
           <tr>
             <td>
               <% a = recommend[i*2][0] %>
@@ -78,7 +78,7 @@
         </tr>
       </table>
       <table width=42%>
-        <% for i in 1..num-1 %>
+        <% for i in 0..num-1 %>
           <tr>
             <td>
               <% b = recommend[i*2+1][0] %>
@@ -88,16 +88,16 @@
           </tr>
         <% end %>
       </table>
-    <% else %>
-      <table style="width:42%; margin-left: 8%">
-        <tr>
-          <td style="width: 50%;">
-            <% a = recommend[0] %>
-            <% modal_a = "modal_a"+i.to_s %>
-            <%= render partial: "shared/result_modal", :locals=>{:modal_id => modal_a, :modal_user => a} %>
-          </td>
-        </tr>
-      </table>
-    <% end %>
-  </div>
+    </div>
+  <% else %>
+    <table style="width:42%; margin-left: 8%">
+      <tr>
+        <td style="width: 50%;">
+          <% a = recommend[0][0] %>
+          <% modal_a = "modal_a"+i.to_s %>
+          <%= render partial: "shared/result_modal", :locals=>{:modal_id => modal_a, :modal_user => a} %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
 <% end %>

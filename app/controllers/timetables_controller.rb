@@ -4,11 +4,11 @@ class TimetablesController < ApplicationController
   end
 
   def edit
-    @timetable = Timetable.find(params[:id])
+    @timetable = Timetable.find_by(user_id: current_user.id)
   end
 
   def update
-    tt = Timetable.find(params[:id])
+    tt = Timetable.find_by(user_id: current_user.id)
     tt.assign_attributes(params[:timetable])
     if tt.save
       redirect_to :account, notice: "時間割を変更しました"
@@ -26,7 +26,9 @@ class TimetablesController < ApplicationController
         ts = timetable.where(k)
         ts.each do |t|
           a = User.find(t.user_id)
-          @users.push(a)
+          if a != current_user
+            @users.push(a)
+          end
         end
       end
       @users = @users.uniq
@@ -38,7 +40,9 @@ class TimetablesController < ApplicationController
       end
       ts.each do |t|
         a = User.find(t.user_id)
-        @users.push(a)
+        if a != current_user
+          @users.push(a)
+        end
       end
     end
     # ------------------------------------

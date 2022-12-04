@@ -18,7 +18,8 @@ class MailsController < ApplicationController
     else
       @pass = SecureRandom.alphanumeric(10)
       @user = User.new(identifier: @pass, password: @pass, email: params[:user][:email],sex: 3, agreement: params[:user][:agreement])
-      if @user.save
+      tt = @user.timetables.new
+      if @user.save && tt.save
         # SendMailer.with(user: @user, pass: @pass).published_email.deliver_later
         redirect_to :mails, notice: [@user,@pass]
       else

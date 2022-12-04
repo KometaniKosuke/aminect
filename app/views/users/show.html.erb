@@ -36,7 +36,11 @@
   <tr>
     <td>
       <p style="padding: 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
-        <%= @user.undergraduate %> <%= @user.grade %>年
+        <% if @user.undergraduate=="ネットワーク情報学部" %>
+          ﾈｯﾄﾜｰｸ情報学部<%= @user.grade %>年
+        <% else %>
+          <%= @user.undergraduate %> <%= @user.grade %>年
+        <% end %>
       </p>
     </td>
     <td>
@@ -149,8 +153,8 @@
           </table>
         </div>
       <% else %> <!-- 投稿が奇数 -->
-        <div style="display: flex">
-          <% if @posts.count!=1 %>
+        <% if @posts.count!=1 %>
+          <div style="display: flex">
             <table width=42% style="margin-left:8%">
               <% for i in 1..num %>
                 <tr>
@@ -180,18 +184,18 @@
                 </tr>
               <% end %>
             </table>
-          <% else %>
-            <table style="width:42%; margin-left: 8%">
-              <tr>
-                <td>
-                  <% a = @posts.last %>
-                  <% modal_a = "modal_a"+i.to_s %>
-                  <%= render partial: "modal", :locals=>{:modal_id => modal_a, :modal_post => a} %>
-                </td>
-              </tr>
-            </table>
-          <% end %>
-        </div>
+          </div>
+        <% else %>
+          <table style="width:42%; margin-left: 8%">
+            <tr>
+              <td>
+                <% a = @posts.last %>
+                <% modal_a = "modal_a"+i.to_s %>
+                <%= render partial: "modal", :locals=>{:modal_id => modal_a, :modal_post => a} %>
+              </td>
+            </tr>
+          </table>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>

@@ -9,22 +9,22 @@
   <% if @users.count%2 == 0 %> <!-- 投稿が偶数 -->
     <div style="display: flex">
       <table width=42% style="margin-left:8%"> <!-- 左 -->
-        <% for i in 1..num-1 %>
+        <% for i in 0..num-1 %>
           <tr>
             <td>
               <% a = @users[i*2] %>
-              <% modal_a = "modal_a"+i.to_s %>
+              <% modal_a = "modal_x"+i.to_s %>
               <%= render partial: "shared/result_modal", :locals=>{:modal_id => modal_a, :modal_user => a} %>
             </td>
           </tr>
         <% end %>
       </table>
       <table width=42%>  <!-- 右 -->
-        <% for i in 1..num-1 %>
+        <% for i in 0..num-1 %>
           <tr>
             <td>
               <% b = @users[i*2+1] %>
-              <% modal_b = "modal_b"+i.to_s %>
+              <% modal_b = "modal_y"+i.to_s %>
               <%= render partial: "shared/result_modal", :locals=>{:modal_id => modal_b, :modal_user => b} %>
             </td>
           </tr>
@@ -32,14 +32,14 @@
       </table>
     </div>
   <% else %> <!-- 投稿が奇数 -->
-    <div style="display: flex">
-      <% if @users.count!=1 %>
+    <% if @users.count!=1 %>
+      <div style="display: flex">
         <table width=42% style="margin-left:8%">
-          <% for i in 1..num-1 %>
+          <% for i in 0..num-1 %>
             <tr>
               <td>
                 <% a = @users[i*2] %>
-                <% modal_a = "modal_a"+i.to_s %>
+                <% modal_a = "modal_x"+i.to_s %>
                 <%= render partial: "shared/result_modal", :locals=>{:modal_id => modal_a, :modal_user => a} %>
               </td>
             </tr>
@@ -47,34 +47,35 @@
           <tr>
             <td>
               <% c = @users[@users.count-1] %>
-              <% modal_c = "modal_c"+i.to_s %>
+              <% modal_c = "modal_z"+i.to_s %>
               <%= render partial: "shared/result_modal", :locals=>{:modal_id => modal_c, :modal_user => c} %>
             </td>
           </tr>
         </table>
         <table width=42%>
-          <% for i in 1..num-1 %>
+          <% for i in 0..num-1 %>
             <tr>
               <td>
                 <% b = @users[i*2+1] %>
-                <% modal_b = "modal_b"+i.to_s %>
+                <% modal_b = "modal_y"+i.to_s %>
                 <%= render partial: "shared/result_modal", :locals=>{:modal_id => modal_b, :modal_user => b} %>
               </td>
             </tr>
           <% end %>
         </table>
-      <% else %>
-        <table style="width:42%; margin-left: 8%">
-          <tr>
-            <td style="width: 50%;">
-              <% a = @users[0] %>
-              <% modal_a = "modal_a"+i.to_s %>
-              <%= render partial: "shared/result_modal", :locals=>{:modal_id => modal_a, :modal_user => a} %>
-            </td>
-          </tr>
-        </table>
-      <% end %>
-    </div>
+      </div>
+    <% else %>
+      <table style="width:42%; margin-left: 8%">
+        <tr>
+          <td style="width: 50%;">
+            <% a = @users[0] %>
+            <% modal_a = "modal_x"+i.to_s %>
+            <%= render partial: "shared/result_modal", :locals=>{:modal_id => modal_a, :modal_user => a} %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+
   <% end %>
 <% else %>
   <h3 style="margin-left:10%; margin-bottom:3%; font-size: 22px;">検索結果</h3>
