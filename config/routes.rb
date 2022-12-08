@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :rooms
   end
 
-  resource :account, except: [:index, :destroy] do
+  resource :account, except: [:index] do
     resource :follows, only: [:index, :create, :destroy]
     get 'followings' => 'follows#followings', as: 'followings'
     get 'followers' => 'follows#followers', as: 'followers'
@@ -29,6 +29,11 @@ Rails.application.routes.draw do
     resources :timetables, only: [:edit, :update]
     resources :requests, only: [:index]
     resource :agrees, only: [:new, :create, :update]
+    collection do
+      post 'confirm'
+      patch 'edit_confirm'
+      delete 'cancel'
+    end
   end
 
   resource :password, only: [:edit, :update]

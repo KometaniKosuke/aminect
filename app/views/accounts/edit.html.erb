@@ -1,5 +1,6 @@
-<%= form_for @user, as: "account", url: :account do |form| %>
+<h2 class="back"><%= link_to "< プロフィール編集", :account %></h2>
+<%= form_for @user, as: "account", url: :edit_confirm_account, local: true do |form| %>
   <%= render "shared/user_form", form: form %>
-  <%= form.submit "更新する", class: "tag-btn" %>
+  <%= form.submit "確認", class: "tag-btn" %>
 <% end %>
 <br><br><br>

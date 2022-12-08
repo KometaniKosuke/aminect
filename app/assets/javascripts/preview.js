@@ -9,6 +9,10 @@ $(function() {
       reader.readAsDataURL(input.files[0]);
     }
   }
+  $("#account_image").change(function() {
+    $('#alter-image').removeClass('hidden');
+    readURL(this);
+  });
   $("#user_image").change(function() {
     $('#alter-image').removeClass('hidden');
     readURL(this);

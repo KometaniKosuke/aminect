@@ -8,3 +8,102 @@
   height: 16px;
   margin: 4px 8px;
 }
+.submit {
+  display: inline-block;
+  border-radius: 8px;
+  border: 1px solid #007AFF;
+  font-size: 20px;
+  color: white;
+  background-color: #007AFF;
+  width: 80%;
+}
+.fix{
+  display: inline-block;
+  border-radius: 8px;
+  border: 1px solid;
+  font-size: 20px;
+  color: black;
+  background-color: white;
+  width: 70%;
+}
+.cancel {
+  position: absolute;
+  right: 3%;
+  top: 85px;
+  font-size: 12px;
+  font-weight: lighter;
+  text-decoration: none;
+  color: #aaa;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 2px
+}
+
+.modal-cancel {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 60px 10px;
+  text-align: center
+}
+
+.modal-cancel:not(:target) {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s, visibility .3s;
+}
+
+.modal-cancel:target {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .4s, visibility .4s;
+}
+
+.modal-cancel::after {
+  display: inline-block;
+  height: 100%;
+  margin-left: -.05em;
+  vertical-align: middle;
+  content: ""
+}
+
+.modal-cancel .modal-window {
+  box-sizing: border-box;
+  display: inline-block;
+  z-index: 20;
+  position: relative;
+  width: 80%;
+  padding: 30px 20px 15px;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 0 30px rgba(0, 0, 0, .6);
+  vertical-align: middle;
+  top: -15%;
+  padding-bottom: 30px;
+}
+
+.modal-cancel .modal-window .modal-content {
+  max-height: 80vh;
+}
+
+.modal-cancel .modal-close {
+  z-index: 20;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35px;
+  color: #95979c !important;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 35px;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0
+}
+
+.modal-cancel .modal-close:hover {
+  color: #2b2e38 !important
+}

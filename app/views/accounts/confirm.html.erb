@@ -1,0 +1,77 @@
+<%= render "shared/header" %>
+<p align=center>以下の内容で登録しますか?</p>
+
+<table align=center width=90% style="font-size:18px; border-collapse: collapse;">
+  <tr>
+    <th colspan="2" style="border:none;">
+      <% if @user.image.present? %>
+        <%= image_tag @user.image.url, class: 'rounded-circle', size: '128x128', id:"alter-image" %>
+      <% else %>
+        <%= image_tag "account.png", class: 'rounded-circle', size: '128x128', id:"alter-image" %>
+      <% end %>
+    </th>
+  </tr>
+  <tr>
+    <th style="border-bottom:1px solid #ccc;">ユーザー名</th>
+    <td style="border-bottom:1px solid #ccc;"><%= @user.name %></td>
+  </tr>
+  <tr>
+    <th style="border-bottom:1px solid #ccc;">性別</th>
+    <td style="border-bottom:1px solid #ccc;">
+      <% if @user.sex==1 %>男性
+      <% elsif @user.sex==2 %>女性
+      <% else %>—
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th style="border-bottom:1px solid #ccc;">出身</th>
+    <td style="border-bottom:1px solid #ccc;"><%= @user.birthplace %></td>
+  </tr>
+  <tr>
+    <th style="border-bottom:1px solid #ccc;">学部</th>
+    <td style="border-bottom:1px solid #ccc;"><%= @user.undergraduate %></td>
+  </tr>
+  <tr>
+    <th style="border-bottom:1px solid #ccc;">学年</th>
+    <td style="border-bottom:1px solid #ccc;"><%= @user.grade %>年</td>
+  </tr>
+  <tr>
+    <th style="border-bottom:1px solid #ccc;">コメント</th>
+    <td style="border-bottom:1px solid #ccc;"><%= safe_join(@user.comment.split("\n"),tag(:br)) %></td>
+  </tr>
+  <tr>
+    <th style="border-bottom:1px solid #ccc;">Twitter</th>
+    <td style="border-bottom:1px solid #ccc;">
+      <% if @user.twitter.present? %>
+        <%= @user.twitter %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th style="border-bottom:1px solid #ccc;">Instagram</th>
+    <td style="border-bottom:1px solid #ccc;">
+      <% if @user.instagram.present? %>
+        <%= @user.instagram %>
+      <% end %>
+    </td>
+  </tr>
+</table>
+<br>
+<table align=center width=90%>
+  <tr>
+    <%= form_for @user, url: {controller: "accounts", action: "create"}, method: :post do |form| %>
+      <%= form.hidden_field :email %>
+      <%= form.hidden_field :name %>
+      <%= form.hidden_field :sex %>
+      <%= form.hidden_field :birthplace %>
+      <%= form.hidden_field :undergraduate %>
+      <%= form.hidden_field :grade %>
+      <%= form.hidden_field :comment %>
+      <%= form.hidden_field :twitter %>
+      <%= form.hidden_field :instagram %>
+      <th><%= form.submit "修正", name: :back, class: "fix" %></th>
+      <th><%= form.submit "登録", class: "submit" %></th>
+    <% end %>
+  </tr>
+</table>

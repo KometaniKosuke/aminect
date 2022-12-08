@@ -20,7 +20,7 @@ class MailsController < ApplicationController
       @user = User.new(identifier: @pass, password: @pass, email: params[:user][:email],sex: 3, agreement: params[:user][:agreement])
       tt = @user.timetables.new
       if @user.save && tt.save
-        # SendMailer.with(user: @user, pass: @pass).published_email.deliver_later
+        SendMailer.with(user: @user, pass: @pass).published_email.deliver_later
         redirect_to :mails, notice: [@user,@pass]
       else
         render "new"

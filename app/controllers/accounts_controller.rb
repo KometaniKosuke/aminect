@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_action :login_required, except: [:new, :create, :update]
+  before_action :login_required, except: [:new, :create, :update, :confirm, :edit_confirm,:cancel]
   layout 'account'
 
   def show
@@ -20,6 +20,12 @@ class AccountsController < ApplicationController
     @tags = current_user.tags
   end
 
+  def edit_confirm
+    @user = current_user
+    @user.attributes = params[:account]
+    render :edit if @user.invalid?
+  end
+
   def update
     @user = current_user
     @user.assign_attributes(params[:account])
@@ -33,9 +39,7 @@ class AccountsController < ApplicationController
   def new
     @user = User.find_by(email: params[:email])
     if @user.present?
-      if @user&.authenticate(params[:password])
-        @timetable = @user.timetables.new
-      else
+      unless @user.identifier == params[:password]
         @user = nil
         flash.notice="パスワードに誤りがあります"
         render "new"
@@ -46,16 +50,30 @@ class AccountsController < ApplicationController
     end
   end
 
-  def create
+  def confirm
     @user = User.find_by(email: params[:user][:email])
     @user.assign_attributes(user_params)
-    tt = @user.timetables.new
-    if @user.save && tt.save
+    render :new if @user.invalid?
+  end
+
+  def create
+    @user = User.find_by(email: params[:user][:email])
+    render "new", :locals=>{:@user => @user} and return if params[:back]
+    @user.assign_attributes(user_params)
+    if @user.save
       cookies.signed[:user_id] = { value: @user.id, expires: 2.hours.from_now }
-      redirect_to :edit_password, notice: "パスワードを変更できます"
+      redirect_to :edit_password, notice: "登録が完了しました(パスワードを変更できます)"
     else
       render "new"
     end
+  end
+
+  def cancel
+    user = User.find_by(email: params[:user][:email])
+    tt = Timetable.find_by(user_id: user.id)
+    user.destroy
+    tt.destroy
+    redirect_to :root, alert: "登録をキャンセルしました"
   end
 
   def update_without_current_password(params, *options)

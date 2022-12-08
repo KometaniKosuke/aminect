@@ -29,7 +29,7 @@
   <tr>
     <td>
       <p style="padding: 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
-        <% if @user.undergraduate="ネットワーク情報学部" %>
+        <% if @user.undergraduate=="ネットワーク情報学部" %>
           ﾈｯﾄﾜｰｸ情報学部<%= @user.grade %>年
         <% else %>
           <%= @user.undergraduate %> <%= @user.grade %>年
@@ -62,7 +62,7 @@
     <% else %>
       <% tw = 'https://twitter.com/'.concat(@user.twitter) %>
     <% end %>
-    <%= link_to image_tag("Twitter_logo.png", size:"86x86"),tw, style: "padding:0 7%;" %>
+    <%= link_to image_tag("Twitter_logo.png", size:"86x86"),tw, style: "padding:0 7%;", target: "_blank" %>
   <% end %>
   <% if @user.instagram.present? %>
     <% if @user.instagram.include?("https://www.instagram.com/") %>
@@ -70,7 +70,7 @@
     <% else %>
       <% i = 'https://www.instagram.com/'.concat(@user.instagram) %>
     <% end %>
-    <%= link_to image_tag("Instagram_logo.png", size:"86x86"),i, style: "padding:0 7%;"%>
+    <%= link_to image_tag("Instagram_logo.png", size:"86x86"),i, style: "padding:0 7%;", target: "_blank" %>
   <% end %>
 </p>
 
@@ -139,8 +139,8 @@
     </table>
   </div>
 <% else %> <!-- 投稿が奇数 -->
-  <div style="display: flex">
-    <% if @posts.count!=1 %>
+  <% if @posts.count!=1 %>
+    <div style="display: flex">
       <table width=42% style="margin-left:8%">
         <% for i in 1..num %>
           <tr>
@@ -170,17 +170,17 @@
           </tr>
         <% end %>
       </table>
-    <% else %>
-      <table style="width:42%; margin-left: 8%">
-        <tr>
-          <td style="width: 50%;">
-            <% a = @posts.last %>
-            <% modal_a = "modal_a"+i.to_s %>
-            <%= render partial: "post_modal", :locals=>{:modal_id => modal_a, :modal_post => a} %>
-          </td>
-        </tr>
-      </table>
-    <% end %>
-  </div>
+    </div>
+  <% else %>
+    <table style="width:42%; margin-left: 8%">
+      <tr>
+        <td style="width: 50%;">
+          <% a = @posts.last %>
+          <% modal_a = "modal_a"+i.to_s %>
+          <%= render partial: "post_modal", :locals=>{:modal_id => modal_a, :modal_post => a} %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
 <% end %>
 <br><br><br><br>
