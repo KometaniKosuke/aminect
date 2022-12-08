@@ -1,57 +1,23 @@
-<% if @user.present? %>
-  <h2 class="back">新規登録</h2>
-  <a href="#delete" class="cancel">キャンセル</a>
-  <div class="modal-cancel" id="delete">
-    <a href="#!" class="modal-overlay">×</a>
-    <div class="modal-window">
-      <div class="modal-content">
-        <h3>新規登録をキャンセルしますか</h3>
-        <p>※この操作の完了後、再び新規登録する際はメール送信からやり直してください</p>
-        <%= form_for @user, url: :cancel_account, method: :delete do |form| %>
-          <%= form.hidden_field :email  %>
-          <%= form.submit "登録をキャンセル", method: :delete, data:{ confirm: "本当にキャンセルしますか?" },
-           style:"border:1px; border-radius:3px; padding:5px; color:white; background-color:#dc143c; text-decoration:none" %>
-        <% end %>
-      </div>
-      <a href="#!" class="modal-close">×</a>
-    </div>
-  </div>
-
-  <%= form_for @user, url: :confirm_account, method: :post do |form| %>
-    <%= render "shared/user_form", form: form %>
-    <%= form.hidden_field :email  %>
-    <%= form.submit "確認", class: "tag-btn" %>
-  <% end %>
-<% else %>
-  <div style="margin:0 8%">
-    <h4>登録時に使用した専修大メールアドレスと発行したパスワードを入力してください。</h4>
-    <% if flash.notice %>
-      <% if params[:email].present? %>
-        <p class="alert"><%= flash.notice %></p>
+<h2 class="back">新規登録</h2>
+<a href="#delete" class="cancel">キャンセル</a>
+<div class="modal-cancel" id="delete">
+  <a href="#!" class="modal-overlay">×</a>
+  <div class="modal-window">
+    <div class="modal-content">
+      <h3>新規登録をキャンセルしますか</h3>
+      <p>※この操作の完了後、再び新規登録する際はメール送信からやり直してください</p>
+      <%= form_for @user, url: :cancel_account, method: :delete do |form| %>
+        <%= form.hidden_field :email  %>
+        <%= form.submit "登録をキャンセル", method: :delete, data:{ confirm: "本当にキャンセルしますか?" },
+         style:"border:1px; border-radius:3px; padding:5px; color:white; background-color:#dc143c; text-decoration:none" %>
       <% end %>
-    <% end %>
-    <%= form_tag :new_account, method: :get do %>
-      <table width=80% align=center>
-        <tr>
-          <th align=left>メールアドレス</th>
-        </tr>
-        <tr>
-          <td align=center style="margin:0;">
-            <%= text_field_tag :email,'', placeholder: "専修大学メールアドレス", style: "width: 272px;height: 45px;background: #FFFFFF;border: 3px solid rgba(6, 6, 6, 0.4);font-size: 20px;letter-spacing: -0.3px;margin: 0px auto 15px auto;", required: :true %>
-          </td>
-        </tr>
-        <tr>
-          <th align=left>初期パスワード</th>
-        </tr>
-        <tr>
-          <td align=center style="margin:0;">
-            <%= password_field_tag :password,'', placeholder: "初期パスワード", style: "width: 272px;height: 45px;background: #FFFFFF;border: 3px solid rgba(6, 6, 6, 0.4);font-size: 20px;letter-spacing: -0.3px;margin: 0px auto 15px auto;", required: :true %>
-          </td>
-        </tr>
-        <tr>
-          <td align=right rowspan="4" style="padding-right:5%"><%= submit_tag "完了", class:"complete-btn" %></td>
-        </tr>
-      </table>
-    <% end %>
+    </div>
+    <a href="#!" class="modal-close">×</a>
   </div>
+</div>
+
+<%= form_for @user, url: :confirm_account, method: :post do |form| %>
+  <%= render "shared/user_form", form: form %>
+  <%= form.hidden_field :email  %>
+  <%= form.submit "確認", class: "tag-btn" %>
 <% end %>

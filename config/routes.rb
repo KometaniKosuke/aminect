@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     resources :requests, only: [:index]
     resource :agrees, only: [:new, :create, :update]
     collection do
+      get 'check'
       post 'confirm'
       patch 'edit_confirm'
       delete 'cancel'

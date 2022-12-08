@@ -62,6 +62,8 @@
   <tr>
     <%= form_for @user, url: {controller: "accounts", action: "create"}, method: :post do |form| %>
       <%= form.hidden_field :email %>
+
+      <%= form.hidden_field :image_cache %>
       <%= form.hidden_field :name %>
       <%= form.hidden_field :sex %>
       <%= form.hidden_field :birthplace %>

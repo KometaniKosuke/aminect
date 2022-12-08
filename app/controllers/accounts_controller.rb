@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_action :login_required, except: [:new, :create, :update, :confirm, :edit_confirm,:cancel]
+  before_action :login_required, except: [:new, :create, :update,:check, :confirm, :edit_confirm,:cancel]
   layout 'account'
 
   def show
@@ -29,6 +29,7 @@ class AccountsController < ApplicationController
   def update
     @user = current_user
     @user.assign_attributes(params[:account])
+    render "edit" and return if params[:back]
     if @user.save
       redirect_to :account, notice: "アカウント情報を更新しました"
     else
@@ -42,11 +43,11 @@ class AccountsController < ApplicationController
       unless @user.identifier == params[:password]
         @user = nil
         flash.notice="パスワードに誤りがあります"
-        render "new"
+        render "check"
       end
     else
       flash.notice="メールアドレスに誤りがあります"
-      render "new"
+      render "check"
     end
   end
 
@@ -58,8 +59,8 @@ class AccountsController < ApplicationController
 
   def create
     @user = User.find_by(email: params[:user][:email])
-    render "new", :locals=>{:@user => @user} and return if params[:back]
     @user.assign_attributes(user_params)
+    render "new" and return if params[:back]
     if @user.save
       cookies.signed[:user_id] = { value: @user.id, expires: 2.hours.from_now }
       redirect_to :edit_password, notice: "登録が完了しました(パスワードを変更できます)"
@@ -74,6 +75,9 @@ class AccountsController < ApplicationController
     user.destroy
     tt.destroy
     redirect_to :root, alert: "登録をキャンセルしました"
+  end
+
+  def check
   end
 
   def update_without_current_password(params, *options)
@@ -97,7 +101,7 @@ class AccountsController < ApplicationController
    end
 
   private def user_params
-    params.require(:user).permit(:name, :sex, :birthplace, :undergraduate, :grade, :comment, :image, :twitter, :instagram, :email)
+    params.require(:user).permit(:name, :sex, :birthplace, :undergraduate, :grade, :comment, :image, :image_cache, :twitter, :instagram, :email)
   end
 
   private def register_params

@@ -60,19 +60,19 @@
 <br>
 <table align=center width=90%>
   <tr>
-    <th><%= button_to "修正", :back, method: "get", class: "fix" %></th>
-    <th>
-      <%= form_for @user, as: "account", url: :account do |form| %>
-        <%= form.hidden_field :name %>
-        <%= form.hidden_field :sex %>
-        <%= form.hidden_field :birthplace %>
-        <%= form.hidden_field :undergraduate %>
-        <%= form.hidden_field :grade %>
-        <%= form.hidden_field :comment %>
-        <%= form.hidden_field :twitter %>
-        <%= form.hidden_field :instagram %>
-        <%= form.submit "登録", class: "submit" %>
-      <% end %>
-    </th>
+    <%= form_for @user,as: :account, url: {controller: "accounts", action: "update"}, method: :patch, local: true do |form| %>
+      <%= form.hidden_field :name %>
+      <%= form.hidden_field :image %>
+      <%= form.hidden_field :image_cache %>
+      <%= form.hidden_field :sex %>
+      <%= form.hidden_field :birthplace %>
+      <%= form.hidden_field :undergraduate %>
+      <%= form.hidden_field :grade %>
+      <%= form.hidden_field :comment %>
+      <%= form.hidden_field :twitter %>
+      <%= form.hidden_field :instagram %>
+      <th><%= form.submit "修正", name: :back, class: "fix" %></th>
+      <th><%= form.submit "登録", class: "submit" %></th>
+    <% end %>
   </tr>
 </table>

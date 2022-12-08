@@ -54,7 +54,7 @@
     <th style="display: flex">
       学年<span class="required">必須</span>
     </th>
-    <td><%= form.select :grade, [1,2,3,4], {include_blank: "選択してください"},required: :true, style: "font-size: 16px;" %></td>
+    <td><%= form.select :grade, [["1年",1],["2年",2],["3年",3],["4年",4]], {include_blank: "選択してください"},required: :true, style: "font-size: 16px;" %></td>
   </tr>
   <tr>
     <th align=left>コメント</th>
@@ -67,7 +67,7 @@
   </tr>
   <tr>
     <th align=left>Instagram<span style="color:#2E8B58;font-weight:bold">*</span></th>
-    <td><%= form.text_field :instagram, style: "width: 80%; font-size: 16px;", placeholder: "例：@instagram" %></td>
+    <td><%= form.text_field :instagram, style: "width: 80%; font-size: 16px;", placeholder: "例：instagram" %></td>
   </tr>
 </table>
 <p style="margin-left:8%;font-size:12px;margin-top:0;">
