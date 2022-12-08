@@ -1,5 +1,5 @@
 Administrator.create(
-  name: "admin",
-  password: "aminect",
-  password_confirmation: "aminect"
+  name: "61imABXWpul0Nro",
+  password: "cOJTRrhRMDRkdIp",
+  password_confirmation: "cOJTRrhRMDRkdIp"
 )

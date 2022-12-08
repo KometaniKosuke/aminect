@@ -1,4 +1,5 @@
 class Admin::ReportsController < Admin::Base
+  before_action :admin_login_required
   # 通報外すとき
   def destroy
     report = Report.find(params[:id])

@@ -5,14 +5,16 @@
 <h3>通報一覧</h3>
 <table border=5 width="500px">
   <tr align="center">
-    <th>通報者</th>
-    <th>通報された人</th>
+    <th colspan="2">通報者</th>
+    <th colspan="2">通報された人</th>
     <th>削除</th>
   </tr>
   <% @reports.each do |rep| %>
     <tr align="center">
-      <td><%= rep.from.name %></td>
-      <td><%= rep.to.name %></td>
+      <td><%= rep.from.id %></td>
+      <td><%= link_to rep.from.name, [:admin, rep.from] %></td>
+      <td><%= rep.to.id %></td>
+      <td><%= link_to rep.to.name, [:admin, rep.to] %></td>
       <td><%= link_to "×", [:admin, rep], method: :delete, data: { confirm: "本当に削除しますか?" } %></td>
     </tr>
   <% end %>
