@@ -65,6 +65,7 @@
 
 <% if params[:tagname].present? %>
   <%= render "search_result" %>
-<% end %>
+<% else %>
   <%= render "recommend_user" %>
+<% end %>
 <br><br><br><br>

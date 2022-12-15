@@ -1,7 +1,7 @@
 <% if flash.notice %>
   <p class="notice"><%= flash.notice %></p>
 <% end %>
-
+<h4>現在のユーザー数: <%= User.all.count %>人</h4>
 <table border=5 width="500px">
   <tr align="center">
     <th>ID</th>

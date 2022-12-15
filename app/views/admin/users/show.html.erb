@@ -3,65 +3,66 @@
 <hr>
 <p style="margin-left: 5%">id:<%= @user.id %> / <%= @user.email %></p>
 <% c = (Report.where(to_id: @user.id).select(:from_id).distinct.count+1)/2 %>
-<table style="width: 90%; font-size: 16px; margin: 3% auto auto auto; text-align: center;" align="center">
-  <tr>
-    <td width="40%" rowspan="2">
-      <%= image_tag @user.image.url, class: 'rounded-circle', size: '128x128' %>
-    </td>
-    <td class="name" colspan="2">
-      <% if c!=0 %>
-        <% for i in 1..c do %>
-          <%= image_tag "bad.png", size: "20x20", style: "margin: 0;" %>
-        <% end %><br>
-      <% end %>
-      <%= @user.name %>
-    </td>
-  </tr>
-  <tr height="0">
-    <td width="30%">
-      <%= @user.followers.count %><br>フォロワー
-    </td>
-    <td width="30%">
-      <%= @user.followings.count %><br>フォロー
-    </td>
-  </tr>
-</table>
-
-<table style="width: 90%; font-size: 20px; text-align: center;" align="center">
-  <tr>
-    <td>
-      <p style="padding: 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
-        <%= @user.undergraduate %> <%= @user.grade %>年
-      </p>
-    </td>
-    <td>
-      <p style="padding: 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
-        <%= @user.birthplace %>
-      </p>
-    </td>
-    <td>
-      <p style="padding: 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
-        <% if @user.sex==1 %>男性
-        <% elsif @user.sex==2 %>女性
-        <% else %>—
+<% if @user.name!=nil %>
+  <table style="width: 90%; font-size: 16px; margin: 3% auto auto auto; text-align: center;" align="center">
+    <tr>
+      <td width="40%" rowspan="2">
+        <%= image_tag @user.image.url, class: 'rounded-circle', size: '128x128' %>
+      </td>
+      <td class="name" colspan="2">
+        <% if c!=0 %>
+          <% for i in 1..c do %>
+            <%= image_tag "bad.png", size: "20x20", style: "margin: 0;" %>
+          <% end %><br>
         <% end %>
-      </p>
-    </td>
-  </tr>
-</table>
+        <%= @user.name %>
+      </td>
+    </tr>
+    <tr height="0">
+      <td width="30%">
+        <%= @user.followers.count %><br>フォロワー
+      </td>
+      <td width="30%">
+        <%= @user.followings.count %><br>フォロー
+      </td>
+    </tr>
+  </table>
 
-<p align="center"><%= safe_join(@user.comment.split("\n"),tag(:br)) %></p>
+  <table style="width: 90%; font-size: 20px; text-align: center;" align="center">
+    <tr>
+      <td>
+        <p style="padding: 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
+          <%= @user.undergraduate %> <%= @user.grade %>年
+        </p>
+      </td>
+      <td>
+        <p style="padding: 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
+          <%= @user.birthplace %>
+        </p>
+      </td>
+      <td>
+        <p style="padding: 5px; display: inline-block; background-color: #D9D9D9; border-radius: 4px;">
+          <% if @user.sex==1 %>男性
+          <% elsif @user.sex==2 %>女性
+          <% else %>—
+          <% end %>
+        </p>
+      </td>
+    </tr>
+  </table>
 
-<p align="center">
-  <% if @user.twitter.present? %>
-    <% tw = 'https://twitter.com/'.concat(@user.twitter) %>
-    <%= link_to image_tag("Twitter_logo.png", size:"86x86"),tw, style: "padding:0 7%;" %>
-  <% end %>
-  <% if @user.instagram.present? %>
-    <% i = 'https://www.instagram.com/'.concat(@user.instagram) %>
-    <%= link_to image_tag("Instagram_logo.png", size:"86x86"),i, style: "padding:0 7%;"%>
-  <% end %>
-</p>
+  <p align="center"><%= safe_join(@user.comment.split("\n"),tag(:br)) %></p>
+
+  <p align="center">
+    <% if @user.twitter.present? %>
+      <% tw = 'https://twitter.com/'.concat(@user.twitter) %>
+      <%= link_to image_tag("Twitter_logo.png", size:"86x86"),tw, style: "padding:0 7%;" %>
+    <% end %>
+    <% if @user.instagram.present? %>
+      <% i = 'https://www.instagram.com/'.concat(@user.instagram) %>
+      <%= link_to image_tag("Instagram_logo.png", size:"86x86"),i, style: "padding:0 7%;"%>
+    <% end %>
+  </p>
 
   <table style="width: 86%; margin: auto;" align="center">
     <tr>
@@ -73,28 +74,14 @@
     </tr>
   </table>
 
-<div class="timetable" align=center>
-  <h3>時間割</h3>
-  <%= render "admin/shared/timetable" %>
-</div>
-<br>
+  <div class="timetable" align=center>
+    <h3>時間割</h3>
+    <%= render "admin/shared/timetable" %>
+  </div>
+  <br>
 
-<% num = @posts.count/2 %>
-<% if @posts.count%2 == 0 %> <!-- 投稿が偶数 -->
-  <table align="center"  style="width:84%;">
-    <% for i in 1..num %>
-      <tr>
-        <td style="width: 50%;">
-          <%= image_tag @posts.limit(i*2-1).last.post_img.url, width: '94%', style: "border: 1px solid black; margin: auto 3%;" %>
-        </td>
-        <td style="width: 50%;">
-          <%= image_tag @posts.limit(i*2).last.post_img.url, width: '94%', style: "border: 1px solid black; margin: auto 3%;" %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
-<% else %> <!-- 投稿が奇数 -->
-  <% if @posts.count!=1 %>
+  <% num = @posts.count/2 %>
+  <% if @posts.count%2 == 0 %> <!-- 投稿が偶数 -->
     <table align="center"  style="width:84%;">
       <% for i in 1..num %>
         <tr>
@@ -106,20 +93,35 @@
           </td>
         </tr>
       <% end %>
-      <tr>
-        <td style="width: 50%;">
-          <%= image_tag @posts.last.post_img.url, width: '94%', style: "border: 1px solid black; margin: auto 3%;" %>
-        </td>
-      </tr>
     </table>
-  <% else %>
-    <table style="width:42%; margin-left: 8%">
-      <tr>
-        <td style="width: 50%;">
-          <%= image_tag @posts.last.post_img.url, width: '94%', style: "border: 1px solid black; margin: auto 3%;" %>
-        </td>
-      </tr>
-    </table>
+  <% else %> <!-- 投稿が奇数 -->
+    <% if @posts.count!=1 %>
+      <table align="center"  style="width:84%;">
+        <% for i in 1..num %>
+          <tr>
+            <td style="width: 50%;">
+              <%= image_tag @posts.limit(i*2-1).last.post_img.url, width: '94%', style: "border: 1px solid black; margin: auto 3%;" %>
+            </td>
+            <td style="width: 50%;">
+              <%= image_tag @posts.limit(i*2).last.post_img.url, width: '94%', style: "border: 1px solid black; margin: auto 3%;" %>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td style="width: 50%;">
+            <%= image_tag @posts.last.post_img.url, width: '94%', style: "border: 1px solid black; margin: auto 3%;" %>
+          </td>
+        </tr>
+      </table>
+    <% else %>
+      <table style="width:42%; margin-left: 8%">
+        <tr>
+          <td style="width: 50%;">
+            <%= image_tag @posts.last.post_img.url, width: '94%', style: "border: 1px solid black; margin: auto 3%;" %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
   <% end %>
 <% end %>
 <br><br><br><br>

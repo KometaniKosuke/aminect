@@ -78,6 +78,11 @@
 
   <% end %>
 <% else %>
-  <h3 style="margin-left:10%; margin-bottom:3%; font-size: 22px;">検索結果</h3>
+  <h3 style="margin-left:10%; margin-bottom:3%; font-size: 22px;">
+    検索結果
+    <p class="searchtag" style="margin: -5px 0 0 5%;vertical-align: middle;">
+      <span><%= params[:tagname] %></span>
+    </p>
+  </h3>
   <p style="margin-left:8%">該当するユーザはいませんでした</p>
 <% end  %>
