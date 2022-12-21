@@ -1,10 +1,4 @@
 <% if @users.present? %>
-  <h3 style="margin-left:10%; margin-bottom:3%; font-size: 22px;">
-    検索結果
-    <p class="searchtag" style="margin: -5px 0 0 5%;vertical-align: middle;">
-      <span><%= params[:tagname] %></span>
-    </p>
-  </h3>
   <% num = @users.count/2 %>
   <% if @users.count%2 == 0 %> <!-- 投稿が偶数 -->
     <div style="display: flex">
@@ -75,14 +69,7 @@
         </tr>
       </table>
     <% end %>
-
   <% end %>
 <% else %>
-  <h3 style="margin-left:10%; margin-bottom:3%; font-size: 22px;">
-    検索結果
-    <p class="searchtag" style="margin: -5px 0 0 5%;vertical-align: middle;">
-      <span><%= params[:tagname] %></span>
-    </p>
-  </h3>
   <p style="margin-left:8%">該当するユーザはいませんでした</p>
 <% end  %>

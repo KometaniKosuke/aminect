@@ -2,70 +2,20 @@
   <%= link_to "< 趣味で探す", :root %>
 </h2>
 
-<% parents = Tag.where(ancestry: nil) %>
-<table align="center" width="98%">
-  <tr>
-    <td width="50%" style="vertical-align: top;">
-      <% for i in 1..6 do %>
-        <% pa=parents.find(i*2-1) %>
-        <% cs = Tag.where(ancestry: pa.id.to_s) %>
-        <table width="100%">
-          <tr>
-            <td>
-              <div id="accordion" class="accordion-container_2">
-                <h4 class="accordion-title_2 js-accordion-title" style="height: 24px"><%= pa.name %></h4>
-                <div class="accordion-content_2" style="padding-bottom: 5px;">
-                  <% cs.each do |c| %>
-                    <p class="hashtag">
-                      <%= link_to ({ controller: "tags", action: "tag_search", tagname: c.name })  do %>
-                        <span><%= c.name %></span>
-                      <% end %>
-                    </p>
-                  <% end %>
-                </div>
-              </div>
-            </td>
-          </tr>
-        </table>
-      <% end %>
-    </td>
-    <td width="50%" style="vertical-align: top;">
-      <% for i in 1..6 do %>
-        <% pa=parents.find(i*2) %>
-        <% cs = Tag.where(ancestry: pa.id.to_s) %>
-          <table width="100%">
-            <tr>
-              <td>
-                <div id="accordion" class="accordion-container_2">
-                <h4 class="accordion-title_2 js-accordion-title" style="height: 24px"><%= pa.name %></h4>
-                <div class="accordion-content_2" style="padding-bottom: 5px;">
-                  <% cs.each do |c| %>
-                    <p class="hashtag">
-                      <%= link_to ({ controller: "tags", action: "tag_search", tagname: c.name })  do %>
-                        <span>
-                          <% if c.name=="ダーツ ビリヤード ボーリング" %>
-                            ﾀﾞｰﾂ ﾋﾞﾘﾔｰﾄﾞ ﾎﾞｳﾘﾝｸﾞ
-                          <% else %>
-                            <%= c.name %>
-                          <% end %>
-                        </span>
-                      <% end %>
-                    </p>
-                  <% end %>
-                </div>
-              </div>
-            </td>
-          </tr>
-        </table>
-      <% end %>
-    </td>
-  </tr>
-</table>
-<!-- ↑検索エリア↑ -->
-
 <% if params[:tagname].present? %>
-  <%= render "search_result" %>
+  <%= render "serch_area" %>
+  <h3 style="margin-left:10%; margin-bottom:5px; font-size: 22px;">
+    検索結果
+    <p class="searchtag" style="margin: -5px 0 0 5%; vertical-align: middle;">
+      <span style="padding-top:2px;"><%= params[:tagname] %></span>
+    </p>
+  </h3>
+  <% if params[:tagname]=="おすすめ" %>
+    <%= render "recommend_user" %>
+  <% else %>
+    <%= render "search_result" %>
+  <% end %>
 <% else %>
-  <%= render "recommend_user" %>
+  <%= render "serch_area" %>
 <% end %>
 <br><br><br><br>

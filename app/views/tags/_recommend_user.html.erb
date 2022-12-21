@@ -1,35 +1,32 @@
-<% mytags = current_user.user_tags.pluck(:tag_id) %>
+<% time=Time.current %>
+<% mytags = current_user.user_tags.pluck(:tag_id).sample(10) %>
 <% recommend = [] %> <!-- 各ユーザのおすすめ度を入れていく [user, point] -->
 
 <% users = User.where.not(id: current_user.id) %>
-<% if users.count > 20 %>
-  <% users = users.order("RANDOM()").limit(20) %>
-<% end %>
+<% users = users.where.not(name: nil).sample(8) %>
+
 <% users.each do |other| %>
-  <% if other != current_user %>
-    <% othertags = other.user_tags.pluck(:tag_id) %>
-    <% point = [] %> <!-- 自分のタグごとの得点 ex)[k-popの点, j-popの点, ...] -->
-    <% mytags.each do |mt| %>
-      <% p = 0 %> <!-- 自分のタグ一つの得点 ex)k-popの点 -->
-      <% othertags.each do |ot| %>
-        <% rp = 0 %>
-        <% if mt < ot %>
-          <% if TagRelation.find_by(tag1_id: mt, tag2_id: ot).present? %> <% rp = TagRelation.find_by(tag1_id: mt, tag2_id: ot).degree %> <% end %>
-        <% else %>
-          <% if TagRelation.find_by(tag1_id: ot, tag2_id: mt).present? %> <% rp = TagRelation.find_by(tag1_id: ot, tag2_id: mt).degree %> <% end %>
-        <% end %>
-        <% p += rp %>  <!-- 加算方式(全て足す) -->
+  <% othertags = other.user_tags.pluck(:tag_id) %>
+  <% othertags = othertags.sample(10) %>
+  <% point = 0 %>
+  <% mytags.each do |mt| %>
+    <% othertags.each do |ot| %>
+      <% if TagRelation.find_by(tag1_id: mt, tag2_id: ot).present? %>
+        <% rp = TagRelation.find_by(tag1_id: mt, tag2_id: ot).degree %>
+        <% point += rp %>
+      <% elsif TagRelation.find_by(tag1_id: ot, tag2_id: mt).present? %>
+        <% rp = TagRelation.find_by(tag1_id: ot, tag2_id: mt).degree %>
+        <% point += rp %>
       <% end %>
-      <% point << p %>
     <% end %>
-    <% recommend << [other, point.sum] %>
   <% end %>
+  <% recommend << [other, point] %>
 <% end %>
 <% recommend.sort_by! {|x| -x[1] } %>
-<br><br>
 <!-- ここまでで各ユーザのおすすめ度の計算 -->
 
-<h3 style="margin-left:10%; margin-bottom:3%; font-size: 22px;">おすすめ</h3>
+<p style="font-size:10px; margin:0 0 3% 10%">＊ランダムに選んだユーザーをおすすめ順に表示します</p>
+
 <% num = recommend.count/2 %>
 <% if recommend.count%2 == 0 %> <!-- 投稿が偶数 -->
   <div style="display: flex">

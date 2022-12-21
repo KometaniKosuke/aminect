@@ -24,3 +24,32 @@
  .this {
    background-color: #EEFFE6;
  }
+
+ .push-btn {
+   display: inline-block;
+   text-decoration: none;
+   border: 1px solid rgb(150,200,150);
+   border-bottom: 4px solid rgb(150,200,150);
+   color: #555;
+   border-radius: 10px;
+   padding: 2px;
+   width: 96%;
+   font-size: 20px;
+   background-color: rgb(205,245,205);
+ }
+ .push-btn:hover {
+   display: inline-block;
+   text-decoration: none;
+   border: 1px solid rgb(150,200,150);
+   border-bottom: 2px solid rgb(150,200,150);
+   color: #555;
+   border-radius: 10px;
+   padding: 2px;
+   width: 96%;
+   font-size: 20px;
+   background-color: rgb(205,245,205);
+ }
+.btn--shadow {
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, .3);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+}

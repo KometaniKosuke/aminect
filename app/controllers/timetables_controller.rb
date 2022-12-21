@@ -17,13 +17,28 @@ class TimetablesController < ApplicationController
   def search
     hash = params[:tt].to_h
     k = hash.find_all{|k ,v| v=="1"}
-    @keys = k.to_h
-    @users = Array.new
-    timetable = Timetable.where.not(id: current_user.id)
-    # -------------------------------------
-    if params[:commit]=="あいまい検索"
-      @keys.each do |k|
-        ts = timetable.where(k)
+    if k.present?
+      @keys = k.to_h
+      @users = Array.new
+      timetable = Timetable.where.not(id: current_user.id)
+      # -------------------------------------
+      if params[:commit]=="あいまい検索"
+        @keys.each do |k|
+          ts = timetable.where(k)
+          ts.each do |t|
+            a = User.find(t.user_id)
+            if a != current_user
+              @users.push(a)
+            end
+          end
+        end
+        @users = @users.uniq
+      # ------------------------------------
+      elsif params[:commit]=="ピッタリ検索"
+        ts = timetable.all
+        @keys.each do |k|
+          ts = ts.where(k)
+        end
         ts.each do |t|
           a = User.find(t.user_id)
           if a != current_user
@@ -31,21 +46,8 @@ class TimetablesController < ApplicationController
           end
         end
       end
-      @users = @users.uniq
-    # ------------------------------------
-    elsif params[:commit]=="ピッタリ検索"
-      ts = timetable.all
-      @keys.each do |k|
-        ts = ts.where(k)
-      end
-      ts.each do |t|
-        a = User.find(t.user_id)
-        if a != current_user
-          @users.push(a)
-        end
-      end
+      # ------------------------------------
     end
-    # ------------------------------------
     render "index"
   end
 end

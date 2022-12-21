@@ -31,13 +31,15 @@ class TagsController < ApplicationController
 
   def tag_search
     tagname = params[:tagname]
-    tag = Tag.find_by(name: tagname)
-    users = UserTag.where(tag_id: tag.id).pluck(:user_id)
-    if users.present?
-      @users=Array.new
-      users.each do |u|
-        if User.find(u)!=current_user
-          @users.append(User.find(u))
+    if tagname != "おすすめ"
+      tag = Tag.find_by(name: tagname)
+      users = UserTag.where(tag_id: tag.id).pluck(:user_id)
+      if users.present?
+        @users=Array.new
+        users.each do |u|
+          if User.find(u)!=current_user
+            @users.append(User.find(u))
+          end
         end
       end
     end
